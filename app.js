@@ -148,6 +148,25 @@ async function loadGallery() {
       dateSource: typeof item.dateSource === 'string' ? item.dateSource : '',
       index
     })).sort((a, b) => (a.timestamp === null ? Infinity : a.timestamp) - (b.timestamp === null ? Infinity : b.timestamp) || a.index - b.index);
+    const backdrop = document.querySelector('#backdrop');
+    if (photos.length) {
+      const strip = document.createElement('div');
+      strip.className = 'backdrop-strip';
+      const selection = Array.from({ length: 8 }, (_, index) => photos[Math.floor(index * photos.length / 8)]);
+      for (let copy = 0; copy < 2; copy++) {
+        const group = document.createElement('div');
+        group.className = 'backdrop-group';
+        selection.forEach(photo => {
+          const image = document.createElement('img');
+          image.src = photo.path;
+          image.alt = '';
+          image.decoding = 'async';
+          group.append(image);
+        });
+        strip.append(group);
+      }
+      backdrop.replaceChildren(strip);
+    }
     status.textContent = photos.length ? '' : 'ยังไม่มีภาพในอัลบั้ม แล้วกลับมาเก็บความทรงจำด้วยกันนะ';
     render();
   } catch {
