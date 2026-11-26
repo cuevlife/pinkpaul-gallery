@@ -150,22 +150,26 @@ async function loadGallery() {
     })).sort((a, b) => (a.timestamp === null ? Infinity : a.timestamp) - (b.timestamp === null ? Infinity : b.timestamp) || a.index - b.index);
     const backdrop = document.querySelector('#backdrop');
     if (photos.length) {
-      const strip = document.createElement('div');
-      strip.className = 'backdrop-strip';
-      const selection = Array.from({ length: 8 }, (_, index) => photos[Math.floor(index * photos.length / 8)]);
-      for (let copy = 0; copy < 2; copy++) {
-        const group = document.createElement('div');
-        group.className = 'backdrop-group';
-        selection.forEach(photo => {
-          const image = document.createElement('img');
-          image.src = photo.path;
-          image.alt = '';
-          image.decoding = 'async';
-          group.append(image);
-        });
-        strip.append(group);
+      const strips = document.createElement('div');
+      strips.className = 'backdrop-strips';
+      for (let column = 0; column < 6; column++) {
+        const strip = document.createElement('div');
+        strip.className = 'backdrop-strip';
+        for (let copy = 0; copy < 2; copy++) {
+          const group = document.createElement('div');
+          group.className = 'backdrop-group';
+          for (let index = 0; index < 6; index++) {
+            const image = document.createElement('img');
+            image.src = photos[(column * 6 + index) % photos.length].path;
+            image.alt = '';
+            image.decoding = 'async';
+            group.append(image);
+          }
+          strip.append(group);
+        }
+        strips.append(strip);
       }
-      backdrop.replaceChildren(strip);
+      backdrop.replaceChildren(strips);
     }
     status.textContent = photos.length ? '' : 'ยังไม่มีภาพในอัลบั้ม แล้วกลับมาเก็บความทรงจำด้วยกันนะ';
     render();
