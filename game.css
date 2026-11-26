@@ -1,0 +1,27 @@
+#game-section[hidden]{display:none}
+#game-root{color:#4b2939;font-family:'Nunito','Mali',system-ui,sans-serif}
+#game-root *{box-sizing:border-box}
+#game-root .game-panel{padding:clamp(20px,4vw,42px);border:1px solid #e5bdca;border-radius:24px;background:rgba(255,246,248,.97);box-shadow:0 16px 45px #773e5420}
+#game-root .game-heading{display:flex;justify-content:space-between;align-items:center;gap:20px}
+#game-root h2{margin:0;color:#74364f;font:600 clamp(25px,4vw,38px)/1.25 'Mali',system-ui,sans-serif}
+#game-root .game-eyebrow{margin:0 0 8px;color:#a13e61;font-size:10px;font-weight:800;letter-spacing:.17em}
+#game-root .game-instructions{max-width:580px;margin:10px 0 0;color:#674351;line-height:1.7}
+#game-root .game-action,#game-root .game-controls button{border:1px solid #a13e61;border-radius:999px;padding:10px 22px;background:#a13e61;color:#fff;font:inherit;font-weight:700;cursor:pointer;touch-action:manipulation}
+#game-root .game-action{flex:none}
+#game-root .game-action:hover,#game-root .game-controls button:hover:not(:disabled){background:#842e4d}
+#game-root button:focus-visible{outline:3px solid #70233f;outline-offset:3px}
+#game-root .game-progress{display:flex;justify-content:space-between;gap:12px;margin-top:24px;padding-bottom:10px;border-bottom:1px solid #edcfd9;color:#74364f;font-size:14px;font-weight:700}
+#game-root .game-status{min-height:1.6em;margin:10px 0 14px;color:#674351;font-size:13px}
+#game-root .game-field{position:relative;height:clamp(280px,45vw,400px);max-width:550px;margin:auto;overflow:hidden;border:1px solid #e5b6c5;border-radius:20px;background:linear-gradient(#fff8fa,#f8dfe7);touch-action:manipulation}
+#game-root .game-lanes{position:absolute;inset:0;background:linear-gradient(90deg,transparent 33.1%,#e9bdcb 33.2%,#e9bdcb 33.5%,transparent 33.6%,transparent 66.4%,#e9bdcb 66.5%,#e9bdcb 66.8%,transparent 66.9%);opacity:.5}
+#game-root .game-objects{position:absolute;inset:0}
+#game-root .game-object{position:absolute;transform:translate(-50%,-50%);display:grid;place-items:center}
+#game-root .game-heart{color:#bd4269;font-size:34px;line-height:1;text-shadow:0 3px 0 #f4b9ca}
+#game-root .game-cloud{width:58px;height:34px;border:1px solid #aa8796;border-radius:50% 50% 40% 40%;background:#e4d4df;color:#5e4655;font-size:12px;font-weight:700}
+#game-root .game-player{position:absolute;top:80%;width:70px;height:48px;transform:translate(-50%,-50%);display:grid;place-items:center;border:2px solid #a13e61;border-radius:8px 8px 20px 20px;background:#fff2d9;color:#74364f;font-weight:800;transition:left .12s ease}
+#game-root .game-player:before{content:'';position:absolute;top:-13px;width:36px;height:17px;border:2px solid #a13e61;border-bottom:0;border-radius:20px 20px 0 0}
+#game-root .game-controls{display:flex;justify-content:center;gap:16px;margin-top:18px}
+#game-root .game-controls button{min-width:110px;min-height:48px}
+#game-root .game-controls button:disabled{opacity:.5;cursor:not-allowed}
+@media(max-width:600px){#game-root .game-panel{padding:20px 16px;border-radius:18px}#game-root .game-heading{align-items:flex-start;flex-direction:column}#game-root .game-progress{margin-top:18px}#game-root .game-field{height:320px}}
+@media(prefers-reduced-motion:reduce){#game-root .game-player{transition:none}}

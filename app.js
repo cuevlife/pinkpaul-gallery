@@ -1,18 +1,15 @@
 'use strict';
 
-const scene = document.querySelector('#scene');
-const viewer = document.querySelector('#viewer');
+const grid = document.querySelector('#gallery-grid');
 const status = document.querySelector('#status');
-const previous = document.querySelector('#previous');
-const next = document.querySelector('#next');
-const openButton = document.querySelector('#open');
 const lightbox = document.querySelector('#lightbox');
 const lightboxImage = document.querySelector('#lightbox-image');
 const closeButton = document.querySelector('#close-lightbox');
+const previous = document.querySelector('#previous');
+const next = document.querySelector('#next');
 let photos = [];
 let current = 0;
 let lastTrigger = null;
-let touchStart = null;
 
 function safeImagePath(path) {
   if (typeof path !== 'string' || !path.trim()) return false;
@@ -22,110 +19,85 @@ function safeImagePath(path) {
       !path.startsWith('//') && !/^[a-z][a-z\d+.-]*:/i.test(path);
   } catch { return false; }
 }
-
 function dateValue(value) {
   if (typeof value !== 'string' || !/^\d{4}-\d{2}-\d{2}(?:T.*)?$/.test(value)) return null;
   const parsed = Date.parse(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?$/.test(value) ? `${value}Z` : value);
   return Number.isFinite(parsed) ? parsed : null;
 }
-
 function dateLabel(photo) {
   if (photo.timestamp === null) return 'ไม่ทราบวันที่';
   return new Intl.DateTimeFormat('th-TH', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }).format(new Date(photo.timestamp));
 }
-
 function sourceLabel(photo) {
   if (!photo.dateSource) return '';
   return photo.dateSource.startsWith('source filename') ? 'วันที่อ้างอิงจากชื่อไฟล์' : 'วันที่จากข้อมูลภาพ (EXIF)';
 }
-
 function render() {
-  scene.replaceChildren();
-  const total = photos.length;
-  previous.disabled = !total || current === 0;
-  next.disabled = !total || current === total - 1;
-  openButton.disabled = !total;
-  document.querySelector('#photo-count').textContent = `${total} ความทรงจำ`;
-  document.querySelector('#current-number').textContent = `${String(total ? current + 1 : 0).padStart(2, '0')} / ${String(total).padStart(2, '0')}`;
-  document.querySelector('#current-date').textContent = total ? dateLabel(photos[current]) : 'ไม่มีภาพให้แสดง';
-  document.querySelector('#current-source').textContent = total ? sourceLabel(photos[current]) : '';
-  document.querySelector('#progress-bar').style.width = `${total ? (current + 1) / total * 100 : 0}%`;
+  grid.replaceChildren();
+  document.querySelector('#photo-count').textContent = `${photos.length} ความทรงจำ`;
   photos.forEach((photo, index) => {
-    const offset = index - current;
-    if (Math.abs(offset) > 2) return;
     const button = document.createElement('button');
     button.type = 'button';
-    button.className = 'memory';
-    button.style.setProperty('--offset', offset);
-    button.style.setProperty('--depth', Math.abs(offset));
-    button.style.setProperty('--direction', Math.sign(offset));
-    button.style.setProperty('--z', 5 - Math.abs(offset));
-    button.style.setProperty('--opacity', Math.abs(offset) === 2 ? '.45' : '1');
-    button.setAttribute('aria-label', `ความทรงจำที่ ${index + 1}, ${dateLabel(photo)}${offset === 0 ? ', ดูภาพเต็ม' : ', เลือกภาพนี้'}`);
+    button.className = 'photo-card';
+    button.setAttribute('aria-label', `ดูภาพความทรงจำที่ ${index + 1}, ${dateLabel(photo)}`);
     const image = document.createElement('img');
     image.src = photo.path;
     image.alt = '';
+    image.loading = 'lazy';
+    image.decoding = 'async';
     image.addEventListener('error', () => { image.alt = 'ไม่สามารถโหลดภาพได้'; }, { once: true });
-    const label = document.createElement('span');
-    label.className = 'memory-caption';
     const number = document.createElement('span');
     number.textContent = `MOMENT ${String(index + 1).padStart(2, '0')}`;
-    const date = document.createElement('span');
+    const date = document.createElement('strong');
     date.textContent = dateLabel(photo);
-    label.append(number, date);
-    button.append(image, label);
-    button.addEventListener('click', () => {
-      if (index === current) openImage(button);
-      else { current = index; render(); }
-    });
-    scene.append(button);
+    button.append(image, number, date);
+    button.addEventListener('click', () => { current = index; lastTrigger = button; showImage(); lightbox.showModal(); closeButton.focus(); });
+    grid.append(button);
   });
 }
-
-function move(step) {
-  const target = Math.max(0, Math.min(photos.length - 1, current + step));
-  if (target !== current) { current = target; render(); }
-}
-
-function openImage(trigger) {
-  if (!photos.length) return;
-  lastTrigger = trigger;
+function showImage() {
   const photo = photos[current];
   const label = `ความทรงจำที่ ${current + 1} — ${dateLabel(photo)}`;
   lightboxImage.src = photo.path;
   lightboxImage.alt = label;
   document.querySelector('#lightbox-title').textContent = label;
   document.querySelector('#lightbox-caption').textContent = sourceLabel(photo);
-  lightbox.showModal();
-  closeButton.focus();
+  previous.disabled = current === 0;
+  next.disabled = current === photos.length - 1;
 }
-
+function move(step) {
+  const target = Math.max(0, Math.min(photos.length - 1, current + step));
+  if (target !== current) { current = target; showImage(); }
+}
 previous.addEventListener('click', () => move(-1));
 next.addEventListener('click', () => move(1));
-openButton.addEventListener('click', () => openImage(openButton));
 closeButton.addEventListener('click', () => lightbox.close());
 lightbox.addEventListener('click', event => { if (event.target === lightbox) lightbox.close(); });
 lightbox.addEventListener('close', () => {
   lightboxImage.removeAttribute('src');
   if (lastTrigger && lastTrigger.isConnected) lastTrigger.focus();
-  else openButton.focus();
 });
 lightboxImage.addEventListener('error', () => { document.querySelector('#lightbox-caption').textContent = 'ไม่สามารถเปิดภาพนี้ได้ในขณะนี้'; });
-document.addEventListener('keydown', event => {
-  if (lightbox.open || event.altKey || event.ctrlKey || event.metaKey) return;
+lightbox.addEventListener('keydown', event => {
+  if (event.altKey || event.ctrlKey || event.metaKey) return;
   if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
     event.preventDefault();
     move(event.key === 'ArrowLeft' ? -1 : 1);
   }
 });
-viewer.addEventListener('touchstart', event => { touchStart = event.touches.length === 1 ? event.touches[0].clientX : null; }, { passive: true });
-viewer.addEventListener('touchend', event => {
-  if (touchStart === null || !event.changedTouches.length) return;
-  const difference = event.changedTouches[0].clientX - touchStart;
-  touchStart = null;
-  if (Math.abs(difference) > 45) move(difference < 0 ? 1 : -1);
-}, { passive: true });
-viewer.addEventListener('touchcancel', () => { touchStart = null; });
+const galleryTab = document.querySelector('#gallery-tab');
+const gameTab = document.querySelector('#game-tab');
+const gallerySection = document.querySelector('#gallery-section');
+const gameSection = document.querySelector('#game-section');
+function selectSection(showGame) {
+  gallerySection.hidden = showGame;
+  gameSection.hidden = !showGame;
+  galleryTab.setAttribute('aria-pressed', String(!showGame));
+  gameTab.setAttribute('aria-pressed', String(showGame));
+}
+galleryTab.addEventListener('click', () => selectSection(false));
+gameTab.addEventListener('click', () => selectSection(true));
+document.querySelector('.brand').addEventListener('click', () => selectSection(false));
 
 async function loadGallery() {
   try {
@@ -143,12 +115,9 @@ async function loadGallery() {
       entries = paths.map(path => ({ path, date: null, dateSource: '' }));
     }
     photos = entries.filter(item => item && safeImagePath(item.path)).map((item, index) => ({
-      path: item.path,
-      timestamp: dateValue(item.date),
-      dateSource: typeof item.dateSource === 'string' ? item.dateSource : '',
-      index
+      path: item.path, timestamp: dateValue(item.date),
+      dateSource: typeof item.dateSource === 'string' ? item.dateSource : '', index
     })).sort((a, b) => (a.timestamp === null ? Infinity : a.timestamp) - (b.timestamp === null ? Infinity : b.timestamp) || a.index - b.index);
-    const backdrop = document.querySelector('#backdrop');
     if (photos.length) {
       const strips = document.createElement('div');
       strips.className = 'backdrop-strips';
@@ -169,7 +138,7 @@ async function loadGallery() {
         }
         strips.append(strip);
       }
-      backdrop.replaceChildren(strips);
+      document.querySelector('#backdrop').replaceChildren(strips);
     }
     status.textContent = photos.length ? '' : 'ยังไม่มีภาพในอัลบั้ม แล้วกลับมาเก็บความทรงจำด้วยกันนะ';
     render();
@@ -178,6 +147,4 @@ async function loadGallery() {
     render();
   }
 }
-
-render();
 loadGallery();

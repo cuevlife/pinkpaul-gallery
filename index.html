@@ -4,45 +4,42 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#fff1f3">
-  <meta name="description" content="เดินทางย้อนดูความทรงจำของ Pinkpaul">
-  <title>Pinkpaul — Memory Lane</title>
+  <meta name="description" content="คลังความทรงจำของ Pinkpaul">
+  <title>Pinkpaul — Our little gallery</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Mali:wght@400;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=3d-4">
-  <script src="app.js?v=3d-4" defer></script>
+  <link rel="stylesheet" href="style.css?v=gallery-1">
+  <link rel="stylesheet" href="game.css?v=gallery-1">
+  <script src="app.js?v=gallery-1" defer></script>
+  <script src="game.js?v=gallery-1" defer></script>
 </head>
 <body>
   <div class="backdrop" id="backdrop" aria-hidden="true"></div>
   <main class="app">
     <header class="topbar">
-      <div class="brand">pinkpaul<span>.</span> <small>MEMORY LANE</small></div>
-      <div class="top-note">A LITTLE WORLD OF OURS <span> / </span> 29 NOV</div>
+      <a class="brand" href="#gallery-section">pinkpaul<span>.</span> <small>OUR LITTLE WORLD</small></a>
+      <nav class="tabs" aria-label="เลือกหน้า">
+        <button id="gallery-tab" type="button" aria-pressed="true" aria-controls="gallery-section">คลังภาพ</button>
+        <button id="game-tab" type="button" aria-pressed="false" aria-controls="game-section">มินิเกม</button>
+      </nav>
     </header>
-
-    <section class="experience" aria-labelledby="page-title">
+    <section id="gallery-section" aria-labelledby="page-title">
       <div class="intro">
-        <div><p class="eyebrow">THE MEMORY COLLECTION <span> / </span> FOR YOU</p><h1 id="page-title">Every moment, <em>with you.</em></h1><p class="subtitle">ค่อย ๆ เดินผ่านเรื่องราวของเรา ทีละความทรงจำ</p></div>
-        <div class="collection-meta"><span>เรียงตามช่วงเวลา</span><strong id="photo-count">กำลังโหลด</strong></div>
+        <div><p class="eyebrow">A LITTLE COLLECTION OF US</p><h1 id="page-title">Every moment,<br><em>with you.</em></h1><p class="subtitle">ทุกความทรงจำเล็ก ๆ ที่อยากเก็บไว้ด้วยกัน</p></div>
+        <div class="collection-meta"><span>เรียงจากวันเก่าไปใหม่</span><strong id="photo-count">กำลังโหลด</strong></div>
       </div>
-
-      <div class="viewer" id="viewer" aria-label="ทางเดินความทรงจำ ปัดซ้ายหรือขวาเพื่อเปลี่ยนภาพ">
-        <div class="viewer-label"><span>OUR LITTLE ARCHIVE</span><span>EST. WITH LOVE</span></div>
-        <div class="scene" id="scene" aria-label="ภาพในอัลบั้ม"></div>
-        <p class="status" id="status" role="status">กำลังเปิดอัลบั้มความทรงจำ...</p>
-        <div class="floor" aria-hidden="true"></div>
-        <div class="viewer-bottom"><span>TAKE YOUR TIME</span><span>MADE FOR PINKPAUL</span></div>
-      </div>
-
-      <div class="controls">
-        <div class="current" aria-live="polite"><span id="current-number">00 / 00</span><div><strong id="current-date">กำลังโหลดความทรงจำ</strong><small id="current-source"></small></div></div>
-        <div class="navigation"><button id="previous" class="arrow" type="button" aria-label="ภาพก่อนหน้า" title="ภาพก่อนหน้า"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5m6-6-6 6 6 6"/></svg></button><button id="open" class="open-button" type="button">ดูภาพเต็ม <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></button><button id="next" class="arrow" type="button" aria-label="ภาพถัดไป" title="ภาพถัดไป"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button></div>
-        <p class="hint">ปัดซ้าย–ขวา หรือใช้ปุ่มลูกศรบนแป้นพิมพ์<br><span>เลือกภาพเพื่อดูขนาดเต็ม</span></p>
-      </div>
-      <div class="progress" aria-hidden="true"><div id="progress-bar"></div></div>
+      <div class="gallery-heading"><div><p class="eyebrow">OUR MEMORY ALBUM</p><h2>เรื่องราวของเรา</h2></div><p>เลือกภาพเพื่อดูขนาดใหญ่</p></div>
+      <p class="status" id="status" role="status">กำลังเปิดอัลบั้มความทรงจำ...</p>
+      <div class="gallery-grid" id="gallery-grid"></div>
     </section>
+    <section id="game-section" hidden><div id="game-root"></div></section>
     <footer><span>FOR ALL THE DAYS WE WANT TO REMEMBER</span><span>WITH LOVE, ALWAYS.</span></footer>
   </main>
-  <dialog id="lightbox" aria-labelledby="lightbox-title"><div class="dialog-bar"><div><span>OUR MOMENTS</span><p id="lightbox-title"></p></div><button id="close-lightbox" type="button" aria-label="ปิดภาพ" title="ปิดภาพ"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5l14 14M19 5 5 19"/></svg></button></div><img id="lightbox-image" alt=""><p id="lightbox-caption"></p></dialog>
+  <dialog id="lightbox" aria-labelledby="lightbox-title">
+    <div class="dialog-bar"><div><span>OUR MOMENTS</span><p id="lightbox-title"></p></div><button id="close-lightbox" type="button" aria-label="ปิดภาพ" title="ปิดภาพ"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5l14 14M19 5 5 19"/></svg></button></div>
+    <img id="lightbox-image" alt=""><p id="lightbox-caption"></p>
+    <div class="dialog-nav"><button id="previous" type="button">ภาพก่อนหน้า</button><button id="next" type="button">ภาพถัดไป</button></div>
+  </dialog>
 </body>
 </html>
