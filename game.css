@@ -1,27 +1,44 @@
 #game-section[hidden]{display:none}
 #game-root{color:#4b2939;font-family:'Nunito','Mali',system-ui,sans-serif}
 #game-root *{box-sizing:border-box}
-#game-root .game-panel{padding:clamp(20px,4vw,42px);border:1px solid #e5bdca;border-radius:24px;background:rgba(255,246,248,.97);box-shadow:0 16px 45px #773e5420}
-#game-root .game-heading{display:flex;justify-content:space-between;align-items:center;gap:20px}
-#game-root h2{margin:0;color:#74364f;font:600 clamp(25px,4vw,38px)/1.25 'Mali',system-ui,sans-serif}
-#game-root .game-eyebrow{margin:0 0 8px;color:#a13e61;font-size:10px;font-weight:800;letter-spacing:.17em}
-#game-root .game-instructions{max-width:580px;margin:10px 0 0;color:#674351;line-height:1.7}
-#game-root .game-action,#game-root .game-controls button{border:1px solid #a13e61;border-radius:999px;padding:10px 22px;background:#a13e61;color:#fff;font:inherit;font-weight:700;cursor:pointer;touch-action:manipulation}
-#game-root .game-action{flex:none}
-#game-root .game-action:hover,#game-root .game-controls button:hover:not(:disabled){background:#842e4d}
+#game-root .garden-panel{padding:clamp(20px,4vw,42px);border:1px solid #e6c6cd;border-radius:24px;background:#fff9f5;box-shadow:0 16px 45px #773e5420}
+#game-root .garden-heading{display:flex;align-items:center;justify-content:space-between;gap:20px}
+#game-root .garden-eyebrow{margin:0 0 8px;color:#a34867;font-size:10px;font-weight:800;letter-spacing:.18em}
+#game-root h2{margin:0;color:#74364f;font:600 clamp(27px,4vw,40px)/1.2 'Mali',system-ui,sans-serif}
+#game-root .garden-intro{max-width:580px;margin:10px 0 0;color:#674351;line-height:1.7}
+#game-root .garden-badge{flex:none;display:grid;place-items:center;width:90px;height:90px;border:1px solid #dfb8c2;border-radius:50%;color:#a34867;font-size:10px;font-weight:800;letter-spacing:.13em;line-height:1.6;text-align:center;transform:rotate(10deg)}
+#game-root .garden-summary{display:flex;justify-content:space-between;gap:12px;margin:25px 0 12px;color:#79515d;font-size:13px;font-weight:700}
+#game-root .garden-count{color:#843d56}
+#game-root .garden-plots{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+#game-root .garden-plot{position:relative;display:flex;min-width:0;height:150px;align-items:flex-end;justify-content:center;overflow:hidden;padding:12px 4px;border:1px solid #e8d6cf;border-radius:16px;background:linear-gradient(#f8f2e9 0 70%,#e6d8c1 70%);color:#694657;font:inherit;cursor:pointer;touch-action:manipulation}
+#game-root .garden-plot:hover{border-color:#b26c82}
+#game-root .garden-plot[aria-pressed=true]{border:2px solid #a34867;background:linear-gradient(#fff1f0 0 70%,#e6d8c1 70%)}
+#game-root .garden-plot-label{position:relative;z-index:2;font-size:12px;font-weight:700}
+#game-root .garden-soil{position:absolute;bottom:36px;width:70px;height:13px;border-radius:50%;background:#aa826d}
+#game-root .garden-plant{position:absolute;bottom:42px;left:50%;width:60px;height:75px;transform:translateX(-50%)}
+#game-root .garden-stem{position:absolute;bottom:0;left:28px;width:4px;height:45px;border-radius:4px;background:#6a936d}
+#game-root .garden-leaf{position:absolute;bottom:12px;width:22px;height:12px;background:#8caf81}
+#game-root .garden-leaf-left{left:8px;border-radius:100% 0 100% 0;transform:rotate(25deg)}
+#game-root .garden-leaf-right{right:8px;border-radius:0 100% 0 100%;transform:rotate(-25deg)}
+#game-root .garden-flower{position:absolute;top:0;left:10px;width:40px;height:40px}
+#game-root .garden-flower i{position:absolute;top:1px;left:14px;width:13px;height:22px;border-radius:50%;background:#e89aaf;transform-origin:6px 19px}
+#game-root .garden-flower i:nth-child(2){transform:rotate(72deg)}
+#game-root .garden-flower i:nth-child(3){transform:rotate(144deg)}
+#game-root .garden-flower i:nth-child(4){transform:rotate(216deg)}
+#game-root .garden-flower i:nth-child(5){transform:rotate(288deg)}
+#game-root .garden-flower b{position:absolute;top:15px;left:15px;width:11px;height:11px;border-radius:50%;background:#f6d47c}
+#game-root .garden-plot[data-stage="0"] .garden-plant{height:12px;width:17px;bottom:43px;border-radius:50%;background:#916a51;transform:translateX(-50%) rotate(-25deg)}
+#game-root .garden-plot[data-stage="0"] .garden-stem,#game-root .garden-plot[data-stage="0"] .garden-leaf,#game-root .garden-plot[data-stage="0"] .garden-flower,#game-root .garden-plot[data-stage="1"] .garden-flower{display:none}
+#game-root .garden-plot[data-stage="1"] .garden-plant{height:40px}
+#game-root .garden-plot[data-stage="1"] .garden-stem{height:30px}
+#game-root .garden-footer{display:flex;justify-content:space-between;align-items:center;gap:18px;margin-top:20px}
+#game-root .garden-selected{margin:0;color:#74364f;font-weight:800}
+#game-root .garden-status{min-height:1.5em;margin:5px 0;color:#674351;font-size:13px;line-height:1.5}
+#game-root .garden-storage{margin:0;color:#765a62;font-size:12px;line-height:1.5}
+#game-root .garden-water{display:inline-flex;flex:none;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:8px 20px;border:1px solid #963e5d;border-radius:999px;background:#a34867;color:#fff;font:inherit;font-weight:700;cursor:pointer;touch-action:manipulation}
+#game-root .garden-water svg{width:28px;height:28px}
+#game-root .garden-water:hover:not(:disabled){background:#82324e}
+#game-root .garden-water:disabled{background:#e7d6d7;border-color:#d8c1c4;color:#70585e;cursor:not-allowed}
 #game-root button:focus-visible{outline:3px solid #70233f;outline-offset:3px}
-#game-root .game-progress{display:flex;justify-content:space-between;gap:12px;margin-top:24px;padding-bottom:10px;border-bottom:1px solid #edcfd9;color:#74364f;font-size:14px;font-weight:700}
-#game-root .game-status{min-height:1.6em;margin:10px 0 14px;color:#674351;font-size:13px}
-#game-root .game-field{position:relative;height:clamp(280px,45vw,400px);max-width:550px;margin:auto;overflow:hidden;border:1px solid #e5b6c5;border-radius:20px;background:linear-gradient(#fff8fa,#f8dfe7);touch-action:manipulation}
-#game-root .game-lanes{position:absolute;inset:0;background:linear-gradient(90deg,transparent 33.1%,#e9bdcb 33.2%,#e9bdcb 33.5%,transparent 33.6%,transparent 66.4%,#e9bdcb 66.5%,#e9bdcb 66.8%,transparent 66.9%);opacity:.5}
-#game-root .game-objects{position:absolute;inset:0}
-#game-root .game-object{position:absolute;transform:translate(-50%,-50%);display:grid;place-items:center}
-#game-root .game-heart{color:#bd4269;font-size:34px;line-height:1;text-shadow:0 3px 0 #f4b9ca}
-#game-root .game-cloud{width:58px;height:34px;border:1px solid #aa8796;border-radius:50% 50% 40% 40%;background:#e4d4df;color:#5e4655;font-size:12px;font-weight:700}
-#game-root .game-player{position:absolute;top:80%;width:70px;height:48px;transform:translate(-50%,-50%);display:grid;place-items:center;border:2px solid #a13e61;border-radius:8px 8px 20px 20px;background:#fff2d9;color:#74364f;font-weight:800;transition:left .12s ease}
-#game-root .game-player:before{content:'';position:absolute;top:-13px;width:36px;height:17px;border:2px solid #a13e61;border-bottom:0;border-radius:20px 20px 0 0}
-#game-root .game-controls{display:flex;justify-content:center;gap:16px;margin-top:18px}
-#game-root .game-controls button{min-width:110px;min-height:48px}
-#game-root .game-controls button:disabled{opacity:.5;cursor:not-allowed}
-@media(max-width:600px){#game-root .game-panel{padding:20px 16px;border-radius:18px}#game-root .game-heading{align-items:flex-start;flex-direction:column}#game-root .game-progress{margin-top:18px}#game-root .game-field{height:320px}}
-@media(prefers-reduced-motion:reduce){#game-root .game-player{transition:none}}
+@media(max-width:600px){#game-root .garden-panel{padding:20px 16px;border-radius:18px}#game-root .garden-badge{width:65px;height:65px;font-size:8px}#game-root .garden-plots{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}#game-root .garden-plot{height:135px}#game-root .garden-footer{align-items:stretch;flex-direction:column}#game-root .garden-water{width:100%}}
+@media(prefers-reduced-motion:reduce){#game-root *,#game-root *::before,#game-root *::after{animation:none!important;transition:none!important}}

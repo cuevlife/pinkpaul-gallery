@@ -89,6 +89,21 @@ const galleryTab = document.querySelector('#gallery-tab');
 const gameTab = document.querySelector('#game-tab');
 const gallerySection = document.querySelector('#gallery-section');
 const gameSection = document.querySelector('#game-section');
+const gardenDecoration = document.querySelector('.garden-decoration');
+function updateGardenDecoration(value) {
+  const count = Number(value);
+  const visible = Number.isFinite(count) ? Math.max(0, Math.min(8, Math.floor(count))) : 0;
+  const blooms = [];
+  for (let i = 0; i < visible; i++) {
+    const bloom = document.createElement('span');
+    bloom.className = 'garden-bloom';
+    bloom.style.setProperty('--bloom-index', i);
+    blooms.push(bloom);
+  }
+  gardenDecoration.replaceChildren(...blooms);
+}
+document.addEventListener('garden:change', event => updateGardenDecoration(event.detail?.blooms));
+updateGardenDecoration(document.documentElement.dataset.gardenBlooms);
 function selectSection(showGame) {
   gallerySection.hidden = showGame;
   gameSection.hidden = !showGame;
