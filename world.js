@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { makeGardenTextures } from './garden-textures.js?v=4';
 
 const colors = {
   sky: 0x9fcbe9, horizon: 0xf5dce6, grass: 0xaad3ad, path: 0xf2c8c1,
@@ -67,6 +68,7 @@ export function buildWorld(scene, photos) {
   const basic = new Map();
   const lit = new Map();
   const stone = new THREE.MeshLambertMaterial({ color: 0xffffff, flatShading: true });
+  const textures = makeGardenTextures();
   const clouds = new THREE.MeshBasicMaterial({ color: 0xffffff });
   const candlelight = new THREE.MeshBasicMaterial({ color: 0xffffff, toneMapped: false });
   const shade = new THREE.MeshBasicMaterial({ color: 0x674954, transparent: true, opacity: 0.13, depthWrite: false });
@@ -150,9 +152,9 @@ export function buildWorld(scene, photos) {
 
   function tree(x, z, size, palette) {
     shadow(x + 0.27 * size, z - 0.16 * size, 0.9 * size, 0.58 * size);
-    instance(tapered, 0x9c7663, x, 1.1 * size, z, 0.15 * size, 2.2 * size, 0.15 * size, 0, 0, 0.04);
+    instance(tapered, 0x9c7663, x, 1.1 * size, z, 0.15 * size, 2.2 * size, 0.15 * size, 0, 0, 0.04, textures.wood);
     for (const side of [-1, 1]) {
-      instance(tapered, 0x9c7663, x + side * 0.31 * size, 1.62 * size, z, 0.075 * size, 1.04 * size, 0.075 * size, 0, 0, -side * 0.67);
+      instance(tapered, 0x9c7663, x + side * 0.31 * size, 1.62 * size, z, 0.075 * size, 1.04 * size, 0.075 * size, 0, 0, -side * 0.67, textures.wood);
     }
     for (let n = 0; n < 6; n++) {
       const angle = n * 2.4;
@@ -163,8 +165,8 @@ export function buildWorld(scene, photos) {
     }
   }
 
-  instance(box, colors.grass, 0, -0.16, -35, 58, 0.31, 117);
-  instance(box, colors.path, 0, -0.024, -32, 2.62, 0.064, 79);
+  instance(box, colors.grass, 0, -0.16, -35, 58, 0.31, 117, 0, 0, 0, textures.grass);
+  instance(box, colors.path, 0, -0.024, -32, 2.62, 0.064, 79, 0, 0, 0, textures.path);
   for (let i = 0; i < 9; i++) {
     const z = -18 - i * 8.4;
     const side = i % 2 === 0 ? -1 : 1;
@@ -180,13 +182,13 @@ export function buildWorld(scene, photos) {
     const z = 7 - row * 0.744;
     const { paving: pavers, edge } = chapterAt(z);
     for (const side of [-1, 1]) {
-      instance(box, edge, side * 1.29, 0.024, z, 0.1, 0.04, 0.68);
+      instance(box, edge, side * 1.29, 0.024, z, 0.1, 0.04, 0.68, 0, 0, 0, textures.edge);
       if (row % 3 === 0) instance(pebble, pavers[2], side * (1.44 + random() * 0.17), 0.018,
         z - random() * 0.36, 0.052, 0.027, 0.085, 0, random() * 3);
     }
     for (let col = 0; col < 4; col++) {
       const x = (col - 1.5) * 0.615 + (row % 2 === 0 ? -0.045 : 0.045);
-      instance(box, pavers[Math.floor(random() * pavers.length)], x, 0.009, z, 0.584, 0.024, 0.714, 0, (random() - 0.5) * 0.025);
+      instance(box, pavers[Math.floor(random() * pavers.length)], x, 0.009, z, 0.584, 0.024, 0.714, 0, (random() - 0.5) * 0.025, 0, textures.paver);
     }
   }
 
@@ -478,7 +480,7 @@ export function buildWorld(scene, photos) {
     instance(box, colors.rose, x, 0.79, z + 0.025, 0.89, 0.26, 0.13);
     plaque(frame, index, `${number}  ·  ${caption}`, '', 0, -0.92, 0.095, 0.82, 0.22);
     for (const s of [-1, 1]) {
-      instance(box, colors.cream, x + s * 0.67, 0.51, z - 0.012, 0.13, 1.02, 0.16);
+      instance(box, colors.cream, x + s * 0.67, 0.51, z - 0.012, 0.13, 1.02, 0.16, 0, 0, 0, textures.wood);
       instance(box, colors.blush, x + s * 0.67, 0.078, z, 0.21, 0.15, 0.28);
       instance(box, colors.blush, x + s * 0.96, 1.71 + 0.66, z + 0.097, 0.066, 0.066, 0.023, 0, 0, Math.PI / 4);
     }
@@ -495,6 +497,8 @@ export function buildWorld(scene, photos) {
   });
 
   const growthMeshes = [];
+  const soilSurface = textures.soil.clone();
+  soilSurface.color.setHex(colors.soil);
   const plots = Array.from({ length: 6 }, (_, index) => {
     const side = index % 2 === 0 ? -1 : 1;
     const x = side * 1.88;
@@ -507,7 +511,7 @@ export function buildWorld(scene, photos) {
     shadow(x + 0.08, z - 0.05, 0.65, 0.54);
     shape(plot, box, colors.rose, 0, 0.09, 0, 1.04, 0.18, 0.91);
     shape(plot, box, colors.blush, 0, 0.178, 0, 1.13, 0.075, 0.98);
-    shape(plot, box, colors.soil, 0, 0.204, 0, 0.94, 0.072, 0.79);
+    shape(plot, box, colors.soil, 0, 0.204, 0, 0.94, 0.072, 0.79).material = soilSurface;
     plaque(plot, entryPlots + index, String(index + 1).padStart(2, '0'), '', 0, 0.135, 0.495, 0.28, 0.12);
 
     for (let bit = 0; bit < 6; bit++) {
@@ -587,7 +591,7 @@ export function buildWorld(scene, photos) {
   const galaArch = archCurve(5.94, 1.05, 3.06, 0.13);
   const galaTrim = archCurve(5.94, 1.05, 3.06, 0.043);
   const galaZ = chapters[3].z;
-  const water = new THREE.MeshLambertMaterial({ color: 0xffffff, flatShading: true, emissive: 0x173637, emissiveIntensity: 0.36 });
+  const water = new THREE.MeshLambertMaterial({ name: 'Garden water', color: 0xffffff, flatShading: true, emissive: 0x173637, emissiveIntensity: 0.36 });
   const ripple = new THREE.TorusGeometry(1, 0.017, 5, 32).rotateX(Math.PI / 2);
   instance(galaArch, galaInk, 0, 0, galaZ, 1, 1, 1);
   instance(galaTrim, galaGold, 0, 0, galaZ + 0.13, 1, 1, 1);
@@ -645,9 +649,6 @@ export function buildWorld(scene, photos) {
   instance(barrel, 0x86aca0, 0, 0.36, fountainZ, 2.56, 0.33, 2.56);
   instance(barrel, colors.cream, 0, 0.549, fountainZ, 2.64, 0.13, 2.64);
   instance(barrel, 0x98d5d4, 0, 0.62, fountainZ, 2.37, 0.043, 2.37, 0, 0, 0, water);
-  for (const [r, shade] of [[2.04, 0xdbf7ef], [1.47, 0xbee8e6], [1.19, 0xeefaf0]]) {
-    instance(ripple, shade, 0, 0.645, fountainZ, r, 1, r, 0, 0, 0, candlelight);
-  }
   instance(tapered, colors.rose, 0, 0.76, fountainZ, 0.99, 0.34, 0.99);
   instance(tapered, colors.cream, 0, 1.14, fountainZ, 0.46, 0.77, 0.46);
   instance(barrel, colors.blush, 0, 1.46, fountainZ, 1.15, 0.21, 1.15);

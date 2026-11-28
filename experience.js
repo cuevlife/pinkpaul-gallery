@@ -1,5 +1,6 @@
 import * as THREE from 'three';
-import { buildWorld } from './world.js?v=3.1';
+import { buildWorld } from './world.js?v=4';
+import { createMovingWater } from './moving-water.js?v=4';
 import { createWatering } from './watering.js?v=1';
 import { createAtmosphere } from './atmosphere.js?v=2';
 import { createTrail, stops } from './trail.js?v=3';
@@ -43,6 +44,7 @@ const photoDate = document.querySelector('#photo-date');
 const photoNumber = document.querySelector('#photo-number');
 const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
 const atmosphere = createAtmosphere(scene, camera, reducedMotion);
+const movingWater = createMovingWater(scene, reducedMotion);
 const trail = createTrail(scene, reducedMotion);
 const trailButton = document.querySelector('#trail');
 const nearbyButton = document.querySelector('#collect-nearby');
@@ -55,6 +57,12 @@ const chapterButton = document.querySelector('#chapters');
 const chapterView = document.querySelector('#chapter-view');
 const chapterList = document.querySelector('#chapter-list');
 const chapterLabel = document.querySelector('#chapter-label');
+const stickerButton = document.querySelector('#stickers');
+const stickerView = document.querySelector('#sticker-view');
+const stickerMotion = document.querySelector('#sticker-motion');
+const stickerStatus = document.querySelector('#sticker-status');
+const stickerImages = [...stickerView.querySelectorAll('[data-gif]')];
+let animateStickers = !reducedMotion.matches;
 const chapters = [
   { name: 'เรือนกุหลาบ', english: 'The Rose Conservatory', start: 4, from: Infinity, photo: 0,
     copy: 'เริ่มที่เรือนกุหลาบ เลือกดอกไม้สักแปลง รดน้ำให้เมล็ดงอก แล้วแวะดูภาพแรก ๆ ที่เก็บไว้ในสวน' },
@@ -302,6 +310,41 @@ chapterButton.addEventListener('click', () => {
 chapterView.addEventListener('click', event => { if (event.target === chapterView) chapterView.close(); });
 chapterView.addEventListener('close', () => chapterButton.focus());
 
+function syncStickers() {
+  const play = stickerView.open && animateStickers;
+  stickerMotion.textContent = animateStickers ? 'พัก GIF' : 'เล่น GIF';
+  stickerStatus.textContent = play ? '' : 'พักภาพเคลื่อนไหวอยู่';
+  for (const image of stickerImages) {
+    if (play) {
+      image.hidden = false;
+      if (!image.hasAttribute('src')) image.src = image.dataset.gif;
+    } else {
+      image.hidden = true;
+      image.removeAttribute('src');
+    }
+  }
+}
+for (const image of stickerImages) {
+  image.addEventListener('error', () => {
+    if (!image.hasAttribute('src')) return;
+    image.hidden = true;
+    stickerStatus.textContent = 'โหลด GIF ไม่สำเร็จ ลองเปิดจากลิงก์ต้นฉบับ';
+  });
+}
+stickerButton.addEventListener('click', () => {
+  keyboard.clear();
+  walking.clear();
+  stickerView.showModal();
+  syncStickers();
+});
+stickerView.addEventListener('close', () => {
+  syncStickers();
+  stickerButton.focus();
+});
+stickerView.addEventListener('click', event => { if (event.target === stickerView) stickerView.close(); });
+stickerMotion.addEventListener('click', () => { animateStickers = !animateStickers; syncStickers(); });
+reducedMotion.addEventListener('change', () => { animateStickers = !reducedMotion.matches; syncStickers(); });
+
 homeButton.addEventListener('click', resetPosition);
 albumButton.addEventListener('click', () => openPhoto(activePhoto));
 waterButton.addEventListener('click', toggleWater);
@@ -354,7 +397,7 @@ function controlKey(event) {
 }
 window.addEventListener('keydown', event => {
   const key = controlKey(event);
-  if (event.altKey || event.ctrlKey || event.metaKey || event.isComposing || trailView.open || chapterView.open) return;
+  if (event.altKey || event.ctrlKey || event.metaKey || event.isComposing || trailView.open || chapterView.open || stickerView.open) return;
   if (dialog.open) {
     if (key === 'arrowleft' && activePhoto > 0) showPhoto(activePhoto - 1);
     if (key === 'arrowright' && activePhoto < photos.length - 1) showPhoto(activePhoto + 1);
@@ -410,7 +453,7 @@ let previousTime = 0;
 renderer.setAnimationLoop(time => {
   const delta = Math.min((time - previousTime) / 1000, .05);
   previousTime = time;
-  const modalOpen = dialog.open || trailView.open || chapterView.open;
+  const modalOpen = dialog.open || trailView.open || chapterView.open || stickerView.open;
   if (!modalOpen) {
     const directions = new Set(walking.values());
     for (const key of keyboard) directions.add(keys.get(key));
@@ -419,6 +462,7 @@ renderer.setAnimationLoop(time => {
   }
   watering.update(delta);
   atmosphere.update(delta);
+  movingWater.update(delta);
   trail.update(delta, yaw);
   const hideNearby = modalOpen || !trail.nearby(camera.position);
   if (nearbyButton.hidden !== hideNearby) nearbyButton.hidden = hideNearby;
@@ -429,5 +473,6 @@ albumButton.disabled = false;
 nightButton.disabled = false;
 trailButton.disabled = false;
 chapterButton.disabled = false;
+stickerButton.disabled = false;
 document.querySelector('#loading').hidden = true;
 document.querySelector('#controls').hidden = false;
