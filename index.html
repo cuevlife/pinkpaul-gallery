@@ -3,19 +3,19 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#302030">
-  <meta name="description" content="เดินชมแกลเลอรีและรดน้ำดอกไม้ในสวนสามมิติของ Pinkpaul">
-  <title>Pinkpaul · Garden Gallery</title>
+  <meta name="theme-color" content="#292329">
+  <meta name="description" content="เดินชมพิพิธภัณฑ์ภาพถ่ายสามมิติของ Pinkpaul แล้วออกไปพักที่ลานบัวด้านหลัง">
+  <title>Pinkpaul · Museum of Memories</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' rx='10' fill='%23302030'/%3E%3Cpath d='M24 41V23m0 12c-2-6-7-8-13-8 1 7 6 10 13 8m0 2c2-6 7-8 13-8-1 7-6 10-13 8' fill='none' stroke='%23b8bd9b' stroke-width='2' stroke-linecap='round'/%3E%3Cpath d='M24 10c7-9 14 2 8 7 8 4 0 14-6 8-5 7-14 0-9-6-8-4-1-14 7-9Z' fill='%23ce8894'/%3E%3Ccircle cx='24' cy='17' r='3' fill='%23f6dfab'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Noto+Sans+Thai:wght@400;500;600;700&family=Noto+Serif+Thai:wght@600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="experience.css?v=6">
+  <link rel="stylesheet" href="experience.css?v=7">
   <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js"}}</script>
 </head>
 <body>
-  <main id="experience" aria-label="สวนแกลเลอรีของ Pinkpaul">
-    <canvas id="stage" tabindex="-1" aria-label="ฉากสวนแกลเลอรีสามมิติ"></canvas>
+  <main id="experience" aria-label="พิพิธภัณฑ์ภาพถ่ายของ Pinkpaul">
+    <canvas id="stage" tabindex="-1" aria-label="พิพิธภัณฑ์ภาพถ่ายและลานบัวสามมิติ"></canvas>
     <header class="hud-top">
       <div class="brand">
         <svg class="brand-flower" viewBox="0 0 36 48" aria-hidden="true">
@@ -23,37 +23,31 @@
           <path d="M17 12c-8-2-8-9-2-9 3 0 4 2 5 5 1-5 5-6 7-3 2 3 0 5-3 7 6-1 8 3 5 6-2 2-5 2-8-1 0 5-4 7-7 4-2-2-1-5 2-7-4 2-8 1-8-2 0-4 4-5 9 0Z"/>
           <circle cx="20" cy="13" r="2"/>
         </svg>
-        <div><span class="eyebrow" lang="en">THE GARDEN GALLERY</span><h1 lang="en">Pinkpaul<span>.</span></h1></div>
+        <div><span class="eyebrow" lang="en">MUSEUM OF MEMORIES</span><h1 lang="en">Pinkpaul<span>.</span></h1><time class="museum-date" datetime="11-29" lang="en">29 NOVEMBER</time></div>
       </div>
-      <nav aria-label="เมนูแกลเลอรี">
-        <button type="button" id="chapters" aria-haspopup="dialog" aria-controls="chapter-view" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 6c-3-2-6-2-9-1v13c3-1 6-1 9 1 3-2 6-2 9-1V5c-3-1-6-1-9 1Zm0 0v13M6 9h3m6 0h3"/></svg>สมุดบันทึกสวน</button>
-        <button type="button" id="home" title="เดินชมสวน 3D จากจุดเริ่ม" disabled>เดินชมสวน 3D</button>
-        <a id="archive-entry" href="album.html">เปิดคลังภาพ</a>
+      <nav class="hud-nav" aria-label="เมนูพิพิธภัณฑ์">
+        <button type="button" id="chapters" aria-haspopup="dialog" aria-controls="chapter-view" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 3h6v5H9zM3 14h6v6H3zM15 14h6v6h-6zM12 8v9m-3 0h6"/></svg>แผนผัง</button>
+        <button type="button" id="home" title="กลับไปยังโถงกลาง" disabled>กลับโถง</button>
+        <a id="archive-entry" href="album.html">คลังภาพ</a>
       </nav>
-      <div class="extras" role="group" aria-label="ลูกเล่นในสวน">
+      <div class="extras" role="group" aria-label="กิจกรรมและแสงในพิพิธภัณฑ์">
         <button type="button" id="trail" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20 4.3 12.5a4.4 4.4 0 0 1 6.2-6.2L12 8l1.5-1.7a4.4 4.4 0 0 1 6.2 6.2Z"/></svg><span>หัวใจ 0 / 5</span></button>
         <button type="button" id="night" disabled aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19.5 15.6A8.4 8.4 0 0 1 8.4 4.5a8.4 8.4 0 1 0 11.1 11.1Z"/></svg><span>เปิดไฟกลางคืน</span></button>
       </div>
-    </header>
-    <div class="scene-notes">
-      <div class="location-plaque">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="m14.7 9.3-1.4 4-4 1.4 1.4-4 4-1.4Z"/></svg>
-        <div><span class="eyebrow">ตำแหน่งในสวน</span><p id="chapter-label">ทางเข้าสวน</p></div>
+      <div class="scene-notes">
+        <div class="location-plaque">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="m14.7 9.3-1.4 4-4 1.4 1.4-4 4-1.4Z"/></svg>
+          <div><span class="eyebrow">ตำแหน่งปัจจุบัน</span><p id="chapter-label">โถงกลาง</p></div>
+        </div>
+        <div class="intro-chip" id="intro">
+          <strong>เลือกเส้นทางได้จากโถงกลาง</strong>
+          <small>หมุนมือถือเป็นแนวนอนเพื่อเล่นได้ถนัดขึ้น</small>
+        </div>
       </div>
-      <div class="intro-chip" id="intro">
-        <span class="eyebrow" lang="en">29 NOV / OUR LITTLE WORLD</span>
-        <strong>เดินเล่นในสวนของเรา</strong>
-        <small>หมุนมือถือเป็นแนวนอนเพื่อเล่นได้ถนัดขึ้น</small>
-        <svg class="field-sprig" viewBox="0 0 88 148" aria-hidden="true">
-          <path d="M37 145c17-31 19-67 11-103m-4 90c-2-31-18-60-33-78m36 72c7-18 21-35 36-47M49 104c-14-1-24-10-27-20 12 1 23 7 27 20Zm5-24c3-15 9-23 18-26-1 13-6 20-18 26Zm4 26c7-10 15-11 23-11-5 8-13 12-23 11ZM31 95c-13-2-19-7-23-16 10 1 18 8 23 16Zm5 17c-1-12 2-19 7-24 3 12 1 19-7 24Z"/>
-          <path class="petals" d="M45 33c-13-4-9-16-2-12 0-12 11-13 11-1 8-7 15 3 5 9 12 3 9 14-2 11 4 11-7 15-10 4-7 10-16 3-9-5-11 1-11-11 2-10Zm-33 16c-8 1-7-10-1-9 4-7 11-3 8 3 9 3 4 10-2 8-1 7-9 7-8 0-6 2-7-4-3-6m73 25c-6-6 3-12 5-5 6-3 9 4 3 7 5 4 2 10-4 7-5 5-10 0-6-5-6-1-4-6 2-4Z"/>
-          <path d="M46 32c2-4 8-3 9 1s-5 7-8 4c-2-2-2-3-1-5Zm-34 14h1m68 26h1"/>
-        </svg>
-      </div>
-      <div class="garden-quick-actions">
+      <div class="garden-quick-actions" role="group" aria-label="ชุดภาพ โปสต์การ์ด และการตั้งค่า">
         <button id="collection" type="button" aria-haspopup="dialog" aria-controls="collection-view" disabled>
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3h14v14H5zM8 20h12a2 2 0 0 0 2-2V6M5 13l4-4 4 4 2-2 4 4"/></svg>
-          <span><small>รูปในสวน</small><strong id="collection-label">เลือกชุดภาพ</strong></span>
+          <span><small>จัดแสดง</small><strong id="collection-label">ชุดภาพ</strong></span>
         </button>
         <button id="stickers" type="button" aria-haspopup="dialog" aria-controls="sticker-view" disabled>
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h18v10H3zM3 8l9 6 9-6"/></svg>
@@ -61,10 +55,10 @@
         </button>
         <button id="quality" type="button" aria-haspopup="dialog" aria-controls="quality-view" disabled>
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16M9 4v4m6 2v4m-7 2v4"/></svg>
-          <span><small>คุณภาพ 3D</small><strong id="quality-label">อัตโนมัติ</strong></span>
+          <span><small>ภาพ 3D</small><strong id="quality-label">อัตโนมัติ</strong></span>
         </button>
       </div>
-    </div>
+    </header>
     <div id="reticle" aria-hidden="true"></div>
     <button type="button" id="collect-nearby" hidden>เก็บหัวใจใกล้ ๆ</button>
     <div class="hud-bottom" id="controls" hidden>
@@ -75,8 +69,8 @@
         <button type="button" data-walk="right" aria-label="เดินขวา"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></button>
       </div>
       <div class="feedback">
-        <p id="status" role="status">กำลังเปิดสวน...</p>
-        <small class="hint-desktop"><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> เดิน · กดเมาส์ปุ่มซ้ายหรือขวาค้างแล้วลากเพื่อมอง · คลิกภาพเพื่อขยาย</small>
+        <p id="status" role="status">กำลังเปิดพิพิธภัณฑ์…</p>
+        <small class="hint-desktop"><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> เดิน · ลากเมาส์เพื่อมอง · คลิกภาพเพื่อขยาย</small>
         <small class="hint-touch">กดลูกศรเพื่อเดิน · ลากเพื่อมอง · แตะภาพเพื่อขยาย</small>
       </div>
       <div class="tools">
@@ -87,16 +81,30 @@
         </div>
       </div>
     </div>
-    <div class="loading" id="loading" role="status"><span class="eyebrow" lang="en">GARDEN GALLERY / 29 NOV</span><p>กำลังเปิดสวน 3D…</p><a href="album.html">ไปที่คลังภาพ 2D</a></div>
+    <div class="loading" id="loading" role="status"><span class="eyebrow" lang="en">MUSEUM OF MEMORIES</span><p>กำลังเปิดพิพิธภัณฑ์ 3D…</p><a href="album.html">ไปที่คลังภาพ 2D</a></div>
     <noscript><p class="noscript">เปิด JavaScript เพื่อเข้าแกลเลอรี 3D ค่ะ</p></noscript>
   </main>
   <dialog id="chapter-view" aria-labelledby="chapter-title" aria-describedby="chapter-intro">
     <div class="dialog-top">
-      <div><span class="eyebrow" lang="en">GARDEN JOURNAL / 29 NOV</span><h2 id="chapter-title">สมุดบันทึกสวน</h2></div>
+      <div><span class="eyebrow" lang="en">VISITOR MAP / 29 NOV</span><h2 id="chapter-title">แผนผังและห้องจัดแสดง</h2></div>
       <form method="dialog"><button type="submit">ปิด</button></form>
     </div>
-    <p id="chapter-intro">เลือกบทเพื่อไปยังจุดต่าง ๆ ในสวน แต่ละจุดมีภาพและเรื่องราวให้ค้นพบ</p>
-    <div id="chapter-list" role="region" aria-label="บทและจุดแวะชมในสวน"></div>
+    <p id="chapter-intro">จากโถงกลาง เลี้ยวเข้าปีกซ้ายหรือขวา หรือเดินตรงไปลานบัวที่เชื่อมทั้งสองปีก เลือกห้องใดก็ได้เพื่อไปที่นั่น ไม่ต้องเดินตามลำดับ</p>
+    <div class="room-guide">
+      <figure class="room-plan">
+        <figcaption>เส้นทางจากโถงกลาง <small>ผังสังเขป ไม่ใช่มาตราส่วนจริง</small></figcaption>
+        <ul id="room-map" role="list">
+          <li><button type="button" data-room="0"><span class="room-index">01</span><strong>โถงกลาง</strong><small class="room-current" aria-hidden="true">อยู่ที่นี่</small></button></li>
+          <li><button type="button" data-room="1"><span class="room-index">02</span><strong>ปีกตะวันตก</strong><small class="room-current" aria-hidden="true">อยู่ที่นี่</small></button></li>
+          <li><button type="button" data-room="2"><span class="room-index">03</span><strong>ปีกตะวันออก</strong><small class="room-current" aria-hidden="true">อยู่ที่นี่</small></button></li>
+          <li><button type="button" data-room="3"><span class="room-index">04 · กลางแจ้ง</span><strong>ลานบัวด้านหลัง</strong><small class="room-current" aria-hidden="true">อยู่ที่นี่</small></button></li>
+        </ul>
+      </figure>
+      <section class="room-directory" aria-labelledby="room-directory-title">
+        <h3 id="room-directory-title">ห้องและจุดแวะชม</h3>
+        <div id="chapter-list"></div>
+      </section>
+    </div>
   </dialog>
   <dialog id="photo-view" aria-labelledby="photo-date">
     <div class="dialog-top"><div><span id="photo-number" class="eyebrow"></span><h2 id="photo-date"></h2></div><button type="button" id="close-photo">ปิด</button></div>
@@ -148,7 +156,7 @@
     <div class="sticker-controls"><p id="sticker-status" role="status"></p><button id="sticker-motion" type="button">พัก GIF</button></div>
   </dialog>
   <script type="module">
-    import('./experience.js?v=6').catch(error => {
+    import('./experience.js?v=7').catch(error => {
       console.error(error);
       document.querySelector('#loading p').textContent = 'เปิดฉาก 3D ไม่ได้ ลองรีเฟรช หรือเปิดคลังภาพแบบ 2D ได้เลย';
     });

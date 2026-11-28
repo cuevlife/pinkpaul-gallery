@@ -94,7 +94,7 @@ export function createAtmosphere(scene, camera, reducedMotion) {
   for (let i = 0; i < vertices.count; i++) vertices.setZ(i, vertices.getY(i) * vertices.getY(i) * 0.65);
   petalGeometry.computeVertexNormals();
   const petalMaterial = new THREE.MeshLambertMaterial({ side: THREE.DoubleSide, emissive: 0xaf4965, emissiveIntensity: 0.13 });
-  const petalBanks = [-2.9, -8.2, -22.5, -42.5, -57.5, FOUNTAIN_Z + 3.2];
+  const petalBanks = [-44, -51, -57.5, FOUNTAIN_Z + 3.2];
   const petalTints = [0xf4aac4, 0xffb8ce, 0xffd5dc, 0xffe3e6, 0xe995b6].map(color => new THREE.Color(color));
   const dummy = new THREE.Object3D();
 
@@ -133,7 +133,7 @@ export function createAtmosphere(scene, camera, reducedMotion) {
 
   const flies = Array.from({ length: 15 * 10 }, (_, i) => ({
     x: (i % 2 ? 1 : -1) * (1.8 + random() * 3.5), y: 0.4 + random() * 1.65,
-    z: 2 - Math.floor(i / 10) * 4.6 + (random() - 0.5) * 4.8,
+    z: -40 - Math.floor(i / 10) * 1.8 + (random() - 0.5) * 2.4,
     phase: random() * TAU, size: 0.095 + random() * 0.085, rate: 0.62 + random() * 0.75,
   }));
   const splash = Array.from({ length: 38 }, (_, i) => ({

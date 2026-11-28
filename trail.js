@@ -1,12 +1,9 @@
 import * as THREE from 'three';
 
-export const stops = [
-  { name: 'ข้างแปลงดอกไม้ในเรือนกุหลาบ', x: .82, z: -1 },
-  { name: 'ทางเข้าโรงหนังความทรงจำ', x: -1.06, z: -13.4 },
-  { name: 'ปลายทางเดินของโรงหนัง', x: .97, z: -26.5 },
-  { name: 'ใต้ซุ้มในเขตวิสทีเรีย', x: -1.02, z: -43.6 },
-  { name: 'ทางเดินริมบัวก่อนถึงน้ำพุหัวใจ', x: .76, z: -62.3 },
-];
+import { MUSEUM } from './museum-layout.js?v=1';
+
+const names = ['โถงกลาง', 'ปีกจัดแสดงฝั่งตะวันตก', 'ปีกจัดแสดงฝั่งตะวันออก', 'ทางเข้าลานบัว', 'ริมทางก่อนถึงน้ำพุหัวใจ'];
+export const stops = MUSEUM.trail.map((position, i) => ({ ...position, name: names[i] }));
 
 export function createTrail(scene, reducedMotion) {
   const heart = new THREE.Shape();

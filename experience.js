@@ -1,9 +1,9 @@
 import * as THREE from 'three';
-import { buildWorld } from './world.js?v=5';
+import { buildWorld, MUSEUM } from './world.js?v=7';
 import { createMovingWater } from './moving-water.js?v=4';
 import { createWatering } from './watering.js?v=1';
-import { createAtmosphere } from './atmosphere.js?v=2';
-import { createTrail, stops } from './trail.js?v=3';
+import { createAtmosphere } from './atmosphere.js?v=7';
+import { createTrail, stops } from './trail.js?v=7';
 
 const stage = document.querySelector('#stage');
 const touchDevice = matchMedia('(pointer: coarse)').matches;
@@ -26,7 +26,7 @@ photos.forEach((photo, index) => { photo.index = index; });
 const pageSize = 25;
 const pageCount = Math.ceil(photos.length / pageSize);
 let photoPage = 0;
-const { photoTargets, plots, setGrowth, setPhotos, update: updateWorld } = buildWorld(scene, photos.slice(0, pageSize));
+const { photoTargets, plots, occluders, setGrowth, setPhotos, update: updateWorld } = buildWorld(scene, photos.slice(0, pageSize));
 const watering = createWatering(scene, camera);
 const storageKey = 'pinkpaul-little-garden-v1';
 let growth = Array(plots.length).fill(0);
@@ -90,16 +90,8 @@ const stickerMotion = document.querySelector('#sticker-motion');
 const stickerStatus = document.querySelector('#sticker-status');
 const stickerImages = [...stickerView.querySelectorAll('[data-gif]')];
 let animateStickers = !reducedMotion.matches;
-const chapters = [
-  { name: 'เรือนกุหลาบ', english: 'The Rose Conservatory', start: 4, from: Infinity, photo: 0,
-    copy: 'เริ่มที่เรือนกุหลาบ เลือกดอกไม้สักแปลง รดน้ำให้เมล็ดงอก แล้วแวะดูภาพแรก ๆ ที่เก็บไว้ในสวน' },
-  { name: 'โรงหนังความทรงจำ', english: 'The Keepsake Cinema', start: -11, from: -10, photo: 7,
-    copy: 'เหมือนกลับไปดูหนังเรื่องเดิมที่ยังทำให้ยิ้มได้ ลองเดินผ่านม้วนฟิล์มแล้วเลือกภาพหนึ่งมาเปิดดูอีกครั้ง' },
-  { name: 'โมงยามวิสทีเรีย', english: 'The Wisteria Hour', start: -31, from: -28, photo: 14,
-    copy: 'พักใต้ซุ้มดอกไม้สีม่วง แล้วลองเปิดไฟกลางคืน มองหาหิ่งห้อยข้างทางและหัวใจที่ซ่อนไว้' },
-  { name: 'งานเลี้ยงริมบัว', english: 'The Lotus Gala', start: -53, from: -50, photo: 22,
-    copy: 'เดินผ่านบัวไปถึงน้ำพุหัวใจ ที่นี่คือช่วงสุดท้ายของทางเดิน แต่ยังมีจดหมายวันเกิดรออยู่เมื่อเก็บหัวใจครบ' },
-];
+const chapters = MUSEUM.zones;
+const roomMap = [...document.querySelectorAll('#room-map [data-room]')];
 const chapterSpots = [];
 let currentChapter = -1;
 const journeyKey = 'pinkpaul-heart-trail-v1';
@@ -116,11 +108,13 @@ const photoFormat = new Intl.DateTimeFormat('th-TH', { dateStyle: 'long', timeZo
 const ray = new THREE.Raycaster();
 const ndc = new THREE.Vector2();
 const target = new THREE.Vector3();
+const probe = new THREE.Vector3();
+const nearbyRay = new THREE.Raycaster();
 const movement = new THREE.Vector2();
 const keyboard = new Set();
 const walking = new Map();
 const directions = new Set();
-const defaultHint = 'เปิดสมุดบันทึกสวนเพื่อเลือกจุดแวะชม';
+const defaultHint = 'เลี้ยวเข้าปีกซ้ายหรือขวา หรือเปิดแผนผังเพื่อเลือกห้อง';
 const wateringHint = 'ถือบัวแล้ว · แตะที่แปลง หรือเล็งแล้วกดรดน้ำ';
 let yaw = 0;
 let pitch = -.1;
@@ -156,6 +150,14 @@ function updateTrail() {
     return item;
   }));
 }
+function nearbyHeart() {
+  const hit = trail.nearby(camera.position);
+  if (!hit) return null;
+  hit.root.getWorldPosition(probe).sub(camera.position);
+  nearbyRay.far = probe.length();
+  nearbyRay.set(camera.position, probe.normalize());
+  return nearbyRay.intersectObjects(occluders, false).length ? null : hit;
+}
 function collectHeart(hit) {
   if (!hit || hit.distance > 7) return false;
   const index = hit.root.userData.heartIndex;
@@ -173,18 +175,20 @@ function updateGarden() {
 }
 function applyLook() { camera.rotation.set(pitch, yaw, 0, 'YXZ'); }
 function updateLocation() {
-  const index = chapters.findLastIndex(chapter => camera.position.z <= chapter.from);
+  const index = MUSEUM.locationAt(camera.position.x, camera.position.z);
   if (index === currentChapter) return;
   currentChapter = index;
   chapterLabel.textContent = `${String(index + 1).padStart(2, '0')} / ${chapters[index].name}`;
   chapterSpots.forEach((card, i) => card.setAttribute('aria-current', i === index ? 'location' : 'false'));
+  roomMap.forEach(button => button.setAttribute('aria-current', Number(button.dataset.room) === index ? 'location' : 'false'));
 }
 function enterChapter(index) {
   keyboard.clear();
   walking.clear();
-  camera.position.set(0, 1.65, chapters[index].start);
-  yaw = 0;
-  pitch = -.1;
+  const pose = chapters[index].spawn;
+  camera.position.set(pose.x, 1.65, pose.z);
+  yaw = pose.yaw;
+  pitch = pose.pitch;
   applyLook();
   updateLocation();
 }
@@ -217,6 +221,8 @@ function pick(roots, clickX, clickY) {
   ray.setFromCamera(ndc, camera);
   const hit = ray.intersectObjects(roots, true)[0];
   if (!hit) return null;
+  const wall = ray.intersectObjects(occluders, false)[0];
+  if (wall && wall.distance < hit.distance - .035) return null;
   let root = hit.object;
   while (root && !roots.includes(root)) root = root.parent;
   return root ? { root, distance: hit.distance } : null;
@@ -284,7 +290,7 @@ function openPhoto(index, trigger = stage) {
 }
 function interact(x, y) {
   const heart = pick(trail.targets(), x, y);
-  if (collectHeart(heart) || (x === undefined && !held && collectHeart(trail.nearby(camera.position)))) return;
+  if (collectHeart(heart) || (x === undefined && !held && collectHeart(nearbyHeart()))) return;
   if (held) {
     const plot = pick(plots, x, y);
     if (plot || x === undefined) { waterPlot(plot); return; }
@@ -306,7 +312,7 @@ trailButton.addEventListener('click', () => {
   trailView.showModal();
 });
 nearbyButton.addEventListener('click', () => {
-  if (collectHeart(trail.nearby(camera.position))) trailButton.focus();
+  if (collectHeart(nearbyHeart())) trailButton.focus();
 });
 trailView.addEventListener('click', event => { if (event.target === trailView) trailView.close(); });
 trailView.addEventListener('close', () => trailButton.focus());
@@ -329,15 +335,17 @@ chapters.forEach((chapter, index) => {
   copy.className = 'chapter-copy';
   copy.textContent = chapter.copy;
   card.append(preview, number, name, copy);
-  card.addEventListener('click', () => {
-    enterChapter(index);
-    explored();
-    chapterView.close();
-    announce(`มาถึง${chapter.name}แล้ว`);
-  });
+  card.addEventListener('click', () => visitRoom(index));
   chapterSpots.push(card);
   chapterList.append(card);
 });
+function visitRoom(index) {
+  enterChapter(index);
+  explored();
+  chapterView.close();
+  announce(`มาถึง${chapters[index].name}แล้ว`);
+}
+for (const button of roomMap) button.addEventListener('click', () => visitRoom(Number(button.dataset.room)));
 chapterButton.addEventListener('click', () => {
   keyboard.clear();
   walking.clear();
@@ -557,12 +565,18 @@ function step(direction, amount) {
   translate(amount);
 }
 function translate(amount) {
-  if (!movement.lengthSq()) return;
+  if (!amount || !movement.lengthSq()) return;
   explored();
   movement.normalize().multiplyScalar(amount);
   const sin = Math.sin(yaw), cos = Math.cos(yaw);
-  camera.position.x = THREE.MathUtils.clamp(camera.position.x + cos * movement.x - sin * movement.y, -5.4, 5.4);
-  camera.position.z = THREE.MathUtils.clamp(camera.position.z - sin * movement.x - cos * movement.y, -65, 6);
+  const steps = Math.ceil(amount / .1);
+  const dx = (cos * movement.x - sin * movement.y) / steps;
+  const dz = (-sin * movement.x - cos * movement.y) / steps;
+  for (let i = 0; i < steps; i++) {
+    const p = camera.position;
+    if (MUSEUM.canWalk(p.x + dx, p.z)) p.x += dx;
+    if (MUSEUM.canWalk(p.x, p.z + dz)) p.z += dz;
+  }
   updateLocation();
 }
 
@@ -612,7 +626,7 @@ renderer.setAnimationLoop(time => {
   atmosphere.update(delta);
   movingWater.update(delta);
   trail.update(delta, yaw);
-  const hideNearby = !trail.nearby(camera.position);
+  const hideNearby = !nearbyHeart();
   if (nearbyButton.hidden !== hideNearby) nearbyButton.hidden = hideNearby;
   renderer.render(scene, camera);
   needsFrame = false;
