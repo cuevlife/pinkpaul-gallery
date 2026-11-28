@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Mali:wght@400;600;700&family=Nunito:wght@600;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="experience.css?v=1">
+  <link rel="stylesheet" href="experience.css?v=2">
   <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js"}}</script>
 </head>
 <body>
@@ -23,9 +23,14 @@
         <button type="button" id="album" disabled>ดูรูป</button>
         <a href="album.html">คลังภาพ 2D</a>
       </nav>
+      <div class="extras" aria-label="ลูกเล่นในสวน">
+        <button type="button" id="trail" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20 4.3 12.5a4.4 4.4 0 0 1 6.2-6.2L12 8l1.5-1.7a4.4 4.4 0 0 1 6.2 6.2Z"/></svg><span>หัวใจ 0 / 5</span></button>
+        <button type="button" id="night" disabled aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19.5 15.6A8.4 8.4 0 0 1 8.4 4.5a8.4 8.4 0 1 0 11.1 11.1Z"/></svg><span>เปิดไฟกลางคืน</span></button>
+      </div>
     </header>
     <div class="intro-chip" id="intro"><span>29 NOV / OUR LITTLE WORLD</span><strong>เดินเล่นในสวนของเรา</strong><small>หมุนมือถือเป็นแนวนอนเพื่อเล่นได้ถนัดขึ้น</small></div>
     <div id="reticle" aria-hidden="true"></div>
+    <button type="button" id="collect-nearby" hidden>เก็บหัวใจใกล้ ๆ</button>
     <div class="hud-bottom" id="controls" hidden>
       <div class="walk" aria-label="ปุ่มเดิน">
         <button type="button" data-walk="forward" aria-label="เดินหน้า"><svg viewBox="0 0 24 24"><path d="m5 15 7-7 7 7"/></svg></button>
@@ -50,8 +55,18 @@
     <img id="photo" alt="">
     <div class="dialog-actions"><button type="button" id="prev-photo">ภาพก่อนหน้า</button><button type="button" id="next-photo">ภาพถัดไป</button></div>
   </dialog>
+  <dialog id="trail-view" aria-labelledby="trail-title">
+    <div class="dialog-top"><div><span>THE HEART TRAIL</span><h2 id="trail-title">ออกตามหาหัวใจ</h2></div><form method="dialog"><button>ปิด</button></form></div>
+    <p id="trail-note"></p>
+    <ol id="trail-stops"></ol>
+    <section id="birthday-letter" hidden>
+      <span>29 NOVEMBER · FOR YOU</span>
+      <h3>สุขสันต์วันเกิดนะ Pinkpaul</h3>
+      <p>ขอบคุณที่อยู่ในความทรงจำดี ๆ ด้วยกัน ขอให้ปีนี้มีเรื่องให้ยิ้มเยอะ ๆ เหมือนดอกไม้ที่เราช่วยกันปลูกในสวนนี้นะ</p>
+    </section>
+  </dialog>
   <script type="module">
-    import('./experience.js?v=1').catch(error => {
+    import('./experience.js?v=2').catch(error => {
       console.error(error);
       document.querySelector('#loading p').textContent = 'เปิดฉาก 3D ไม่ได้ ลองรีเฟรช หรือเปิดคลังภาพแบบ 2D ได้เลย';
     });

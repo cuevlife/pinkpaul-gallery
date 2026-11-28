@@ -1,6 +1,8 @@
 import * as THREE from 'three';
 import { buildWorld } from './world.js?v=1';
 import { createWatering } from './watering.js?v=1';
+import { createAtmosphere } from './atmosphere.js?v=2';
+import { createTrail, stops } from './trail.js?v=2';
 
 const stage = document.querySelector('#stage');
 const renderer = new THREE.WebGLRenderer({ canvas: stage, antialias: !matchMedia('(pointer: coarse)').matches });
@@ -40,6 +42,25 @@ const nextPhoto = document.querySelector('#next-photo');
 const photoDate = document.querySelector('#photo-date');
 const photoNumber = document.querySelector('#photo-number');
 const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+const atmosphere = createAtmosphere(scene, camera, reducedMotion);
+const trail = createTrail(scene, reducedMotion);
+const trailButton = document.querySelector('#trail');
+const nearbyButton = document.querySelector('#collect-nearby');
+const nightButton = document.querySelector('#night');
+const trailView = document.querySelector('#trail-view');
+const trailNote = document.querySelector('#trail-note');
+const trailStops = document.querySelector('#trail-stops');
+const letter = document.querySelector('#birthday-letter');
+const journeyKey = 'pinkpaul-heart-trail-v1';
+const found = new Set();
+let night = false;
+try {
+  const saved = JSON.parse(localStorage.getItem(journeyKey));
+  if (Array.isArray(saved?.found)) {
+    for (const index of saved.found) if (Number.isInteger(index) && index >= 0 && index < stops.length) found.add(index);
+  }
+  night = saved?.night === true;
+} catch { /* Exploration is available even without storage. */ }
 const photoFormat = new Intl.DateTimeFormat('th-TH', { dateStyle: 'long', timeZone: 'UTC' });
 const ray = new THREE.Raycaster();
 const ndc = new THREE.Vector2();
@@ -62,6 +83,40 @@ let hasExplored = false;
 const intro = document.querySelector('#intro');
 
 function announce(message) { status.textContent = message; }
+function saveJourney() {
+  try { localStorage.setItem(journeyKey, JSON.stringify({ found: [...found], night })); }
+  catch { /* Keep the current session playable. */ }
+}
+function showNight() {
+  atmosphere.setNight(night);
+  nightButton.setAttribute('aria-pressed', String(night));
+  nightButton.querySelector('span').textContent = night ? 'กลับเป็นกลางวัน' : 'เปิดไฟกลางคืน';
+}
+function updateTrail() {
+  trail.sync(found);
+  const finished = found.size === stops.length;
+  trailButton.querySelector('span').textContent = finished ? 'จดหมายวันเกิด' : `หัวใจ ${found.size} / ${stops.length}`;
+  trailNote.textContent = finished ? 'เก็บหัวใจครบแล้ว! จดหมายฉบับนี้ฝากไว้ให้ Pinkpaul' : 'เดินตามทางแล้วแตะหัวใจที่ลอยอยู่ใกล้ ๆ ให้ครบ เพื่อเปิดจดหมายวันเกิด';
+  trailStops.hidden = finished;
+  letter.hidden = !finished;
+  trailStops.replaceChildren(...stops.map(({ name }, index) => {
+    const item = document.createElement('li');
+    item.textContent = found.has(index) ? `${name} — เจอแล้ว` : name;
+    item.classList.toggle('found', found.has(index));
+    return item;
+  }));
+}
+function collectHeart(hit) {
+  if (!hit || hit.distance > 7) return false;
+  const index = hit.root.userData.heartIndex;
+  hit.root.getWorldPosition(target);
+  atmosphere.celebrate(target);
+  found.add(index);
+  updateTrail();
+  saveJourney();
+  announce(found.size === stops.length ? 'เจอครบแล้ว! เปิดจดหมายวันเกิดที่มุมขวาบนได้เลย' : `เจอหัวใจแล้ว ${found.size} / ${stops.length}`);
+  return true;
+}
 function updateGarden() {
   setGrowth(growth);
   counter.textContent = `ดอกไม้ ${growth.filter(x => x === 2).length} / ${growth.length}`;
@@ -121,6 +176,10 @@ function waterPlot(hit) {
   try { localStorage.setItem(storageKey, JSON.stringify(growth)); }
   catch { saved = false; }
   updateGarden();
+  if (growth[index] === 2) {
+    target.y = 1.02;
+    atmosphere.celebrate(target);
+  }
   const message = growth[index] === 2 ? `แปลง ${index + 1} ออกดอกแล้ว!` : `แปลง ${index + 1} งอกแล้ว รดอีกครั้งให้ดอกบาน`;
   announce(saved ? message : `${message} · เบราว์เซอร์ไม่อนุญาตให้บันทึก`);
 }
@@ -153,14 +212,33 @@ function openPhoto(index, trigger = albumButton) {
   closePhoto.focus();
 }
 function interact(x, y) {
+  const heart = pick(trail.targets(), x, y);
+  if (collectHeart(heart) || (x === undefined && !held && collectHeart(trail.nearby(camera.position)))) return;
   if (held) {
     const plot = pick(plots, x, y);
-    if (plot) { waterPlot(plot); return; }
+    if (plot || x === undefined) { waterPlot(plot); return; }
   }
   const frame = pick(photoTargets, x, y);
   if (frame) openPhoto(frame.root.userData.photoIndex);
   else if (held) announce(wateringHint);
 }
+
+nightButton.addEventListener('click', () => {
+  night = !night;
+  showNight();
+  saveJourney();
+  announce(night ? 'กลางคืนแล้ว · ลองมองหาหิ่งห้อยข้างทาง' : 'กลับมาชมสวนตอนกลางวันแล้ว');
+});
+trailButton.addEventListener('click', () => {
+  keyboard.clear();
+  walking.clear();
+  trailView.showModal();
+});
+nearbyButton.addEventListener('click', () => {
+  if (collectHeart(trail.nearby(camera.position))) trailButton.focus();
+});
+trailView.addEventListener('click', event => { if (event.target === trailView) trailView.close(); });
+trailView.addEventListener('close', () => trailButton.focus());
 
 homeButton.addEventListener('click', resetPosition);
 albumButton.addEventListener('click', () => openPhoto(activePhoto));
@@ -205,7 +283,7 @@ const keys = new Map([['w', 'forward'], ['arrowup', 'forward'], ['s', 'back'], [
 const lookKeys = new Map([['i', [0, .09]], ['j', [.09, 0]], ['k', [0, -.09]], ['l', [-.09, 0]]]);
 window.addEventListener('keydown', event => {
   const key = event.key.toLowerCase();
-  if (event.altKey || event.ctrlKey || event.metaKey) return;
+  if (event.altKey || event.ctrlKey || event.metaKey || trailView.open) return;
   if (dialog.open) {
     if (key === 'arrowleft' && activePhoto > 0) showPhoto(activePhoto - 1);
     if (key === 'arrowright' && activePhoto < photos.length - 1) showPhoto(activePhoto + 1);
@@ -221,10 +299,7 @@ window.addEventListener('keydown', event => {
     explored();
     applyLook();
   } else if (!event.repeat && key === 'f') toggleWater();
-  else if (!event.repeat && key === 'e') {
-    if (held) waterPlot(pick(plots));
-    else interact();
-  }
+  else if (!event.repeat && key === 'e') interact();
 });
 window.addEventListener('keyup', event => keyboard.delete(event.key.toLowerCase()));
 window.addEventListener('blur', () => { keyboard.clear(); walking.clear(); pointer = null; });
@@ -253,22 +328,30 @@ function translate(amount) {
 
 resetPosition();
 updateGarden();
+updateTrail();
+showNight();
 resize();
 window.addEventListener('resize', resize);
 let previousTime = 0;
 renderer.setAnimationLoop(time => {
   const delta = Math.min((time - previousTime) / 1000, .05);
   previousTime = time;
-  if (!dialog.open) {
+  if (!dialog.open && !trailView.open) {
     const directions = new Set(walking.values());
     for (const key of keyboard) directions.add(keys.get(key));
     movement.set(Number(directions.has('right')) - Number(directions.has('left')), Number(directions.has('forward')) - Number(directions.has('back')));
     translate(delta * 4.1);
   }
   watering.update(delta);
+  atmosphere.update(delta);
+  trail.update(delta, yaw);
+  const hideNearby = dialog.open || trailView.open || !trail.nearby(camera.position);
+  if (nearbyButton.hidden !== hideNearby) nearbyButton.hidden = hideNearby;
   renderer.render(scene, camera);
 });
 homeButton.disabled = false;
 albumButton.disabled = false;
+nightButton.disabled = false;
+trailButton.disabled = false;
 document.querySelector('#loading').hidden = true;
 document.querySelector('#controls').hidden = false;

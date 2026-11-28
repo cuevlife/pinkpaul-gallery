@@ -26,6 +26,12 @@ button:focus-visible, a:focus-visible { outline: 3px solid #7d2353; outline-offs
 .brand h1 { margin: 0; line-height: 1.1; font-family: 'Mali', system-ui, sans-serif; font-size: clamp(21px, 4vw, 31px); }
 .brand h1 span { color: var(--rose); }
 nav { display: flex; gap: 4px; padding: 4px; border-radius: 16px; pointer-events: auto; }
+.extras { position: absolute; top: calc(100% + 8px); right: 0; display: flex; gap: 5px; pointer-events: auto; }
+.extras button { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; padding: 5px 10px; border: 1px solid var(--border); border-radius: 13px; background: var(--paper); color: var(--ink); font-size: 13px; font-weight: 800; box-shadow: 0 4px 16px #6929491c; cursor: pointer; }
+.extras button:hover:not(:disabled) { background: #fae5ec; }
+.extras svg { width: 17px; height: 17px; color: var(--rose); }
+#night[aria-pressed='true'] { background: #31274b; color: #ffedbf; border-color: #a58bbc; }
+#night[aria-pressed='true'] svg { color: #ffedbf; }
 nav button, nav a, .dialog-top button, .dialog-actions button { display: inline-flex; align-items: center; justify-content: center; min-height: 40px; padding: 5px 12px; border-radius: 11px; background: transparent; border: 0; color: var(--ink); text-decoration: none; font-size: 13px; font-weight: 800; cursor: pointer; }
 nav button:hover:not(:disabled), nav a:hover, .dialog-top button:hover, .dialog-actions button:hover:not(:disabled) { background: #f8e6e8; }
 button:disabled { opacity: .55; cursor: default; }
@@ -35,6 +41,8 @@ button:disabled { opacity: .55; cursor: default; }
 .intro-chip small { display: none; margin-top: 4px; font-size: 12px; }
 #reticle { position: absolute; left: 50%; top: 50%; width: 10px; height: 10px; border-radius: 50%; border: 2px solid white; box-shadow: 0 0 0 1px #58334399; transform: translate(-50%, -50%); pointer-events: none; opacity: 0; }
 #experience[data-held] #reticle { opacity: 1; }
+#collect-nearby { position: absolute; z-index: 2; left: 50%; bottom: max(84px, calc(env(safe-area-inset-bottom) + 72px)); transform: translateX(-50%); min-height: 44px; padding: 6px 14px; border: 1px solid #e19cb9; border-radius: 99px; background: var(--paper); color: var(--rose); font-size: 13px; font-weight: 800; box-shadow: 0 4px 16px #69294938; cursor: pointer; }
+#collect-nearby:hover { background: #fae5ec; }
 .walk { pointer-events: auto; display: grid; grid-template-columns: repeat(3, 46px); grid-template-areas: '. up .' 'left down right'; gap: 4px; }
 .walk button { display: grid; place-items: center; width: 46px; height: 44px; border: 1px solid var(--border); border-radius: 12px; color: var(--ink); background: var(--paper); box-shadow: 0 3px 9px #69294925; cursor: pointer; touch-action: none; user-select: none; }
 .walk button:active { background: #f4d5de; }
@@ -57,7 +65,14 @@ svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width:
 .loading a { color: var(--rose); }
 .noscript { z-index: 4; top: 65%; }
 #photo-view { width: min(720px, 94vw); max-height: 94dvh; border: 1px solid var(--border); border-radius: 18px; background: var(--paper); color: var(--ink); padding: 12px; }
-#photo-view::backdrop { background: #291524c9; }
+#photo-view::backdrop, #trail-view::backdrop { background: #291524c9; }
+#trail-view { width: min(420px, 93vw); max-height: 92dvh; padding: 14px 18px; border: 1px solid var(--border); border-radius: 18px; color: var(--ink); background: var(--paper); }
+#trail-view p { margin: 8px 0; line-height: 1.6; }
+#trail-stops { padding-inline-start: 2rem; line-height: 1.8; }
+#trail-stops .found { color: #286451; }
+#birthday-letter { margin-top: 12px; padding: 15px; border: 1px solid var(--border); border-radius: 12px; background: #fae5ec; }
+#birthday-letter span { color: var(--rose); font-size: 11px; letter-spacing: .12em; }
+#birthday-letter h3 { font-family: 'Mali', system-ui, sans-serif; margin: 5px 0; }
 .dialog-top, .dialog-actions { display: flex; align-items: center; justify-content: space-between; gap: 6px; }
 .dialog-top span { color: var(--rose); font-size: 11px; letter-spacing: .1em; }
 .dialog-top h2 { margin: 0; font-size: 16px; }
@@ -71,6 +86,8 @@ svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width:
   .brand > span { font-size: 7px; }
   nav { gap: 0; padding: 2px; border-radius: 12px; }
   nav button, nav a { padding: 4px 6px; font-size: 11px; }
+  .extras { top: calc(100% + 5px); }
+  .extras button { padding: 4px 7px; font-size: 11px; }
   .intro-chip { top: max(60px, calc(env(safe-area-inset-top) + 48px)); left: max(8px, env(safe-area-inset-left)); padding: 6px 8px; }
   .intro-chip > span { font-size: 7px; }
   .intro-chip strong { font-size: 12px; }
