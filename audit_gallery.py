@@ -46,17 +46,33 @@ def main():
     args = parser.parse_args()
 
     full, thumbs, fallback = set(), set(), set()
+    archived = {}
+    displayed = set()
     try:
         for index, photo in enumerate(read_manifest('photo-metadata.json'), start=1):
             location = f'photo-metadata.json entry {index}'
             if not isinstance(photo, dict):
                 raise ValueError(f'{location}: expected an object')
-            full.add(image_path(photo.get('path'), f'{location} path'))
+            path = image_path(photo.get('path'), f'{location} path')
+            full.add(path)
+            archived[path] = photo
             thumb = photo.get('thumb')
             if thumb is not None and thumb != '':
                 thumbs.add(image_path(thumb, f'{location} thumb'))
         for index, path in enumerate(read_manifest('images.json'), start=1):
             fallback.add(image_path(path, f'images.json entry {index}'))
+        exhibit = read_manifest('exhibit.json')
+        if not 1 <= len(exhibit) <= 25:
+            raise ValueError('exhibit.json: expected 1–25 photos')
+        for index, photo in enumerate(exhibit, start=1):
+            location = f'exhibit.json entry {index}'
+            if not isinstance(photo, dict):
+                raise ValueError(f'{location}: expected an object')
+            path = image_path(photo.get('path'), f'{location} path')
+            image_path(photo.get('thumb'), f'{location} thumbnail')
+            if path in displayed or archived.get(path) != photo:
+                raise ValueError(f'{location}: repeated or not current; run curate_exhibit.py')
+            displayed.add(path)
         files = scan_images()
     except ValueError as error:
         print(f'Audit error: {error}', file=sys.stderr)
@@ -71,6 +87,7 @@ def main():
 
     print(f'photo-metadata.json: {len(full)} unique full images, {len(thumbs)} unique thumbnails')
     print(f'images.json fallback: {len(fallback)} unique images')
+    print(f'exhibit.json: {len(displayed)} unique archive photos')
     print(f'Referenced: {len(referenced)} unique paths; files under images/: {len(files)}')
     print(f'Missing: {len(missing)}')
     for path in sorted(missing):

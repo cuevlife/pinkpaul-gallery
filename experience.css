@@ -309,18 +309,10 @@ dialog::backdrop { background: #231422b3; }
 .garden-quick-actions small, .garden-quick-actions strong { display: block; }
 .garden-quick-actions small { color: var(--muted); font-size: 9px; }
 .garden-quick-actions strong { font-size: 11px; line-height: 1.2; }
-#collection-view, #quality-view { width: min(30rem, 94vw); }
-.collection-preview { display: flex; align-items: center; gap: 10px; min-height: 66px; padding: 6px; background: var(--paper-light); border: 1px solid var(--rule); }
-.collection-preview img { width: 84px; height: 64px; object-fit: cover; }
-.collection-preview p, #quality-help { color: var(--muted); font-size: 12px; margin: 3px 0 0; }
+#quality-view { width: min(30rem, 94vw); }
+#quality-help { color: var(--muted); font-size: 12px; margin: 3px 0 0; }
 .quality-settings { display: grid; gap: 6px; margin-top: 10px; font-size: 13px; }
 #quality-mode { width: 100%; min-height: 44px; padding: 5px 9px; color: var(--ink); background: var(--paper-light); border: 1px solid var(--rule); font: inherit; }
-#collection-summary, .archive-link { color: var(--muted); font-size: 13px; }
-.archive-link a { color: var(--rose); }
-#collection-form { display: grid; gap: 6px; font-size: 13px; }
-#collection-set, #collection-form button { min-height: 44px; padding: 5px 9px; border: 1px solid var(--rule); font: inherit; }
-#collection-set { min-width: 0; width: 100%; color: var(--ink); background: var(--paper-light); }
-#collection-form button { justify-self: start; background: var(--plum); color: var(--paper-light); cursor: pointer; }
 #sticker-view { width: min(38rem, 94vw); }
 .sticker-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin: 12px 0; }
 .sticker-grid figure { margin: 0; min-width: 0; background: var(--paper-light); border: 1px solid var(--rule); padding: 7px; }

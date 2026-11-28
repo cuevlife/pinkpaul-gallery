@@ -16,17 +16,12 @@ const minResolution = Math.min(maxResolution, touchDevice ? .82 : .9);
 let resolution = maxResolution;
 renderer.setPixelRatio(resolution);
 
-const photos = await fetch('photo-metadata.json?v=archive-2').then(response => {
+const photos = await fetch('exhibit.json?v=1').then(response => {
   if (!response.ok) throw new Error('Photo list unavailable');
   return response.json();
 });
 if (!Array.isArray(photos) || !photos.length) throw new Error('Photo list empty');
-photos.sort((a, b) => (a.date || '\uffff').localeCompare(b.date || '\uffff'));
-photos.forEach((photo, index) => { photo.index = index; });
-const pageSize = 25;
-const pageCount = Math.ceil(photos.length / pageSize);
-let photoPage = 0;
-const { photoTargets, plots, occluders, setGrowth, setPhotos, update: updateWorld } = buildWorld(scene, photos.slice(0, pageSize));
+const { photoTargets, plots, occluders, setGrowth, update: updateWorld } = buildWorld(scene, photos);
 const watering = createWatering(scene, camera);
 const storageKey = 'pinkpaul-little-garden-v1';
 let growth = Array(plots.length).fill(0);
@@ -80,10 +75,7 @@ const chapterButton = document.querySelector('#chapters');
 const chapterView = document.querySelector('#chapter-view');
 const chapterList = document.querySelector('#chapter-list');
 const chapterLabel = document.querySelector('#chapter-label');
-const collectionButton = document.querySelector('#collection');
-const collectionView = document.querySelector('#collection-view');
-const collectionSelect = document.querySelector('#collection-set');
-const collectionLabel = document.querySelector('#collection-label');
+
 const stickerButton = document.querySelector('#stickers');
 const stickerView = document.querySelector('#sticker-view');
 const stickerMotion = document.querySelector('#sticker-motion');
@@ -264,18 +256,18 @@ function toggleWater() {
   announce(held ? wateringHint : defaultHint);
 }
 function showPhoto(index) {
-  const start = photoPage * pageSize;
-  const end = Math.min(start + pageSize, photos.length) - 1;
-  if (index < start || index > end) return;
+  const end = photos.length - 1;
+  if (index < 0 || index > end) return;
   activePhoto = index;
   const photo = photos[index];
   const stamp = photo.date ? Date.parse(`${photo.date.slice(0, 10)}T00:00:00Z`) : NaN;
-  photoDate.textContent = Number.isFinite(stamp) ? photoFormat.format(new Date(stamp)) : 'ไม่ทราบวันที่';
-  photoNumber.textContent = `MOMENT ${String(index + 1).padStart(2, '0')} / ${photos.length}`;
+  const date = Number.isFinite(stamp) ? photoFormat.format(stamp) : 'ไม่ทราบวันที่';
+  photoDate.textContent = photo.album || date;
+  photoNumber.textContent = `ภาพจัดแสดง ${index + 1} / ${photos.length}${photo.album ? ` · ${date}` : ''}`;
   photoElement.alt = `ภาพความทรงจำ ${index + 1}`;
   photoElement.src = photo.path;
   const focused = document.activeElement;
-  previousPhoto.disabled = index === start;
+  previousPhoto.disabled = index === 0;
   nextPhoto.disabled = index === end;
   if (focused === previousPhoto && previousPhoto.disabled) (nextPhoto.disabled ? closePhoto : nextPhoto).focus();
   if (focused === nextPhoto && nextPhoto.disabled) (previousPhoto.disabled ? closePhoto : previousPhoto).focus();
@@ -350,71 +342,13 @@ chapterButton.addEventListener('click', () => {
   keyboard.clear();
   walking.clear();
   chapterSpots.forEach((card, i) => {
-    const start = photoPage * pageSize;
-    const photo = photos[Math.min(start + chapters[i].photo, photos.length - 1)];
-    card.querySelector('img').src = photo.thumb || photo.path;
+    const photo = photos[chapters[i].photo];
+    if (photo) card.querySelector('img').src = photo.thumb;
   });
   chapterView.showModal();
 });
 chapterView.addEventListener('click', event => { if (event.target === chapterView) chapterView.close(); });
 chapterView.addEventListener('close', () => chapterButton.focus());
-
-function syncCollection() {
-  collectionLabel.textContent = `ชุดภาพ ${photoPage + 1} / ${pageCount}`;
-  collectionSelect.value = String(photoPage);
-}
-const pageDetails = [];
-for (let page = 0; page < pageCount; page++) {
-  const start = page * pageSize;
-  const entries = photos.slice(start, start + pageSize);
-  const dates = entries.map(({ date }) => date && Date.parse(`${date.slice(0, 10)}T00:00:00Z`)).filter(Number.isFinite);
-  const first = dates.length ? photoFormat.format(dates[0]) : '';
-  const last = dates.length ? photoFormat.format(dates.at(-1)) : '';
-  const range = first ? (first === last ? first : `${first} – ${last}`) : 'ไม่ทราบวันที่';
-  const unknown = entries.length - dates.length;
-  const albums = [...new Set(entries.map(photo => photo.album).filter(Boolean))];
-  pageDetails.push({ cover: entries[0].thumb, range: range + (first && unknown ? ` · ไม่ระบุวันที่ ${unknown} รูป` : ''), albums });
-  collectionSelect.add(new Option(`ชุด ${page + 1} · ${range}`, String(page)));
-}
-const collectionCover = document.querySelector('#collection-cover');
-function previewCollection() {
-  const details = pageDetails[Number(collectionSelect.value)];
-  if (!details) return;
-  const cover = details.cover;
-  collectionCover.hidden = !cover;
-  if (cover && collectionCover.getAttribute('src') !== cover) collectionCover.src = cover;
-  else if (!cover) collectionCover.removeAttribute('src');
-  document.querySelector('#collection-dates').textContent = details.range;
-  const { albums } = details;
-  document.querySelector('#collection-albums').textContent = albums.length
-    ? albums.slice(0, 3).join(' · ') + (albums.length > 3 ? ` และอีก ${albums.length - 3} อัลบั้ม` : '')
-    : 'ไม่มีชื่ออัลบั้ม';
-}
-collectionCover.addEventListener('error', () => { collectionCover.hidden = true; });
-collectionSelect.addEventListener('change', previewCollection);
-document.querySelector('#collection-summary').textContent = `ทั้งหมด ${photos.length} รูป · เปลี่ยนทีละชุดเพื่อไม่ให้โหลดรูปทั้งหมดพร้อมกัน`;
-collectionButton.addEventListener('click', () => {
-  keyboard.clear();
-  walking.clear();
-  syncCollection();
-  collectionView.showModal();
-  previewCollection();
-});
-document.querySelector('#collection-form').addEventListener('submit', event => {
-  event.preventDefault();
-  const page = Number(collectionSelect.value);
-  if (!Number.isInteger(page) || page < 0 || page >= pageCount) return;
-  if (photoPage !== page) {
-    photoPage = page;
-    activePhoto = page * pageSize;
-    setPhotos(photos.slice(activePhoto, activePhoto + pageSize));
-    syncCollection();
-    announce(`กำลังจัดแสดงภาพชุด ${page + 1} / ${pageCount}`);
-  }
-  collectionView.close();
-});
-collectionView.addEventListener('click', event => { if (event.target === collectionView) collectionView.close(); });
-collectionView.addEventListener('close', () => collectionButton.focus());
 
 function applyQualityMode(mode) {
   qualityMode = mode;
@@ -526,7 +460,7 @@ function controlKey(event) {
 }
 window.addEventListener('keydown', event => {
   const key = controlKey(event);
-  if (event.altKey || event.ctrlKey || event.metaKey || event.isComposing || trailView.open || chapterView.open || stickerView.open || collectionView.open || qualityView.open) return;
+  if (event.altKey || event.ctrlKey || event.metaKey || event.isComposing || trailView.open || chapterView.open || stickerView.open || qualityView.open) return;
   if (dialog.open) {
     if (key === 'arrowleft' || key === 'arrowright') {
       event.preventDefault();
@@ -583,7 +517,6 @@ function translate(amount) {
 resetPosition();
 updateGarden();
 updateTrail();
-syncCollection();
 applyQualityMode(qualityMode);
 showNight();
 resize();
@@ -592,7 +525,7 @@ let previousTime = 0;
 renderer.setAnimationLoop(time => {
   const frameMs = previousTime ? time - previousTime : 0;
   previousTime = time;
-  const modalOpen = dialog.open || trailView.open || chapterView.open || stickerView.open || collectionView.open || qualityView.open;
+  const modalOpen = dialog.open || trailView.open || chapterView.open || stickerView.open || qualityView.open;
   if (modalOpen || document.hidden) {
     if (needsFrame && !document.hidden) renderer.render(scene, camera);
     needsFrame = false;
@@ -637,6 +570,5 @@ nightButton.disabled = false;
 trailButton.disabled = false;
 chapterButton.disabled = false;
 stickerButton.disabled = false;
-collectionButton.disabled = false;
 document.querySelector('#loading').hidden = true;
 document.querySelector('#controls').hidden = false;
