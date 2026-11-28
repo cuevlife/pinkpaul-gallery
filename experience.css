@@ -270,16 +270,25 @@ dialog::backdrop { background: #231422b3; }
 #birthday-letter .eyebrow { color: var(--rose); }
 #birthday-letter h3 { margin: 5px 0; font-family: var(--thai-display); }
 
-#stickers {
+.garden-quick-actions { display: flex; gap: 5px; flex-wrap: wrap; }
+.garden-quick-actions button {
   display: inline-flex; align-items: center; gap: 9px; min-height: 44px; padding: 4px 12px;
   border: 1px solid var(--rule); border-left: 3px solid var(--rose); border-radius: 2px;
   color: var(--ink); background: var(--paper); text-align: start; pointer-events: auto; cursor: pointer;
 }
-#stickers:hover:not(:disabled) { background: #f4d8c3; }
-#stickers svg { width: 19px; height: 19px; color: var(--rose); }
-#stickers small, #stickers strong { display: block; }
-#stickers small { color: var(--muted); font-size: 9px; }
-#stickers strong { font: 700 19px/1.05 var(--display); }
+.garden-quick-actions button:hover:not(:disabled) { background: #f4d8c3; }
+.garden-quick-actions svg { width: 19px; height: 19px; color: var(--rose); }
+.garden-quick-actions small, .garden-quick-actions strong { display: block; }
+.garden-quick-actions small { color: var(--muted); font-size: 9px; }
+.garden-quick-actions strong { font: 700 19px/1.05 var(--display); }
+#collection-label { font: 700 13px/1.2 var(--thai-display); }
+#collection-view { width: min(30rem, 94vw); }
+#collection-summary, .archive-link { color: var(--muted); font-size: 13px; }
+.archive-link a { color: var(--rose); }
+#collection-form { display: grid; gap: 6px; font-size: 13px; }
+#collection-set, #collection-form button { min-height: 44px; padding: 5px 9px; border: 1px solid var(--rule); font: inherit; }
+#collection-set { min-width: 0; width: 100%; color: var(--ink); background: var(--paper-light); }
+#collection-form button { justify-self: start; background: var(--plum); color: var(--paper-light); cursor: pointer; }
 #sticker-view { width: min(38rem, 94vw); }
 .sticker-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin: 12px 0; }
 .sticker-grid figure { margin: 0; min-width: 0; background: var(--paper-light); border: 1px solid var(--rule); padding: 7px; }
@@ -346,7 +355,7 @@ dialog::backdrop { background: #231422b3; }
   .intro-chip { padding: 8px 35px 8px 8px; }
   .intro-chip .eyebrow { font-size: 8px; }
   .intro-chip strong { margin-top: 2px; font-size: 13px; }
-  #stickers { padding-inline: 7px; gap: 5px; }
+  .garden-quick-actions button { padding-inline: 7px; gap: 5px; }
   #stickers strong { font-size: 16px; }
   .field-sprig { right: -3px; width: 39px; height: 67px; }
   .hud-bottom { grid-template-columns: auto minmax(0, 1fr) auto; }

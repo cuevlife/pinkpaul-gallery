@@ -23,7 +23,12 @@ function chapterAt(z) {
   return chapters[z >= -10 ? 0 : z >= -28 ? 1 : z >= -50 ? 2 : 3];
 }
 
-export function buildWorld(scene, photos) {
+const FRAME_SLOTS = 25;
+const PHOTO_LOAD_DISTANCE = 34;
+const PHOTO_LOAD_LIMIT = 3;
+const MAX_FRAME_TEXTURE_EDGE = 420;
+
+export function buildWorld(scene, firstPagePhotos = []) {
   const world = new THREE.Group();
   world.name = 'Pinkpaul · Memory Lane';
   scene.add(world);
@@ -62,6 +67,7 @@ export function buildWorld(scene, photos) {
   const pebble = new THREE.IcosahedronGeometry(1, 0);
   const foliage = new THREE.IcosahedronGeometry(1, 1);
   const barrel = new THREE.CylinderGeometry(1, 1, 1, 12);
+  const stem = new THREE.CylinderGeometry(1, 1, 1, 5, 1, true);
   const tapered = new THREE.CylinderGeometry(0.68, 1, 1, 12);
   const cone = new THREE.ConeGeometry(1, 1, 12);
   const shadowDisc = new THREE.CircleGeometry(1, 24).rotateX(-Math.PI / 2);
@@ -85,6 +91,7 @@ export function buildWorld(scene, photos) {
   glowMap.colorSpace = THREE.SRGBColorSpace;
   const halo = new THREE.MeshBasicMaterial({ map: glowMap, transparent: true, depthWrite: false, toneMapped: false, side: THREE.DoubleSide });
   const shapeBatches = new Map();
+  const frameBatches = new Map();
   const dummy = new THREE.Object3D();
   const tint = new THREE.Color();
   const axis = new THREE.Vector3(0, 1, 0);
@@ -99,9 +106,9 @@ export function buildWorld(scene, photos) {
   }
 
   // Palette variants share a geometry, material, and draw call via per-instance color.
-  function instance(geometry, color, x, y, z, sx, sy, sz, rx = 0, ry = 0, rz = 0, material = stone) {
-    let byMaterial = shapeBatches.get(geometry);
-    if (!byMaterial) shapeBatches.set(geometry, byMaterial = new Map());
+  function addInstance(batches, geometry, color, x, y, z, sx, sy, sz, rx = 0, ry = 0, rz = 0, material = stone) {
+    let byMaterial = batches.get(geometry);
+    if (!byMaterial) batches.set(geometry, byMaterial = new Map());
     let entries = byMaterial.get(material);
     if (!entries) byMaterial.set(material, entries = []);
     dummy.position.set(x, y, z);
@@ -110,6 +117,9 @@ export function buildWorld(scene, photos) {
     dummy.updateMatrix();
     entries.push([dummy.matrix.clone(), color]);
   }
+
+  const instance = addInstance.bind(null, shapeBatches);
+  const frameInstance = addInstance.bind(null, frameBatches);
 
   function beam(color, x1, y1, z1, x2, y2, z2, thickness, depth = thickness) {
     direction.set(x2 - x1, y2 - y1, z2 - z1);
@@ -136,7 +146,7 @@ export function buildWorld(scene, photos) {
   }
 
   function flower(x, z, height, petals, scale = 1) {
-    instance(barrel, colors.sage, x, height * 0.5, z, 0.021 * scale, height, 0.021 * scale);
+    instance(stem, colors.sage, x, height * 0.5, z, 0.021 * scale, height, 0.021 * scale);
     for (const side of [-1, 1]) {
       instance(pebble, side < 0 ? colors.sage : colors.mint,
         x + side * 0.06 * scale, height * (side < 0 ? 0.38 : 0.62), z, 0.094 * scale, 0.038 * scale, 0.046 * scale, 0, 0, side * 0.52);
@@ -233,7 +243,7 @@ export function buildWorld(scene, photos) {
   const tileH = 80;
   const atlasColumns = 4;
   canvas.width = tileW * atlasColumns;
-  canvas.height = tileH * Math.ceil((photos.length + 10) / atlasColumns);
+  canvas.height = tileH * Math.ceil((FRAME_SLOTS + 10) / atlasColumns);
   const ink = canvas.getContext('2d');
   const atlas = new THREE.CanvasTexture(canvas);
   atlas.colorSpace = THREE.SRGBColorSpace;
@@ -241,7 +251,7 @@ export function buildWorld(scene, photos) {
   atlas.minFilter = THREE.LinearFilter;
   const lettering = new THREE.MeshBasicMaterial({ map: atlas, toneMapped: false });
 
-  function plaque(parent, index, text, subtext, x, y, z, width, height, background = '#fff0d6') {
+  function paintPlaque(index, text, subtext, background = '#fff0d6') {
     const u = index % atlasColumns * tileW;
     const v = Math.floor(index / atlasColumns) * tileH;
     ink.fillStyle = background;
@@ -258,12 +268,18 @@ export function buildWorld(scene, photos) {
       ink.font = 'bold 13px sans-serif';
       ink.fillText(subtext, u + tileW / 2, v + 57, tileW - 26);
     }
+  }
+
+  function plaqueUV(index, x, y) {
+    return [(index % atlasColumns * tileW + 1 + x * (tileW - 2)) / canvas.width,
+      1 - (Math.floor(index / atlasColumns) * tileH + 1 + (1 - y) * (tileH - 2)) / canvas.height];
+  }
+
+  function plaque(parent, index, text, subtext, x, y, z, width, height, background) {
+    paintPlaque(index, text, subtext, background);
     const geometry = panel.clone();
     const uv = geometry.attributes.uv;
-    for (let i = 0; i < uv.count; i++) {
-      uv.setXY(i, (u + 1 + uv.getX(i) * (tileW - 2)) / canvas.width,
-        1 - (v + 1 + (1 - uv.getY(i)) * (tileH - 2)) / canvas.height);
-    }
+    for (let i = 0; i < uv.count; i++) uv.setXY(i, ...plaqueUV(index, uv.getX(i), uv.getY(i)));
     const sign = new THREE.Mesh(geometry, lettering);
     sign.position.set(x, y, z);
     sign.scale.set(width, height, 1);
@@ -275,7 +291,7 @@ export function buildWorld(scene, photos) {
   heartPath.bezierCurveTo(-1, 0.16, -0.45, 0.75, 0, 0.34);
   heartPath.bezierCurveTo(0.45, 0.75, 1, 0.16, 0, -0.5);
   const heart = new THREE.ExtrudeGeometry(heartPath, { depth: 0.12, bevelEnabled: false, curveSegments: 5 });
-  const entryPlots = photos.length;
+  const entryPlots = FRAME_SLOTS;
 
   function archCurve(xRadius, rise, bottom, thickness) {
     const points = [];
@@ -283,7 +299,7 @@ export function buildWorld(scene, photos) {
       const angle = i * Math.PI / 20;
       points.push(new THREE.Vector3(xRadius * Math.cos(angle), bottom + rise * Math.sin(angle), 0));
     }
-    return new THREE.TubeGeometry(new THREE.CatmullRomCurve3(points), 40, thickness, 6, false);
+    return new THREE.TubeGeometry(new THREE.CatmullRomCurve3(points), 28, thickness, 6, false);
   }
 
   function chapterSign(index, y, trim, face) {
@@ -452,49 +468,62 @@ export function buildWorld(scene, photos) {
   for (const x of [-1.35, 1.35]) beam(wisteriaInk, x, 4.58, chapters[2].z, x, 4.17, chapters[2].z, 0.069);
   chapterSign(2, 3.85, wisteriaInk, '#eee3f6');
 
-  const pendingTextures = [];
-  const photoTargets = photos.map((photo, index) => {
+  const photoTargets = [];
+  const pickMaterial = new THREE.MeshBasicMaterial({ visible: false });
+  const labelPositions = [];
+  const labelUVs = [];
+  const labelIndices = [];
+  const slots = Array.from({ length: FRAME_SLOTS }, (_, index) => {
     const row = Math.floor(index / 2);
-    const rows = Math.ceil(photos.length / 2);
-    const z = -5.8 - row * Math.min(4.65, 55 / Math.max(1, rows - 1));
+    const z = -5.8 - row * (55 / (Math.ceil(FRAME_SLOTS / 2) - 1));
     const side = index % 2 === 0 ? -1 : 1;
     const x = side * 2.47;
     const frame = new THREE.Group();
-    frame.name = `Memory ${index + 1}`;
-    frame.userData.photoIndex = index;
+    frame.name = `Memory frame ${index + 1}`;
     frame.position.set(x, 1.71, z);
     world.add(frame);
 
-    // A common outer frame keeps sightlines regular; artwork is fit without cropping.
-    const front = shape(frame, box, row % 3 === 1 ? colors.mint : colors.rose, 0, 0, 0, 2.05, 1.56, 0.12);
-    instance(box, colors.cream, x, 1.71, z + 0.072, 1.93, 1.44, 0.038);
-    const artMaterial = new THREE.MeshBasicMaterial({ color: 0xeed2ce, toneMapped: false });
-    const art = new THREE.Mesh(panel, artMaterial);
+    // Shared frame parts stay batched, with an equal number of instances per slot.
+    frameInstance(box, row % 3 === 1 ? colors.mint : colors.rose, x, 1.71, z, 2.05, 1.56, 0.12);
+    frameInstance(box, colors.cream, x, 1.71, z + 0.072, 1.93, 1.44, 0.038);
+    frameInstance(box, colors.rose, x, 0.79, z + 0.025, 0.89, 0.26, 0.13);
+    for (const s of [-1, 1]) {
+      frameInstance(box, colors.cream, x + s * 0.67, 0.51, z - 0.012, 0.13, 1.02, 0.16, 0, 0, 0, textures.wood);
+      frameInstance(box, colors.blush, x + s * 0.67, 0.078, z, 0.21, 0.15, 0.28);
+      frameInstance(box, colors.blush, x + s * 0.96, 2.37, z + 0.097, 0.066, 0.066, 0.023, 0, 0, Math.PI / 4);
+    }
+    frameInstance(heart, colors.blush, x, 2.53, z + 0.014, 0.155, 0.155, 0.18);
+    frameInstance(barrel, row % 2 ? 0xd5e3cd : 0xe8ded2, x, 0.012, z + 0.09, 1.22, 0.039, 0.83);
+    frameInstance(shadowDisc, 0xffffff, x + 0.17, 0.011, z - 0.11, 1.14, 1, 0.52, 0, 0, 0, shade);
+    for (let n = 0; n < 4; n++) flower(side * (3.56 + random() * 0.58), z + 0.52 - random() * 1.16,
+      0.24 + random() * 0.36, blossoms[(row + n) % blossoms.length], 0.76 + random() * 0.48);
+
+    const art = new THREE.Mesh(panel, new THREE.MeshBasicMaterial({ toneMapped: false }));
     art.position.z = 0.101;
     art.scale.set(1.79, 1.28, 1);
     frame.add(art);
-    if (photo.path) pendingTextures.push([photo.path, artMaterial]);
-    const date = typeof photo.date === 'string' ? photo.date.slice(0, 10) : '';
-    const number = String(index + 1).padStart(2, '0');
-    const caption = /^\d{4}-\d{2}-\d{2}$/.test(date) ? date.replaceAll('-', ' / ') : 'OUR MEMORIES';
-    instance(box, colors.rose, x, 0.79, z + 0.025, 0.89, 0.26, 0.13);
-    plaque(frame, index, `${number}  ·  ${caption}`, '', 0, -0.92, 0.095, 0.82, 0.22);
-    for (const s of [-1, 1]) {
-      instance(box, colors.cream, x + s * 0.67, 0.51, z - 0.012, 0.13, 1.02, 0.16, 0, 0, 0, textures.wood);
-      instance(box, colors.blush, x + s * 0.67, 0.078, z, 0.21, 0.15, 0.28);
-      instance(box, colors.blush, x + s * 0.96, 1.71 + 0.66, z + 0.097, 0.066, 0.066, 0.023, 0, 0, Math.PI / 4);
+    // Keep the backboard and label clickable without rendering separate meshes.
+    const hitBoard = new THREE.Mesh(box, pickMaterial);
+    hitBoard.scale.set(2.05, 1.56, 0.12);
+    const hitLabel = new THREE.Mesh(panel, pickMaterial);
+    hitLabel.position.set(0, -0.92, 0.095);
+    hitLabel.scale.set(0.82, 0.22, 1);
+    frame.add(hitBoard, hitLabel);
+
+    const { position, uv } = panel.attributes;
+    for (let i = 0; i < position.count; i++) {
+      labelPositions.push(x + position.getX(i) * 0.82, 0.79 + position.getY(i) * 0.22, z + 0.095);
+      labelUVs.push(...plaqueUV(index, uv.getX(i), uv.getY(i)));
     }
-    instance(heart, colors.blush, x, 2.53, z + 0.014, 0.155, 0.155, 0.18);
-    instance(barrel, row % 2 ? 0xd5e3cd : 0xe8ded2, x, 0.012, z + 0.09, 1.22, 0.039, 0.83);
-    shadow(x + 0.17, z - 0.11, 1.14, 0.52);
-    if (row < 14) {
-      for (let n = 0; n < 4; n++) flower(side * (3.56 + random() * 0.58), z + 0.52 - random() * 1.16,
-        0.24 + random() * 0.36, blossoms[(row + n) % blossoms.length], 0.76 + random() * 0.48);
-    }
-    // Backboard, picture, and date plaque all belong to the same pick target.
-    front.name = 'Frame backboard';
-    return frame;
+    for (const vertex of panel.index.array) labelIndices.push(index * position.count + vertex);
+    return { frame, art, source: null, fallback: null, request: null };
   });
+  const labelGeometry = new THREE.BufferGeometry();
+  labelGeometry.setAttribute('position', new THREE.Float32BufferAttribute(labelPositions, 3));
+  labelGeometry.setAttribute('uv', new THREE.Float32BufferAttribute(labelUVs, 2));
+  labelGeometry.setIndex(labelIndices);
+  const frameLabels = new THREE.Mesh(labelGeometry, lettering);
+  world.add(frameLabels);
 
   const growthMeshes = [];
   const soilSurface = textures.soil.clone();
@@ -592,7 +621,7 @@ export function buildWorld(scene, photos) {
   const galaTrim = archCurve(5.94, 1.05, 3.06, 0.043);
   const galaZ = chapters[3].z;
   const water = new THREE.MeshLambertMaterial({ name: 'Garden water', color: 0xffffff, flatShading: true, emissive: 0x173637, emissiveIntensity: 0.36 });
-  const ripple = new THREE.TorusGeometry(1, 0.017, 5, 32).rotateX(Math.PI / 2);
+  const ripple = new THREE.TorusGeometry(1, 0.017, 4, 16).rotateX(Math.PI / 2);
   instance(galaArch, galaInk, 0, 0, galaZ, 1, 1, 1);
   instance(galaTrim, galaGold, 0, 0, galaZ + 0.13, 1, 1, 1);
   chapterSign(3, 3.69, galaInk, '#e4f1dc');
@@ -709,8 +738,59 @@ export function buildWorld(scene, photos) {
       0.27 + random() * 0.39, blossoms[i % blossoms.length], 0.85 + random() * 0.52);
   }
 
-  for (const [geometry, byMaterial] of shapeBatches) {
-    for (const [material, entries] of byMaterial) {
+  // A terraced grove closes the view behind the pavilion without adding another
+  // destination. Its taller silhouettes flank the pavilion instead of masking it.
+  instance(box, colors.grass, 0, -0.17, -104, 66, 0.32, 22, 0, 0, 0, textures.grass);
+  for (const [x, y, z, w, h, d, color] of [
+    [-17, -2.18, -97, 20, 5.9, 9.8, 0x83a69a],
+    [17, -2.05, -96.8, 20, 5.4, 9.7, 0x809f99],
+    [1, -2.61, -98.5, 19, 5.26, 9.5, 0x8cad9d],
+    [-12, -1.53, -106, 26, 7.3, 11.5, 0x91a8b3],
+    [17, -2.2, -109, 25, 8.7, 12, 0xa2aebe],
+  ]) instance(foliage, color, x, y, z, w, h, d);
+
+  const terraceZ = x => -85.8 + 0.012 * x * x;
+  for (let x = -22; x < 22; x += 4) {
+    const z1 = terraceZ(x);
+    const z2 = terraceZ(x + 4);
+    const centerZ = (z1 + z2) / 2;
+    const length = Math.hypot(4, z2 - z1);
+    const yaw = -Math.atan2(z2 - z1, 4);
+    instance(box, 0xb3bfa6, x + 2, 0.61, centerZ, length + 0.16, 1.22, 0.58, 0, yaw);
+    instance(box, 0xe8d6ad, x + 2, 1.25, centerZ, length + 0.17, 0.17, 0.71, 0, yaw);
+    instance(box, 0x7f9c8f, x + 2, 0.2, centerZ, length + 0.15, 0.27, 0.78, 0, yaw);
+  }
+  for (const x of [-22, -14, -6, 6, 14, 22]) {
+    const z = terraceZ(x);
+    instance(box, 0x88a596, x, 0.76, z, 0.8, 1.52, 0.83);
+    instance(box, galaGold, x, 1.54, z, 0.91, 0.14, 0.92);
+    instance(pebble, 0xffd5a4, x, 1.74, z, 0.22, 0.24, 0.22, 0, 0, 0, candlelight);
+  }
+
+  for (const side of [-1, 1]) {
+    for (let i = 0; i < 7; i++) {
+      const x = side * (4.7 + i * 2.6);
+      const z = terraceZ(x) + 0.86 + random() * 0.35;
+      instance(foliage, i % 3 ? 0x648f7a : 0x929e95, x, 0.48, z, 1.8, 0.86 + random() * 0.39, 0.88);
+    }
+    tree(side * 8.1, -81.8, 1.58, [0x85aa93, 0x729987, 0x93b4a0]);
+    tree(side * 14.1, -81.4, 1.92, [0x97a6a0, 0x82a9a0, 0xa3b7ac]);
+
+    for (let i = 0; i < 7; i++) {
+      const x = side * (5.4 + i * 3.1 + random() * 0.7);
+      const z = (i % 2 ? -94.5 : -98.5) - random() * 1.6;
+      const foot = i % 2 ? 1.15 : 2.45;
+      const height = 3.4 + random() * 3.9;
+      const width = 0.83 + random() * 0.52;
+      const palette = i % 2 ? [0x638881, 0x7b9c8d] : [0x81a3a1, 0x8aaeb1];
+      instance(cone, palette[0], x, foot + height * 0.32 - 0.45, z, width, height * 0.73 + 0.9, width, 0, i);
+      instance(cone, palette[1], x, foot + height * 0.62, z, width * 0.77, height * 0.76, width * 0.77, 0, i);
+    }
+  }
+
+  function buildBatches(batches, perSlot = false) {
+    const result = [];
+    function addBatch(geometry, material, entries) {
       const batch = new THREE.InstancedMesh(geometry, material, entries.length);
       entries.forEach(([matrix, color], index) => {
         batch.setMatrixAt(index, matrix);
@@ -718,43 +798,140 @@ export function buildWorld(scene, photos) {
       });
       batch.computeBoundingSphere();
       world.add(batch);
+      if (perSlot) result.push({ batch, stride: entries.length / FRAME_SLOTS });
+    }
+    for (const [geometry, byMaterial] of batches) {
+      for (const [material, entries] of byMaterial) {
+        // Petals and foliage account for most triangles. Subdivide only these batches
+        // so the camera can cull entire sections without breaking up the whole world.
+        if (!perSlot && material === stone && (geometry === pebble || geometry === foliage)) {
+          const sections = [[], [], [], [], []];
+          for (const entry of entries) {
+            const z = entry[0].elements[14];
+            sections[z >= -10 ? 0 : z >= -28 ? 1 : z >= -50 ? 2 : z >= -76 ? 3 : 4].push(entry);
+          }
+          for (const section of sections) if (section.length) addBatch(geometry, material, section);
+        } else {
+          addBatch(geometry, material, entries);
+        }
+      }
+    }
+    batches.clear();
+    return result;
+  }
+  buildBatches(shapeBatches);
+  const adjustableFrames = buildBatches(frameBatches, true);
+  let loading = 0;
+  let pending = 0;
+
+  function setPhotos(photoPage) {
+    const activeCount = Math.min(photoPage.length, FRAME_SLOTS);
+    photoTargets.length = 0;
+    loading = pending = 0;
+    slots.forEach((slot, index) => {
+      const { request, frame, art } = slot;
+      if (request) {
+        request.onload = request.onerror = null;
+        request.removeAttribute('src');
+        slot.request = null;
+      }
+      if (art.material.map) {
+        art.material.map.dispose();
+        art.material.map = null;
+        art.material.needsUpdate = true;
+      }
+      const photo = index < activeCount ? photoPage[index] : null;
+      frame.visible = Boolean(photo);
+      art.visible = false;
+      frame.userData.photo = photo;
+      frame.userData.photoIndex = photo ? (photo.index ?? index) : undefined;
+      slot.source = photo?.thumb || photo?.path || null;
+      slot.fallback = photo?.path && photo.path !== slot.source ? photo.path : null;
+      if (!photo) return;
+      photoTargets.push(frame);
+      if (slot.source) pending++;
+      const date = typeof photo.date === 'string' ? photo.date.slice(0, 10) : '';
+      const number = String(frame.userData.photoIndex + 1).padStart(2, '0');
+      const caption = /^\d{4}-\d{2}-\d{2}$/.test(date) ? date.replaceAll('-', ' / ') : 'OUR MEMORIES';
+      paintPlaque(index, `${number}  ·  ${caption}`, '');
+    });
+    for (const { batch, stride } of adjustableFrames) {
+      batch.count = activeCount * stride;
+      batch.visible = activeCount > 0;
+    }
+    frameLabels.visible = activeCount > 0;
+    labelGeometry.setDrawRange(0, activeCount * panel.index.count);
+    atlas.needsUpdate = true;
+  }
+
+  function loadPhoto(slot) {
+    const image = new Image();
+    const source = slot.source;
+    slot.source = null;
+    slot.request = image;
+    loading++;
+    pending--;
+    image.decoding = 'async';
+    function finish() {
+      if (slot.request !== image) return false;
+      image.onload = image.onerror = null;
+      slot.request = null;
+      loading--;
+      return true;
+    }
+    image.onerror = () => {
+      if (!finish() || !slot.fallback) return;
+      slot.source = slot.fallback;
+      slot.fallback = null;
+      pending++;
+    };
+    image.onload = () => {
+      if (!finish()) return;
+      const { naturalWidth: width, naturalHeight: height } = image;
+      if (!width || !height) return;
+      let pixels = image;
+      // WebP thumbnails already fit the texture budget. Legacy originals may not.
+      if (Math.max(width, height) > MAX_FRAME_TEXTURE_EDGE) {
+        const scale = MAX_FRAME_TEXTURE_EDGE / Math.max(width, height);
+        pixels = document.createElement('canvas');
+        pixels.width = Math.max(1, Math.round(width * scale));
+        pixels.height = Math.max(1, Math.round(height * scale));
+        const context = pixels.getContext('2d');
+        context.imageSmoothingQuality = 'high';
+        context.drawImage(image, 0, 0, pixels.width, pixels.height);
+      }
+      const texture = new THREE.Texture(pixels);
+      texture.colorSpace = THREE.SRGBColorSpace;
+      texture.needsUpdate = true;
+      const fit = Math.min(1.73 / width, 1.22 / height);
+      const { art } = slot;
+      art.scale.set(width * fit, height * fit, 1);
+      art.material.map = texture;
+      art.material.needsUpdate = true;
+      art.visible = true;
+    };
+    image.src = source;
+  }
+
+  // Only queue nearby frames on the current page, and reprioritize as the player moves.
+  function update(cameraPosition) {
+    while (pending && loading < PHOTO_LOAD_LIMIT) {
+      let next;
+      let nearest = PHOTO_LOAD_DISTANCE ** 2;
+      for (const slot of slots) {
+        if (!slot.source) continue;
+        const { x, z } = slot.frame.position;
+        const distance = (x - cameraPosition.x) ** 2 + (z - cameraPosition.z) ** 2;
+        if (distance >= nearest) continue;
+        next = slot;
+        nearest = distance;
+      }
+      if (!next) return;
+      loadPhoto(next);
     }
   }
 
-  // Limit concurrent decodes and GPU texture size; sources remain the originals.
-  // A simple matte remains visible if the browser cannot load an image.
-  function loadNextPhoto() {
-    const job = pendingTextures.shift();
-    if (!job) return;
-    const [path, material] = job;
-    const image = new Image();
-    image.decoding = 'async';
-    image.onload = () => {
-      const thumbnail = document.createElement('canvas');
-      thumbnail.width = 448;
-      thumbnail.height = 320;
-      const context = thumbnail.getContext('2d');
-      const availableW = thumbnail.width - 16;
-      const availableH = thumbnail.height - 16;
-      const scale = Math.min(availableW / image.naturalWidth, availableH / image.naturalHeight);
-      const w = image.naturalWidth * scale;
-      const h = image.naturalHeight * scale;
-      context.fillStyle = '#f5e5d7';
-      context.fillRect(0, 0, thumbnail.width, thumbnail.height);
-      context.imageSmoothingQuality = 'high';
-      context.drawImage(image, (thumbnail.width - w) / 2, (thumbnail.height - h) / 2, w, h);
-      const texture = new THREE.CanvasTexture(thumbnail);
-      texture.colorSpace = THREE.SRGBColorSpace;
-      material.map = texture;
-      material.color.setHex(0xffffff);
-      material.needsUpdate = true;
-      loadNextPhoto();
-    };
-    image.onerror = loadNextPhoto;
-    image.src = path;
-  }
-  for (let i = 0; i < 3; i++) loadNextPhoto();
-
+  setPhotos(firstPagePhotos);
   world.updateMatrixWorld(true);
-  return { photoTargets, plots, setGrowth };
+  return { photoTargets, plots, setGrowth, setPhotos, update };
 }

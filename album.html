@@ -9,9 +9,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Mali:wght@400;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=garden-1">
+  <link rel="stylesheet" href="style.css?v=archive-2">
   <link rel="stylesheet" href="game.css?v=garden-1">
-  <script src="app.js?v=garden-1" defer></script>
+  <script src="app.js?v=archive-2" defer></script>
   <script src="game.js?v=garden-1" defer></script>
 </head>
 <body>
@@ -20,7 +20,7 @@
     <header class="topbar">
       <a class="brand" href="#gallery-section">pinkpaul<span>.</span> <small>OUR LITTLE WORLD</small></a>
       <nav class="tabs" aria-label="เลือกหน้า">
-        <a href="./" style="font:inherit;align-self:center;margin:0 .45rem">กลับสู่ 3D</a>
+        <a href="./" class="world-link">กลับสู่ 3D</a>
         <button id="gallery-tab" type="button" aria-pressed="true" aria-controls="gallery-section">คลังภาพ</button>
         <button id="game-tab" type="button" aria-pressed="false" aria-controls="game-section">สวนดอกไม้</button>
       </nav>
@@ -31,16 +31,26 @@
         <div><p class="eyebrow">A LITTLE COLLECTION OF US</p><h1 id="page-title">Every moment,<br><em>with you.</em></h1><p class="subtitle">ทุกความทรงจำเล็ก ๆ ที่อยากเก็บไว้ด้วยกัน</p></div>
         <div class="collection-meta"><span>เรียงจากวันเก่าไปใหม่</span><strong id="photo-count">กำลังโหลด</strong></div>
       </div>
-      <div class="gallery-heading"><div><p class="eyebrow">OUR MEMORY ALBUM</p><h2>เรื่องราวของเรา</h2></div><p>เลือกภาพเพื่อดูขนาดใหญ่</p></div>
+      <div class="gallery-heading"><div><p class="eyebrow">OUR MEMORY ALBUM</p><h2 id="archive-heading" tabindex="-1">เรื่องราวของเรา</h2></div><p class="gallery-hint">แตะภาพเพื่อดูขนาดใหญ่</p></div>
+      <div class="archive-toolbar" id="archive-toolbar" hidden>
+        <label id="album-field" hidden>อัลบั้ม <select id="album-filter"><option value="">ทุกอัลบั้ม</option></select></label>
+        <p id="photo-range" role="status"></p>
+        <label id="page-field" hidden>ไปที่หน้า <select id="page-select"></select></label>
+      </div>
       <p class="status" id="status" role="status">กำลังเปิดอัลบั้มความทรงจำ...</p>
-      <div class="gallery-grid" id="gallery-grid"></div>
+      <div class="gallery-grid" id="gallery-grid" aria-labelledby="archive-heading"></div>
+      <nav class="archive-pagination" id="archive-pagination" aria-label="หน้าอัลบั้ม" hidden>
+        <button type="button" id="page-previous"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 6-6 6 6 6"/></svg>ก่อนหน้า</button>
+        <span id="page-number"></span>
+        <button type="button" id="page-next">ถัดไป<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></button>
+      </nav>
     </section>
     <section id="game-section" hidden><div id="game-root"></div></section>
     <footer><span>FOR ALL THE DAYS WE WANT TO REMEMBER</span><span>WITH LOVE, ALWAYS.</span></footer>
   </main>
   <dialog id="lightbox" aria-labelledby="lightbox-title">
     <div class="dialog-bar"><div><span>OUR MOMENTS</span><p id="lightbox-title"></p></div><button id="close-lightbox" type="button" aria-label="ปิดภาพ" title="ปิดภาพ"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5l14 14M19 5 5 19"/></svg></button></div>
-    <img id="lightbox-image" alt=""><p id="lightbox-caption"></p>
+    <img id="lightbox-image" alt=""><p id="lightbox-caption" role="status"></p>
     <div class="dialog-nav"><button id="previous" type="button">ภาพก่อนหน้า</button><button id="next" type="button">ภาพถัดไป</button></div>
   </dialog>
 </body>

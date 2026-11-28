@@ -1,127 +1,2830 @@
 [
   {
-    "path": "images/photo-025.jpg",
+    "path": "images/collection/51f3db09cf8e0f29.webp",
+    "thumb": "images/collection/thumb/51f3db09cf8e0f29.webp",
+    "date": "2022-03-02T12:24:22",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "hifu+ไอติมลุงชม"
+  },
+  {
+    "path": "images/collection/54f985be83d007dc.webp",
+    "thumb": "images/collection/thumb/54f985be83d007dc.webp",
+    "date": "2022-03-02T14:14:35",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "hifu+ไอติมลุงชม"
+  },
+  {
+    "path": "images/collection/70922f808d427b95.webp",
+    "thumb": "images/collection/thumb/70922f808d427b95.webp",
+    "date": "2022-03-02T14:14:46",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "hifu+ไอติมลุงชม"
+  },
+  {
+    "path": "images/collection/18415ad444e90dfe.webp",
+    "thumb": "images/collection/thumb/18415ad444e90dfe.webp",
+    "date": "2022-03-02T14:14:47",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "hifu+ไอติมลุงชม"
+  },
+  {
+    "path": "images/collection/19fab64a04f55745.webp",
+    "thumb": "images/collection/thumb/19fab64a04f55745.webp",
+    "date": "2022-03-02T14:14:47",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "hifu+ไอติมลุงชม"
+  },
+  {
+    "path": "images/collection/6c12157967704bba.webp",
+    "thumb": "images/collection/thumb/6c12157967704bba.webp",
+    "date": "2022-03-02T14:15:02",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "hifu+ไอติมลุงชม"
+  },
+  {
+    "path": "images/collection/a3a374791b78dc20.webp",
+    "thumb": "images/collection/thumb/a3a374791b78dc20.webp",
+    "date": "2022-03-02T14:15:05",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "hifu+ไอติมลุงชม"
+  },
+  {
+    "path": "images/collection/f6746d2d2035b82f.webp",
+    "thumb": "images/collection/thumb/f6746d2d2035b82f.webp",
+    "date": "2022-03-02T14:27:50",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "hifu+ไอติมลุงชม"
+  },
+  {
+    "path": "images/collection/69a3173a1683a0ff.webp",
+    "thumb": "images/collection/thumb/69a3173a1683a0ff.webp",
+    "date": "2022-03-02T14:27:59",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "hifu+ไอติมลุงชม"
+  },
+  {
+    "path": "images/collection/7a0bba3dafb62e96.webp",
+    "thumb": "images/collection/thumb/7a0bba3dafb62e96.webp",
+    "date": "2022-03-02T14:28:15",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "hifu+ไอติมลุงชม"
+  },
+  {
+    "path": "images/collection/3bf10ab64c9326dc.webp",
+    "thumb": "images/collection/thumb/3bf10ab64c9326dc.webp",
+    "date": "2022-03-02T14:28:17",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "hifu+ไอติมลุงชม"
+  },
+  {
+    "path": "images/collection/0df8916280c07fa9.webp",
+    "thumb": "images/collection/thumb/0df8916280c07fa9.webp",
+    "date": "2022-03-02T14:28:20",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "hifu+ไอติมลุงชม"
+  },
+  {
+    "path": "images/collection/7c813fcca2f15df1.webp",
+    "thumb": "images/collection/thumb/7c813fcca2f15df1.webp",
+    "date": "2022-03-02T14:28:29",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "hifu+ไอติมลุงชม"
+  },
+  {
+    "path": "images/collection/65a5004e67fa4412.webp",
+    "thumb": "images/collection/thumb/65a5004e67fa4412.webp",
+    "date": "2022-03-02T14:28:31",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "hifu+ไอติมลุงชม"
+  },
+  {
+    "path": "images/collection/bfdb7c8a6a3b9400.webp",
+    "thumb": "images/collection/thumb/bfdb7c8a6a3b9400.webp",
+    "date": "2022-03-02T14:28:33",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "hifu+ไอติมลุงชม"
+  },
+  {
+    "path": "images/collection/8328524eab29353f.webp",
+    "thumb": "images/collection/thumb/8328524eab29353f.webp",
+    "date": "2022-03-02T14:28:37",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "hifu+ไอติมลุงชม"
+  },
+  {
+    "path": "images/collection/9073eaaa296f9aeb.webp",
+    "thumb": "images/collection/thumb/9073eaaa296f9aeb.webp",
+    "date": "2022-03-02T15:59:17",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "hifu+ไอติมลุงชม"
+  },
+  {
+    "path": "images/collection/e7fb24c5635d7a37.webp",
+    "thumb": "images/collection/thumb/e7fb24c5635d7a37.webp",
+    "date": "2022-03-02T15:59:27",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "hifu+ไอติมลุงชม"
+  },
+  {
+    "path": "images/collection/d80f259ad98f657b.webp",
+    "thumb": "images/collection/thumb/d80f259ad98f657b.webp",
+    "date": "2022-03-02T15:59:30",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "hifu+ไอติมลุงชม"
+  },
+  {
+    "path": "images/collection/68f456f571600b34.webp",
+    "thumb": "images/collection/thumb/68f456f571600b34.webp",
+    "date": "2022-03-11T13:11:33",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "บุฟเฟ่ต์ไอติม เฮือนไทย"
+  },
+  {
+    "path": "images/collection/0f48b612cec2f236.webp",
+    "thumb": "images/collection/thumb/0f48b612cec2f236.webp",
+    "date": "2022-03-11T13:12:05",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "บุฟเฟ่ต์ไอติม เฮือนไทย"
+  },
+  {
+    "path": "images/collection/829fdf50eb67e4a6.webp",
+    "thumb": "images/collection/thumb/829fdf50eb67e4a6.webp",
+    "date": "2022-03-11T13:12:09",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "บุฟเฟ่ต์ไอติม เฮือนไทย"
+  },
+  {
+    "path": "images/collection/e1fc0559898ca410.webp",
+    "thumb": "images/collection/thumb/e1fc0559898ca410.webp",
+    "date": "2022-03-11T13:12:49",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "บุฟเฟ่ต์ไอติม เฮือนไทย"
+  },
+  {
+    "path": "images/collection/ace0cb0a88861fb1.webp",
+    "thumb": "images/collection/thumb/ace0cb0a88861fb1.webp",
+    "date": "2022-03-11T13:14:26",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "บุฟเฟ่ต์ไอติม เฮือนไทย"
+  },
+  {
+    "path": "images/collection/34b1d9e40a41a067.webp",
+    "thumb": "images/collection/thumb/34b1d9e40a41a067.webp",
+    "date": "2022-03-11T13:14:30",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "บุฟเฟ่ต์ไอติม เฮือนไทย"
+  },
+  {
+    "path": "images/collection/4f0b64eea191cd3c.webp",
+    "thumb": "images/collection/thumb/4f0b64eea191cd3c.webp",
+    "date": "2022-03-11T13:15:50",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "บุฟเฟ่ต์ไอติม เฮือนไทย"
+  },
+  {
+    "path": "images/collection/d39538593d3c5e3d.webp",
+    "thumb": "images/collection/thumb/d39538593d3c5e3d.webp",
+    "date": "2022-03-11T13:15:52",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "บุฟเฟ่ต์ไอติม เฮือนไทย"
+  },
+  {
+    "path": "images/collection/fb878909208df593.webp",
+    "thumb": "images/collection/thumb/fb878909208df593.webp",
+    "date": "2022-03-30T18:47:47",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "คาเฟ่🌱"
+  },
+  {
+    "path": "images/collection/e66aed6633b3e5ce.webp",
+    "thumb": "images/collection/thumb/e66aed6633b3e5ce.webp",
     "date": "2022-07-30T12:49:25",
-    "dateSource": "source filename IMG_20220730_124925"
+    "dateSource": "source filename",
+    "album": "น้ำพุร้อน30_7_65"
   },
   {
-    "path": "images/photo-008.jpg",
+    "path": "images/collection/7f73773d057fc755.webp",
+    "thumb": "images/collection/thumb/7f73773d057fc755.webp",
+    "date": "2022-12-09T17:01:41",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "คาเฟ่🌱"
+  },
+  {
+    "path": "images/collection/dee4280a167edefb.webp",
+    "thumb": "images/collection/thumb/dee4280a167edefb.webp",
+    "date": "2022-12-30T19:09:22",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "งานดอกไม้งามเชียงราย2022"
+  },
+  {
+    "path": "images/collection/6cf9b5e9ddf4ffe3.webp",
+    "thumb": "images/collection/thumb/6cf9b5e9ddf4ffe3.webp",
+    "date": "2022-12-30T19:12:09",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "งานดอกไม้งามเชียงราย2022"
+  },
+  {
+    "path": "images/collection/cae312de966333e5.webp",
+    "thumb": "images/collection/thumb/cae312de966333e5.webp",
+    "date": "2022-12-30T19:12:12",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "งานดอกไม้งามเชียงราย2022"
+  },
+  {
+    "path": "images/collection/28168544dbc2f489.webp",
+    "thumb": "images/collection/thumb/28168544dbc2f489.webp",
+    "date": "2022-12-30T19:12:17",
+    "dateSource": "source filename",
+    "album": "งานดอกไม้งามเชียงราย2022"
+  },
+  {
+    "path": "images/collection/b7d2867d8c4984fe.webp",
+    "thumb": "images/collection/thumb/b7d2867d8c4984fe.webp",
+    "date": "2022-12-30T19:13:52",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "งานดอกไม้งามเชียงราย2022"
+  },
+  {
+    "path": "images/collection/1d50f5cfcfc3145c.webp",
+    "thumb": "images/collection/thumb/1d50f5cfcfc3145c.webp",
+    "date": "2022-12-30T19:13:59",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "งานดอกไม้งามเชียงราย2022"
+  },
+  {
+    "path": "images/collection/f963cf386fa9228e.webp",
+    "thumb": "images/collection/thumb/f963cf386fa9228e.webp",
+    "date": "2022-12-30T19:14:03",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "งานดอกไม้งามเชียงราย2022"
+  },
+  {
+    "path": "images/collection/d2be23a6c9b9b13e.webp",
+    "thumb": "images/collection/thumb/d2be23a6c9b9b13e.webp",
+    "date": "2022-12-30T19:14:05",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "งานดอกไม้งามเชียงราย2022"
+  },
+  {
+    "path": "images/collection/243fd3d2a9a4240e.webp",
+    "thumb": "images/collection/thumb/243fd3d2a9a4240e.webp",
+    "date": "2022-12-30T19:14:47",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "งานดอกไม้งามเชียงราย2022"
+  },
+  {
+    "path": "images/collection/66273e087e26675b.webp",
+    "thumb": "images/collection/thumb/66273e087e26675b.webp",
     "date": "2022-12-30T19:16:16",
-    "dateSource": "EXIF DateTimeOriginal"
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ภาพจากคลังเดิม"
   },
   {
-    "path": "images/photo-010.jpg",
+    "path": "images/collection/4d912cabfb67b178.webp",
+    "thumb": "images/collection/thumb/4d912cabfb67b178.webp",
+    "date": "2022-12-30T19:16:29",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "งานดอกไม้งามเชียงราย2022"
+  },
+  {
+    "path": "images/collection/36c382cf27aaeffe.webp",
+    "thumb": "images/collection/thumb/36c382cf27aaeffe.webp",
+    "date": "2022-12-30T19:16:48",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "งานดอกไม้งามเชียงราย2022"
+  },
+  {
+    "path": "images/collection/b35f60f99a41bd30.webp",
+    "thumb": "images/collection/thumb/b35f60f99a41bd30.webp",
+    "date": "2022-12-30T19:16:51",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "งานดอกไม้งามเชียงราย2022"
+  },
+  {
+    "path": "images/collection/e7e10cb287d225a7.webp",
+    "thumb": "images/collection/thumb/e7e10cb287d225a7.webp",
+    "date": "2022-12-30T19:16:52",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "งานดอกไม้งามเชียงราย2022"
+  },
+  {
+    "path": "images/collection/036ba24327127b85.webp",
+    "thumb": "images/collection/thumb/036ba24327127b85.webp",
+    "date": "2022-12-30T19:17:00",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "งานดอกไม้งามเชียงราย2022"
+  },
+  {
+    "path": "images/collection/19145cb43565ea64.webp",
+    "thumb": "images/collection/thumb/19145cb43565ea64.webp",
+    "date": "2022-12-30T19:17:02",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "งานดอกไม้งามเชียงราย2022"
+  },
+  {
+    "path": "images/collection/9512c9cd989a4cb3.webp",
+    "thumb": "images/collection/thumb/9512c9cd989a4cb3.webp",
+    "date": "2022-12-30T19:23:32",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "งานดอกไม้งามเชียงราย2022"
+  },
+  {
+    "path": "images/collection/a1c9fa421e997e15.webp",
+    "thumb": "images/collection/thumb/a1c9fa421e997e15.webp",
+    "date": "2022-12-30T19:26:31",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "งานดอกไม้งามเชียงราย2022"
+  },
+  {
+    "path": "images/collection/ddb195764b8d3b67.webp",
+    "thumb": "images/collection/thumb/ddb195764b8d3b67.webp",
+    "date": "2022-12-30T19:27:00",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "งานดอกไม้งามเชียงราย2022"
+  },
+  {
+    "path": "images/collection/529bff637ede05c7.webp",
+    "thumb": "images/collection/thumb/529bff637ede05c7.webp",
+    "date": "2022-12-30T19:29:38",
+    "dateSource": "source filename",
+    "album": "งานดอกไม้งามเชียงราย2022"
+  },
+  {
+    "path": "images/collection/d349c78fb348f9a9.webp",
+    "thumb": "images/collection/thumb/d349c78fb348f9a9.webp",
+    "date": "2022-12-30T19:35:56",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "งานดอกไม้งามเชียงราย2022"
+  },
+  {
+    "path": "images/collection/4408897444099182.webp",
+    "thumb": "images/collection/thumb/4408897444099182.webp",
+    "date": "2022-12-30T19:39:16",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "งานดอกไม้งามเชียงราย2022"
+  },
+  {
+    "path": "images/collection/0d83686c0bcdbba7.webp",
+    "thumb": "images/collection/thumb/0d83686c0bcdbba7.webp",
+    "date": "2022-12-30T19:41:14",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "งานดอกไม้งามเชียงราย2022"
+  },
+  {
+    "path": "images/collection/135e5fcf93ea7cbf.webp",
+    "thumb": "images/collection/thumb/135e5fcf93ea7cbf.webp",
+    "date": "2022-12-30T19:49:11",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "งานดอกไม้งามเชียงราย2022"
+  },
+  {
+    "path": "images/collection/5a350cf949cf7624.webp",
+    "thumb": "images/collection/thumb/5a350cf949cf7624.webp",
+    "date": "2022-12-30T19:50:18",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "งานดอกไม้งามเชียงราย2022"
+  },
+  {
+    "path": "images/collection/67ecbf6dc1f29d34.webp",
+    "thumb": "images/collection/thumb/67ecbf6dc1f29d34.webp",
     "date": "2022-12-30T19:52:57",
-    "dateSource": "EXIF DateTimeOriginal"
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "งานดอกไม้งามเชียงราย2022"
   },
   {
-    "path": "images/photo-011.jpg",
+    "path": "images/collection/1a3253baf99cc4b1.webp",
+    "thumb": "images/collection/thumb/1a3253baf99cc4b1.webp",
+    "date": "2022-12-30T19:53:59",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "งานดอกไม้งามเชียงราย2022"
+  },
+  {
+    "path": "images/collection/10fea5156dc42f59.webp",
+    "thumb": "images/collection/thumb/10fea5156dc42f59.webp",
+    "date": "2022-12-30T19:59:02",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "งานดอกไม้งามเชียงราย2022"
+  },
+  {
+    "path": "images/collection/32faf2a83d6cfda3.webp",
+    "thumb": "images/collection/thumb/32faf2a83d6cfda3.webp",
+    "date": "2022-12-30T20:01:01",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "งานดอกไม้งามเชียงราย2022"
+  },
+  {
+    "path": "images/collection/4da6f281dbda8702.webp",
+    "thumb": "images/collection/thumb/4da6f281dbda8702.webp",
+    "date": "2022-12-30T20:01:15",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "งานดอกไม้งามเชียงราย2022"
+  },
+  {
+    "path": "images/collection/19ec0ed9e89050c9.webp",
+    "thumb": "images/collection/thumb/19ec0ed9e89050c9.webp",
+    "date": "2022-12-30T20:01:18",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "งานดอกไม้งามเชียงราย2022"
+  },
+  {
+    "path": "images/collection/4204be318230a7f7.webp",
+    "thumb": "images/collection/thumb/4204be318230a7f7.webp",
+    "date": "2022-12-30T20:04:48",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "งานดอกไม้งามเชียงราย2022"
+  },
+  {
+    "path": "images/collection/850d616a9c34031d.webp",
+    "thumb": "images/collection/thumb/850d616a9c34031d.webp",
     "date": "2022-12-30T20:04:49",
-    "dateSource": "EXIF DateTimeOriginal"
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "งานดอกไม้งามเชียงราย2022"
   },
   {
-    "path": "images/photo-012.jpg",
+    "path": "images/collection/b8d2a4f2a69377b4.webp",
+    "thumb": "images/collection/thumb/b8d2a4f2a69377b4.webp",
+    "date": "2022-12-30T20:08:05",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "งานดอกไม้งามเชียงราย2022"
+  },
+  {
+    "path": "images/collection/91019787f8c97626.webp",
+    "thumb": "images/collection/thumb/91019787f8c97626.webp",
+    "date": "2022-12-30T20:08:12",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "งานดอกไม้งามเชียงราย2022"
+  },
+  {
+    "path": "images/collection/36843864a9696c03.webp",
+    "thumb": "images/collection/thumb/36843864a9696c03.webp",
+    "date": "2023-01-14T13:27:47",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เข้าวัดเข้าวา"
+  },
+  {
+    "path": "images/collection/fdf81a82882beda3.webp",
+    "thumb": "images/collection/thumb/fdf81a82882beda3.webp",
+    "date": "2023-01-14T13:29:04",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เข้าวัดเข้าวา"
+  },
+  {
+    "path": "images/collection/e39edfb78ddbddef.webp",
+    "thumb": "images/collection/thumb/e39edfb78ddbddef.webp",
+    "date": "2023-01-14T14:15:54",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เข้าวัดเข้าวา"
+  },
+  {
+    "path": "images/collection/ae96806393925fae.webp",
+    "thumb": "images/collection/thumb/ae96806393925fae.webp",
+    "date": "2023-01-14T14:16:09",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เข้าวัดเข้าวา"
+  },
+  {
+    "path": "images/collection/0854a64452d8a370.webp",
+    "thumb": "images/collection/thumb/0854a64452d8a370.webp",
+    "date": "2023-01-14T14:16:26",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เข้าวัดเข้าวา"
+  },
+  {
+    "path": "images/collection/c189180df17bc6a6.webp",
+    "thumb": "images/collection/thumb/c189180df17bc6a6.webp",
+    "date": "2023-01-14T14:16:28",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เข้าวัดเข้าวา"
+  },
+  {
+    "path": "images/collection/2ab1008fd27238c1.webp",
+    "thumb": "images/collection/thumb/2ab1008fd27238c1.webp",
+    "date": "2023-01-14T14:16:29",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เข้าวัดเข้าวา"
+  },
+  {
+    "path": "images/collection/4912809609a416ee.webp",
+    "thumb": "images/collection/thumb/4912809609a416ee.webp",
+    "date": "2023-01-14T14:17:05",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เข้าวัดเข้าวา"
+  },
+  {
+    "path": "images/collection/c4152081b097c519.webp",
+    "thumb": "images/collection/thumb/c4152081b097c519.webp",
+    "date": "2023-01-14T14:26:35",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เข้าวัดเข้าวา"
+  },
+  {
+    "path": "images/collection/5875e0f60b71ba91.webp",
+    "thumb": "images/collection/thumb/5875e0f60b71ba91.webp",
+    "date": "2023-01-14T14:26:38",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เข้าวัดเข้าวา"
+  },
+  {
+    "path": "images/collection/c8117f7e2694b88b.webp",
+    "thumb": "images/collection/thumb/c8117f7e2694b88b.webp",
+    "date": "2023-01-14T14:26:47",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เข้าวัดเข้าวา"
+  },
+  {
+    "path": "images/collection/fd134bdab76d6725.webp",
+    "thumb": "images/collection/thumb/fd134bdab76d6725.webp",
+    "date": "2023-01-14T14:27:59",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เข้าวัดเข้าวา"
+  },
+  {
+    "path": "images/collection/561899f329f0106f.webp",
+    "thumb": "images/collection/thumb/561899f329f0106f.webp",
+    "date": "2023-01-14T14:28:13",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เข้าวัดเข้าวา"
+  },
+  {
+    "path": "images/collection/bc132b1ea37cc9e0.webp",
+    "thumb": "images/collection/thumb/bc132b1ea37cc9e0.webp",
+    "date": "2023-01-14T14:28:14",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เข้าวัดเข้าวา"
+  },
+  {
+    "path": "images/collection/6cbcba0eb0869f58.webp",
+    "thumb": "images/collection/thumb/6cbcba0eb0869f58.webp",
+    "date": "2023-01-14T14:40:05",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เข้าวัดเข้าวา"
+  },
+  {
+    "path": "images/collection/7df2333990d25b5d.webp",
+    "thumb": "images/collection/thumb/7df2333990d25b5d.webp",
+    "date": "2023-01-14T14:40:21",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เข้าวัดเข้าวา"
+  },
+  {
+    "path": "images/collection/9a79575a792486d7.webp",
+    "thumb": "images/collection/thumb/9a79575a792486d7.webp",
+    "date": "2023-01-14T14:40:23",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เข้าวัดเข้าวา"
+  },
+  {
+    "path": "images/collection/d6b8b94aa3fa8b2d.webp",
+    "thumb": "images/collection/thumb/d6b8b94aa3fa8b2d.webp",
+    "date": "2023-01-14T14:41:32",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เข้าวัดเข้าวา"
+  },
+  {
+    "path": "images/collection/d369016f2cdcd399.webp",
+    "thumb": "images/collection/thumb/d369016f2cdcd399.webp",
+    "date": "2023-01-14T14:43:38",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เข้าวัดเข้าวา"
+  },
+  {
+    "path": "images/collection/ba5e3f2c078ac1c0.webp",
+    "thumb": "images/collection/thumb/ba5e3f2c078ac1c0.webp",
+    "date": "2023-01-14T14:44:04",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เข้าวัดเข้าวา"
+  },
+  {
+    "path": "images/collection/da30207dbdaed2e5.webp",
+    "thumb": "images/collection/thumb/da30207dbdaed2e5.webp",
+    "date": "2023-01-14T14:44:13",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เข้าวัดเข้าวา"
+  },
+  {
+    "path": "images/collection/70e53ee64af70737.webp",
+    "thumb": "images/collection/thumb/70e53ee64af70737.webp",
     "date": "2023-02-22T19:50:53",
-    "dateSource": "EXIF DateTimeOriginal"
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "คาเฟ่🌱"
   },
   {
-    "path": "images/photo-005.jpg",
+    "path": "images/collection/a0a4676478a6df2d.webp",
+    "thumb": "images/collection/thumb/a0a4676478a6df2d.webp",
+    "date": "2023-02-22T19:51:48",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "คาเฟ่🌱"
+  },
+  {
+    "path": "images/collection/b058add42370899e.webp",
+    "thumb": "images/collection/thumb/b058add42370899e.webp",
+    "date": "2023-02-22T19:51:49",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "คาเฟ่🌱"
+  },
+  {
+    "path": "images/collection/df6e6f0c7b5f0327.webp",
+    "thumb": "images/collection/thumb/df6e6f0c7b5f0327.webp",
+    "date": "2023-02-22T19:51:50",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "คาเฟ่🌱"
+  },
+  {
+    "path": "images/collection/09791b3733e3acb9.webp",
+    "thumb": "images/collection/thumb/09791b3733e3acb9.webp",
+    "date": "2023-02-22T19:51:51",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "คาเฟ่🌱"
+  },
+  {
+    "path": "images/collection/348449b4d7a3c342.webp",
+    "thumb": "images/collection/thumb/348449b4d7a3c342.webp",
+    "date": "2023-02-22T19:51:52",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "คาเฟ่🌱"
+  },
+  {
+    "path": "images/collection/36eaa3a2aaca3fc7.webp",
+    "thumb": "images/collection/thumb/36eaa3a2aaca3fc7.webp",
+    "date": "2023-02-22T19:51:53",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "คาเฟ่🌱"
+  },
+  {
+    "path": "images/collection/f05862461c3d7885.webp",
+    "thumb": "images/collection/thumb/f05862461c3d7885.webp",
+    "date": "2023-02-22T19:51:55",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "คาเฟ่🌱"
+  },
+  {
+    "path": "images/collection/794f8569cf786c40.webp",
+    "thumb": "images/collection/thumb/794f8569cf786c40.webp",
     "date": "2023-02-22T19:51:57",
-    "dateSource": "EXIF DateTimeOriginal"
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "คาเฟ่🌱"
   },
   {
-    "path": "images/photo-013.jpg",
+    "path": "images/collection/efd6b3512798d405.webp",
+    "thumb": "images/collection/thumb/efd6b3512798d405.webp",
+    "date": "2023-02-22T19:51:57",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "คาเฟ่🌱"
+  },
+  {
+    "path": "images/collection/0b92b6a5cfcf78a9.webp",
+    "thumb": "images/collection/thumb/0b92b6a5cfcf78a9.webp",
     "date": "2023-02-22T19:51:58",
-    "dateSource": "EXIF DateTimeOriginal"
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "คาเฟ่🌱"
   },
   {
-    "path": "images/photo-014.jpg",
+    "path": "images/collection/3e0103498329780f.webp",
+    "thumb": "images/collection/thumb/3e0103498329780f.webp",
+    "date": "2024-12-31T16:24:52",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/cf48bed3a7262fd1.webp",
+    "thumb": "images/collection/thumb/cf48bed3a7262fd1.webp",
+    "date": "2024-12-31T16:25:39",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/791ce44fa066dc19.webp",
+    "thumb": "images/collection/thumb/791ce44fa066dc19.webp",
+    "date": "2024-12-31T16:29:37",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/8f306aa6293b1176.webp",
+    "thumb": "images/collection/thumb/8f306aa6293b1176.webp",
+    "date": "2024-12-31T16:29:40",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/e07d8e66251592ec.webp",
+    "thumb": "images/collection/thumb/e07d8e66251592ec.webp",
+    "date": "2024-12-31T16:29:59",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/dc3723b92a904500.webp",
+    "thumb": "images/collection/thumb/dc3723b92a904500.webp",
+    "date": "2024-12-31T16:30:03",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/b33ebb08fb0d5dc3.webp",
+    "thumb": "images/collection/thumb/b33ebb08fb0d5dc3.webp",
+    "date": "2024-12-31T16:30:46",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/2fa224b3f52bd017.webp",
+    "thumb": "images/collection/thumb/2fa224b3f52bd017.webp",
+    "date": "2024-12-31T16:30:53",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/6ff57f7e01fb49aa.webp",
+    "thumb": "images/collection/thumb/6ff57f7e01fb49aa.webp",
     "date": "2024-12-31T16:34:04",
-    "dateSource": "EXIF DateTimeOriginal"
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
   },
   {
-    "path": "images/photo-015.jpg",
+    "path": "images/collection/d61c5691c4ea8192.webp",
+    "thumb": "images/collection/thumb/d61c5691c4ea8192.webp",
+    "date": "2024-12-31T16:51:32",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/8c2c1c7edf258489.webp",
+    "thumb": "images/collection/thumb/8c2c1c7edf258489.webp",
+    "date": "2024-12-31T16:51:43",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/70c0cddb4ccb47c8.webp",
+    "thumb": "images/collection/thumb/70c0cddb4ccb47c8.webp",
+    "date": "2024-12-31T16:51:54",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/6eb3774473f6641d.webp",
+    "thumb": "images/collection/thumb/6eb3774473f6641d.webp",
+    "date": "2024-12-31T16:52:27",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/fe608f2c8fa3434d.webp",
+    "thumb": "images/collection/thumb/fe608f2c8fa3434d.webp",
+    "date": "2024-12-31T16:52:33",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/d5d629150dcce8e8.webp",
+    "thumb": "images/collection/thumb/d5d629150dcce8e8.webp",
+    "date": "2024-12-31T16:53:33",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/61ba19f94bbdb13d.webp",
+    "thumb": "images/collection/thumb/61ba19f94bbdb13d.webp",
+    "date": "2024-12-31T16:55:12",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/6e817b00ba191bb6.webp",
+    "thumb": "images/collection/thumb/6e817b00ba191bb6.webp",
+    "date": "2024-12-31T16:55:15",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/94f3d81132e79aa8.webp",
+    "thumb": "images/collection/thumb/94f3d81132e79aa8.webp",
+    "date": "2024-12-31T16:55:34",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/2de2ab8bc4a1417a.webp",
+    "thumb": "images/collection/thumb/2de2ab8bc4a1417a.webp",
+    "date": "2024-12-31T16:55:37",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/9c6ca55b2b9e6101.webp",
+    "thumb": "images/collection/thumb/9c6ca55b2b9e6101.webp",
+    "date": "2024-12-31T16:58:46",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/a52873b1c42b1a49.webp",
+    "thumb": "images/collection/thumb/a52873b1c42b1a49.webp",
+    "date": "2024-12-31T16:59:22",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/b27c651745f55ba6.webp",
+    "thumb": "images/collection/thumb/b27c651745f55ba6.webp",
+    "date": "2024-12-31T16:59:51",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/16ba8be12cee652d.webp",
+    "thumb": "images/collection/thumb/16ba8be12cee652d.webp",
+    "date": "2024-12-31T17:00:06",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/bf306cd8f612414c.webp",
+    "thumb": "images/collection/thumb/bf306cd8f612414c.webp",
+    "date": "2024-12-31T17:00:13",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/4dc3858cefe708a3.webp",
+    "thumb": "images/collection/thumb/4dc3858cefe708a3.webp",
+    "date": "2024-12-31T17:04:13",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/3909df211be3bb8e.webp",
+    "thumb": "images/collection/thumb/3909df211be3bb8e.webp",
+    "date": "2024-12-31T17:04:16",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/4de2c6471f93d2db.webp",
+    "thumb": "images/collection/thumb/4de2c6471f93d2db.webp",
+    "date": "2024-12-31T17:04:31",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/b34a64b30f48d944.webp",
+    "thumb": "images/collection/thumb/b34a64b30f48d944.webp",
+    "date": "2024-12-31T17:04:48",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/140fbe2d56dd66b9.webp",
+    "thumb": "images/collection/thumb/140fbe2d56dd66b9.webp",
+    "date": "2024-12-31T17:41:22",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/b102a6ff767061a2.webp",
+    "thumb": "images/collection/thumb/b102a6ff767061a2.webp",
+    "date": "2024-12-31T17:42:42",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/a32ad79867167799.webp",
+    "thumb": "images/collection/thumb/a32ad79867167799.webp",
+    "date": "2024-12-31T17:42:45",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/1a3c07a8e4ca5867.webp",
+    "thumb": "images/collection/thumb/1a3c07a8e4ca5867.webp",
+    "date": "2024-12-31T21:12:19",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/c037b73d63cbcf6c.webp",
+    "thumb": "images/collection/thumb/c037b73d63cbcf6c.webp",
+    "date": "2024-12-31T23:08:39",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/4af1253e716d8f64.webp",
+    "thumb": "images/collection/thumb/4af1253e716d8f64.webp",
+    "date": "2024-12-31T23:08:43",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/40283afb81e01f27.webp",
+    "thumb": "images/collection/thumb/40283afb81e01f27.webp",
+    "date": "2024-12-31T23:08:56",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/a94e29f267e9a8e9.webp",
+    "thumb": "images/collection/thumb/a94e29f267e9a8e9.webp",
+    "date": "2025-01-01T07:07:05",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/794f29f6296336fd.webp",
+    "thumb": "images/collection/thumb/794f29f6296336fd.webp",
+    "date": "2025-01-01T07:07:17",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/3be0284545711384.webp",
+    "thumb": "images/collection/thumb/3be0284545711384.webp",
+    "date": "2025-01-01T07:08:05",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/68b1ab55aad7ff75.webp",
+    "thumb": "images/collection/thumb/68b1ab55aad7ff75.webp",
+    "date": "2025-01-01T08:26:08",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/3881e0d529330db7.webp",
+    "thumb": "images/collection/thumb/3881e0d529330db7.webp",
+    "date": "2025-01-01T08:28:22",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/20667d657c0827aa.webp",
+    "thumb": "images/collection/thumb/20667d657c0827aa.webp",
     "date": "2025-01-01T08:28:43",
-    "dateSource": "EXIF DateTimeOriginal"
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
   },
   {
-    "path": "images/photo-006.jpg",
+    "path": "images/collection/464e1b8ca1cd082b.webp",
+    "thumb": "images/collection/thumb/464e1b8ca1cd082b.webp",
+    "date": "2025-01-01T08:32:08",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/d4055835b6c1ecc9.webp",
+    "thumb": "images/collection/thumb/d4055835b6c1ecc9.webp",
+    "date": "2025-01-01T08:41:13",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/0951018be099bfb9.webp",
+    "thumb": "images/collection/thumb/0951018be099bfb9.webp",
+    "date": "2025-01-01T09:21:17",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/7a0eec03207192da.webp",
+    "thumb": "images/collection/thumb/7a0eec03207192da.webp",
+    "date": "2025-01-01T09:21:19",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/f85b633e34788acb.webp",
+    "thumb": "images/collection/thumb/f85b633e34788acb.webp",
+    "date": "2025-01-01T09:21:44",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/3af32e97e45cf654.webp",
+    "thumb": "images/collection/thumb/3af32e97e45cf654.webp",
+    "date": "2025-01-01T09:21:47",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/8bd6ff644a392a5d.webp",
+    "thumb": "images/collection/thumb/8bd6ff644a392a5d.webp",
+    "date": "2025-01-01T09:21:56",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/57bd040d081ca662.webp",
+    "thumb": "images/collection/thumb/57bd040d081ca662.webp",
+    "date": "2025-01-01T09:22:05",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/f96292710b71708f.webp",
+    "thumb": "images/collection/thumb/f96292710b71708f.webp",
+    "date": "2025-01-01T09:22:06",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/d4afc6bb62f08678.webp",
+    "thumb": "images/collection/thumb/d4afc6bb62f08678.webp",
+    "date": "2025-01-01T09:40:57",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/584b9e7125e2e9e5.webp",
+    "thumb": "images/collection/thumb/584b9e7125e2e9e5.webp",
+    "date": "2025-01-01T09:41:08",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/428bd8d1b2124799.webp",
+    "thumb": "images/collection/thumb/428bd8d1b2124799.webp",
+    "date": "2025-01-01T09:41:32",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/f82d96724b805861.webp",
+    "thumb": "images/collection/thumb/f82d96724b805861.webp",
+    "date": "2025-01-01T09:42:15",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/4405b683a7a9cf30.webp",
+    "thumb": "images/collection/thumb/4405b683a7a9cf30.webp",
+    "date": "2025-01-01T09:42:24",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/4adaaf38153f451a.webp",
+    "thumb": "images/collection/thumb/4adaaf38153f451a.webp",
+    "date": "2025-01-01T09:42:45",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/ca7b1ee37884fcb7.webp",
+    "thumb": "images/collection/thumb/ca7b1ee37884fcb7.webp",
+    "date": "2025-01-01T09:42:47",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/953b5b93815542cc.webp",
+    "thumb": "images/collection/thumb/953b5b93815542cc.webp",
+    "date": "2025-01-01T09:44:55",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/4325ea780473c934.webp",
+    "thumb": "images/collection/thumb/4325ea780473c934.webp",
+    "date": "2025-01-01T09:45:04",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/c5d9ed7ffb078704.webp",
+    "thumb": "images/collection/thumb/c5d9ed7ffb078704.webp",
+    "date": "2025-01-01T09:45:09",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/2dc8b3732cc142ac.webp",
+    "thumb": "images/collection/thumb/2dc8b3732cc142ac.webp",
+    "date": "2025-01-01T10:55:03",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/6dfb765c18e936c2.webp",
+    "thumb": "images/collection/thumb/6dfb765c18e936c2.webp",
+    "date": "2025-01-01T10:55:08",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/a4383a986fa2965a.webp",
+    "thumb": "images/collection/thumb/a4383a986fa2965a.webp",
+    "date": "2025-01-01T10:55:22",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/79f91636bdd25878.webp",
+    "thumb": "images/collection/thumb/79f91636bdd25878.webp",
+    "date": "2025-01-01T10:55:39",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/87ea96340723e13e.webp",
+    "thumb": "images/collection/thumb/87ea96340723e13e.webp",
+    "date": "2025-01-01T10:58:08",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/b4ccee5ff08e1b26.webp",
+    "thumb": "images/collection/thumb/b4ccee5ff08e1b26.webp",
+    "date": "2025-01-01T10:58:09",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/4f82a69097ccb35f.webp",
+    "thumb": "images/collection/thumb/4f82a69097ccb35f.webp",
+    "date": "2025-01-01T10:58:24",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/99256454aedc96a0.webp",
+    "thumb": "images/collection/thumb/99256454aedc96a0.webp",
+    "date": "2025-01-01T10:58:25",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/b7c7edb39c945277.webp",
+    "thumb": "images/collection/thumb/b7c7edb39c945277.webp",
+    "date": "2025-01-01T10:59:42",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/9141df617ab42c40.webp",
+    "thumb": "images/collection/thumb/9141df617ab42c40.webp",
+    "date": "2025-01-01T10:59:43",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/a02cf3c7f59e8466.webp",
+    "thumb": "images/collection/thumb/a02cf3c7f59e8466.webp",
+    "date": "2025-01-01T10:59:46",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/9959e1351ffc90d2.webp",
+    "thumb": "images/collection/thumb/9959e1351ffc90d2.webp",
+    "date": "2025-01-01T10:59:48",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/41f30c13056597be.webp",
+    "thumb": "images/collection/thumb/41f30c13056597be.webp",
+    "date": "2025-01-01T10:59:52",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/f403ed7b426ab2e1.webp",
+    "thumb": "images/collection/thumb/f403ed7b426ab2e1.webp",
+    "date": "2025-01-01T11:00:19",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/720260387575e2fb.webp",
+    "thumb": "images/collection/thumb/720260387575e2fb.webp",
+    "date": "2025-01-01T11:00:24",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/be3770ef91fd64b2.webp",
+    "thumb": "images/collection/thumb/be3770ef91fd64b2.webp",
+    "date": "2025-01-01T11:00:49",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/ae38e7d49f157635.webp",
+    "thumb": "images/collection/thumb/ae38e7d49f157635.webp",
+    "date": "2025-01-01T11:53:28",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/ef030c2c5bae1504.webp",
+    "thumb": "images/collection/thumb/ef030c2c5bae1504.webp",
+    "date": "2025-01-01T11:53:36",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/026494e78b2dd55e.webp",
+    "thumb": "images/collection/thumb/026494e78b2dd55e.webp",
+    "date": "2025-01-01T11:58:03",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/a1e66bbd99998f0f.webp",
+    "thumb": "images/collection/thumb/a1e66bbd99998f0f.webp",
+    "date": "2025-01-01T11:58:12",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/c9e61a44e97e4bce.webp",
+    "thumb": "images/collection/thumb/c9e61a44e97e4bce.webp",
+    "date": "2025-01-01T12:01:35",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/8890463f425c17ff.webp",
+    "thumb": "images/collection/thumb/8890463f425c17ff.webp",
+    "date": "2025-01-01T12:25:26",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/7944d02cafccfb1e.webp",
+    "thumb": "images/collection/thumb/7944d02cafccfb1e.webp",
+    "date": "2025-01-04T19:57:55",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/f1a4d824095ee787.webp",
+    "thumb": "images/collection/thumb/f1a4d824095ee787.webp",
+    "date": "2025-01-04T19:58:08",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/1a22d78b7b7eed81.webp",
+    "thumb": "images/collection/thumb/1a22d78b7b7eed81.webp",
     "date": "2025-01-04T19:58:18",
-    "dateSource": "EXIF DateTimeOriginal"
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
   },
   {
-    "path": "images/photo-007.jpg",
+    "path": "images/collection/c42dd81e76eb10fa.webp",
+    "thumb": "images/collection/thumb/c42dd81e76eb10fa.webp",
+    "date": "2025-01-04T20:38:36",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/5ecc4226e3911d90.webp",
+    "thumb": "images/collection/thumb/5ecc4226e3911d90.webp",
+    "date": "2025-01-04T20:38:38",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/71a0ac9cb9870e0e.webp",
+    "thumb": "images/collection/thumb/71a0ac9cb9870e0e.webp",
+    "date": "2025-01-04T20:38:49",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/456f1e7e29601da9.webp",
+    "thumb": "images/collection/thumb/456f1e7e29601da9.webp",
+    "date": "2025-01-04T20:47:34",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/da51a7129aec81b9.webp",
+    "thumb": "images/collection/thumb/da51a7129aec81b9.webp",
+    "date": "2025-01-04T20:55:48",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/cfa884b02451fcbc.webp",
+    "thumb": "images/collection/thumb/cfa884b02451fcbc.webp",
+    "date": "2025-01-04T20:56:10",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/41b586bc13e1f665.webp",
+    "thumb": "images/collection/thumb/41b586bc13e1f665.webp",
+    "date": "2025-01-04T21:05:30",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/a411da2a231e1d35.webp",
+    "thumb": "images/collection/thumb/a411da2a231e1d35.webp",
+    "date": "2025-01-04T21:05:37",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/07b954dc72d34ad1.webp",
+    "thumb": "images/collection/thumb/07b954dc72d34ad1.webp",
+    "date": "2025-01-04T21:05:48",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/2d105b17dfd0bd0a.webp",
+    "thumb": "images/collection/thumb/2d105b17dfd0bd0a.webp",
+    "date": "2025-01-04T21:06:09",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/6dd05062465e65ef.webp",
+    "thumb": "images/collection/thumb/6dd05062465e65ef.webp",
+    "date": "2025-01-04T21:07:10",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/8a68bc579241fd9b.webp",
+    "thumb": "images/collection/thumb/8a68bc579241fd9b.webp",
+    "date": "2025-01-04T21:07:11",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/a5596e226b12e023.webp",
+    "thumb": "images/collection/thumb/a5596e226b12e023.webp",
+    "date": "2025-01-04T21:07:41",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/3a9f2fabf781b585.webp",
+    "thumb": "images/collection/thumb/3a9f2fabf781b585.webp",
+    "date": "2025-01-04T21:07:43",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/3467c7a24ddd9b15.webp",
+    "thumb": "images/collection/thumb/3467c7a24ddd9b15.webp",
+    "date": "2025-01-04T21:08:19",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/f44283ca07ab7224.webp",
+    "thumb": "images/collection/thumb/f44283ca07ab7224.webp",
+    "date": "2025-01-04T21:08:24",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/f2963fbf06879742.webp",
+    "thumb": "images/collection/thumb/f2963fbf06879742.webp",
+    "date": "2025-01-04T21:08:25",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/5640c1fb5a659d1f.webp",
+    "thumb": "images/collection/thumb/5640c1fb5a659d1f.webp",
+    "date": "2025-01-04T21:08:26",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/bde5edea941f3a6b.webp",
+    "thumb": "images/collection/thumb/bde5edea941f3a6b.webp",
+    "date": "2025-01-04T21:09:02",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/12d27d67c9cfb087.webp",
+    "thumb": "images/collection/thumb/12d27d67c9cfb087.webp",
+    "date": "2025-01-04T21:12:43",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/95df79980c808f71.webp",
+    "thumb": "images/collection/thumb/95df79980c808f71.webp",
+    "date": "2025-01-04T21:12:46",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/38f80bf0dcd2c77f.webp",
+    "thumb": "images/collection/thumb/38f80bf0dcd2c77f.webp",
+    "date": "2025-01-04T21:15:04",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/f946973626341c78.webp",
+    "thumb": "images/collection/thumb/f946973626341c78.webp",
+    "date": "2025-01-04T21:22:34",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/db75047e444e59f6.webp",
+    "thumb": "images/collection/thumb/db75047e444e59f6.webp",
+    "date": "2025-01-04T21:22:38",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/78216204c0e64bd5.webp",
+    "thumb": "images/collection/thumb/78216204c0e64bd5.webp",
+    "date": "2025-01-04T21:23:39",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/3f39e75377902488.webp",
+    "thumb": "images/collection/thumb/3f39e75377902488.webp",
+    "date": "2025-01-04T21:23:47",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/ee8b167a135ccdfc.webp",
+    "thumb": "images/collection/thumb/ee8b167a135ccdfc.webp",
+    "date": "2025-01-04T21:23:56",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/9ddd69ca90804b06.webp",
+    "thumb": "images/collection/thumb/9ddd69ca90804b06.webp",
+    "date": "2025-01-04T21:24:50",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/dc65735fca6e5fe1.webp",
+    "thumb": "images/collection/thumb/dc65735fca6e5fe1.webp",
+    "date": "2025-01-04T21:26:14",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/ebd425e6f6314f4c.webp",
+    "thumb": "images/collection/thumb/ebd425e6f6314f4c.webp",
+    "date": "2025-01-04T21:27:36",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/a3d9c0f7e6723eb1.webp",
+    "thumb": "images/collection/thumb/a3d9c0f7e6723eb1.webp",
+    "date": "2025-01-04T21:27:41",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/a79209954d154a53.webp",
+    "thumb": "images/collection/thumb/a79209954d154a53.webp",
+    "date": "2025-01-04T21:27:49",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/d12caf2117d92074.webp",
+    "thumb": "images/collection/thumb/d12caf2117d92074.webp",
+    "date": "2025-01-04T21:27:52",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/8c3834bed59fe053.webp",
+    "thumb": "images/collection/thumb/8c3834bed59fe053.webp",
+    "date": "2025-01-04T21:29:10",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/e6f048f3b2841dfa.webp",
+    "thumb": "images/collection/thumb/e6f048f3b2841dfa.webp",
+    "date": "2025-01-04T21:29:13",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/c83d2fb33c170470.webp",
+    "thumb": "images/collection/thumb/c83d2fb33c170470.webp",
+    "date": "2025-01-04T21:29:15",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/4bac2126b66cb294.webp",
+    "thumb": "images/collection/thumb/4bac2126b66cb294.webp",
     "date": "2025-01-04T21:29:18",
-    "dateSource": "EXIF DateTimeOriginal"
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
   },
   {
-    "path": "images/photo-016.jpg",
+    "path": "images/collection/4571c060665559b5.webp",
+    "thumb": "images/collection/thumb/4571c060665559b5.webp",
+    "date": "2025-01-04T21:29:31",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/7133fab458635e1a.webp",
+    "thumb": "images/collection/thumb/7133fab458635e1a.webp",
+    "date": "2025-01-04T21:29:35",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/dc77a9bc1f959e1e.webp",
+    "thumb": "images/collection/thumb/dc77a9bc1f959e1e.webp",
+    "date": "2025-06-09T09:52:47",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/79512f2ca01e233b.webp",
+    "thumb": "images/collection/thumb/79512f2ca01e233b.webp",
+    "date": "2025-06-09T09:53:15",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/fbbc64788ae70c73.webp",
+    "thumb": "images/collection/thumb/fbbc64788ae70c73.webp",
+    "date": "2025-06-09T10:14:20",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/4c817be19f24a99c.webp",
+    "thumb": "images/collection/thumb/4c817be19f24a99c.webp",
+    "date": "2025-06-09T10:19:39",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/c9059a65af2db4e6.webp",
+    "thumb": "images/collection/thumb/c9059a65af2db4e6.webp",
+    "date": "2025-06-10T09:28:46",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/c089069334513f72.webp",
+    "thumb": "images/collection/thumb/c089069334513f72.webp",
+    "date": "2025-06-10T09:29:40",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/24fa64ebcc830559.webp",
+    "thumb": "images/collection/thumb/24fa64ebcc830559.webp",
+    "date": "2025-06-10T09:31:53",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/b5735f2b9016aab0.webp",
+    "thumb": "images/collection/thumb/b5735f2b9016aab0.webp",
+    "date": "2025-06-10T09:32:32",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/652a8da06008a3bd.webp",
+    "thumb": "images/collection/thumb/652a8da06008a3bd.webp",
+    "date": "2025-06-10T09:32:40",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/3e833ff84652f742.webp",
+    "thumb": "images/collection/thumb/3e833ff84652f742.webp",
+    "date": "2025-06-10T09:32:44",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/957a2bd9f890d9b3.webp",
+    "thumb": "images/collection/thumb/957a2bd9f890d9b3.webp",
+    "date": "2025-06-10T09:32:45",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/3f2b992bcfc84fa5.webp",
+    "thumb": "images/collection/thumb/3f2b992bcfc84fa5.webp",
+    "date": "2025-06-10T09:33:13",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/cbe8917eaa00202f.webp",
+    "thumb": "images/collection/thumb/cbe8917eaa00202f.webp",
+    "date": "2025-06-10T09:33:50",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/506dad1e249860bf.webp",
+    "thumb": "images/collection/thumb/506dad1e249860bf.webp",
+    "date": "2025-06-10T09:33:56",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/8b338d63687a4c2d.webp",
+    "thumb": "images/collection/thumb/8b338d63687a4c2d.webp",
+    "date": "2025-06-10T09:36:17",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/b9d75b0136a8e77d.webp",
+    "thumb": "images/collection/thumb/b9d75b0136a8e77d.webp",
+    "date": "2025-06-10T09:36:39",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/1984f1b025b54c8e.webp",
+    "thumb": "images/collection/thumb/1984f1b025b54c8e.webp",
+    "date": "2025-06-10T09:38:51",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/7e52a0ef55930ee4.webp",
+    "thumb": "images/collection/thumb/7e52a0ef55930ee4.webp",
+    "date": "2025-06-10T09:39:24",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/3e41f81311d0a287.webp",
+    "thumb": "images/collection/thumb/3e41f81311d0a287.webp",
     "date": "2025-06-10T09:39:46",
-    "dateSource": "EXIF DateTimeOriginal"
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
   },
   {
-    "path": "images/photo-017.jpg",
+    "path": "images/collection/e2600facb75e3647.webp",
+    "thumb": "images/collection/thumb/e2600facb75e3647.webp",
+    "date": "2025-06-10T09:40:17",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/875e137c7f76ef51.webp",
+    "thumb": "images/collection/thumb/875e137c7f76ef51.webp",
+    "date": "2025-06-10T14:51:25",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/6f46bc0fb261d794.webp",
+    "thumb": "images/collection/thumb/6f46bc0fb261d794.webp",
+    "date": "2025-06-10T14:52:43",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/d49e258baf7a5f2c.webp",
+    "thumb": "images/collection/thumb/d49e258baf7a5f2c.webp",
+    "date": "2025-06-10T14:53:50",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/815487381cd2e1fd.webp",
+    "thumb": "images/collection/thumb/815487381cd2e1fd.webp",
+    "date": "2025-06-10T14:53:58",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/e6e914ed4c6d44d8.webp",
+    "thumb": "images/collection/thumb/e6e914ed4c6d44d8.webp",
+    "date": "2025-06-10T14:54:18",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/129c8d126748dde3.webp",
+    "thumb": "images/collection/thumb/129c8d126748dde3.webp",
+    "date": "2025-06-10T14:59:29",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/f0304e481034b347.webp",
+    "thumb": "images/collection/thumb/f0304e481034b347.webp",
+    "date": "2025-06-10T14:59:32",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/d92949a6a22ea525.webp",
+    "thumb": "images/collection/thumb/d92949a6a22ea525.webp",
+    "date": "2025-06-10T15:30:38",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/7a3e194b64e9beb2.webp",
+    "thumb": "images/collection/thumb/7a3e194b64e9beb2.webp",
+    "date": "2025-06-10T15:32:10",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/74214b20e2682c3e.webp",
+    "thumb": "images/collection/thumb/74214b20e2682c3e.webp",
+    "date": "2025-06-10T15:38:10",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/bda8ec27f4d520bc.webp",
+    "thumb": "images/collection/thumb/bda8ec27f4d520bc.webp",
+    "date": "2025-06-10T15:42:54",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/30d2053c35a3962f.webp",
+    "thumb": "images/collection/thumb/30d2053c35a3962f.webp",
+    "date": "2025-06-10T15:43:05",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/9d55eb6eafe48dbb.webp",
+    "thumb": "images/collection/thumb/9d55eb6eafe48dbb.webp",
+    "date": "2025-06-10T15:43:32",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/b45cb43def1f7275.webp",
+    "thumb": "images/collection/thumb/b45cb43def1f7275.webp",
+    "date": "2025-06-10T15:43:34",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/761803cce15d34d5.webp",
+    "thumb": "images/collection/thumb/761803cce15d34d5.webp",
+    "date": "2025-06-10T15:43:41",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/93b4a5a9bfd1553b.webp",
+    "thumb": "images/collection/thumb/93b4a5a9bfd1553b.webp",
+    "date": "2025-06-10T15:43:44",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/b8ee6c90dbbdc643.webp",
+    "thumb": "images/collection/thumb/b8ee6c90dbbdc643.webp",
+    "date": "2025-06-10T15:44:50",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/40f42941819d62c5.webp",
+    "thumb": "images/collection/thumb/40f42941819d62c5.webp",
     "date": "2025-06-10T15:46:00",
-    "dateSource": "EXIF DateTimeOriginal"
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
   },
   {
-    "path": "images/photo-018.jpg",
+    "path": "images/collection/9bf252122032d917.webp",
+    "thumb": "images/collection/thumb/9bf252122032d917.webp",
+    "date": "2025-06-10T15:46:34",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/833f42826e478c1b.webp",
+    "thumb": "images/collection/thumb/833f42826e478c1b.webp",
     "date": "2025-06-10T15:46:47",
-    "dateSource": "EXIF DateTimeOriginal"
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
   },
   {
-    "path": "images/photo-019.jpg",
+    "path": "images/collection/586dd528615eb7c6.webp",
+    "thumb": "images/collection/thumb/586dd528615eb7c6.webp",
+    "date": "2025-06-10T15:48:03",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/655459fe0e3797ff.webp",
+    "thumb": "images/collection/thumb/655459fe0e3797ff.webp",
+    "date": "2025-06-10T17:20:43",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/2a8236e7f9d3eda4.webp",
+    "thumb": "images/collection/thumb/2a8236e7f9d3eda4.webp",
+    "date": "2025-06-10T17:21:16",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/c376515fc8b5bd68.webp",
+    "thumb": "images/collection/thumb/c376515fc8b5bd68.webp",
+    "date": "2025-06-10T17:59:16",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/ea695ea8ecddd7d5.webp",
+    "thumb": "images/collection/thumb/ea695ea8ecddd7d5.webp",
+    "date": "2025-06-10T17:59:37",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/196e193d9f5e84cc.webp",
+    "thumb": "images/collection/thumb/196e193d9f5e84cc.webp",
+    "date": "2025-06-10T17:59:54",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/78cdd0df12cb0e1f.webp",
+    "thumb": "images/collection/thumb/78cdd0df12cb0e1f.webp",
+    "date": "2025-06-10T17:59:58",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/848090aa43f919c9.webp",
+    "thumb": "images/collection/thumb/848090aa43f919c9.webp",
+    "date": "2025-06-10T18:00:04",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/39b77a0b99eeb11d.webp",
+    "thumb": "images/collection/thumb/39b77a0b99eeb11d.webp",
+    "date": "2025-06-10T18:00:07",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/bf789920b52acf70.webp",
+    "thumb": "images/collection/thumb/bf789920b52acf70.webp",
+    "date": "2025-06-10T18:00:34",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/99b78d1f16fc88f1.webp",
+    "thumb": "images/collection/thumb/99b78d1f16fc88f1.webp",
+    "date": "2025-06-10T18:00:41",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/2c20a3f199a53e5a.webp",
+    "thumb": "images/collection/thumb/2c20a3f199a53e5a.webp",
+    "date": "2025-06-10T18:00:54",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/0aad7e233dba8ae6.webp",
+    "thumb": "images/collection/thumb/0aad7e233dba8ae6.webp",
+    "date": "2025-06-10T18:01:38",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/74d61d283dd15be1.webp",
+    "thumb": "images/collection/thumb/74d61d283dd15be1.webp",
+    "date": "2025-06-10T18:01:53",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/8814e9f0e25b1f7d.webp",
+    "thumb": "images/collection/thumb/8814e9f0e25b1f7d.webp",
+    "date": "2025-06-10T18:01:56",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/8e6351c4825abb22.webp",
+    "thumb": "images/collection/thumb/8e6351c4825abb22.webp",
+    "date": "2025-06-10T18:02:22",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/41c71440267b33ff.webp",
+    "thumb": "images/collection/thumb/41c71440267b33ff.webp",
+    "date": "2025-06-10T18:02:27",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/190ceccf4c0ec5eb.webp",
+    "thumb": "images/collection/thumb/190ceccf4c0ec5eb.webp",
+    "date": "2025-06-10T18:02:31",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/5ab53c9c6880632f.webp",
+    "thumb": "images/collection/thumb/5ab53c9c6880632f.webp",
+    "date": "2025-06-10T18:03:55",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/f0a85fd6da8690ce.webp",
+    "thumb": "images/collection/thumb/f0a85fd6da8690ce.webp",
+    "date": "2025-06-10T18:10:28",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/c49fe27d7ee7239e.webp",
+    "thumb": "images/collection/thumb/c49fe27d7ee7239e.webp",
+    "date": "2025-06-10T18:10:29",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/22d00f571454dc3f.webp",
+    "thumb": "images/collection/thumb/22d00f571454dc3f.webp",
+    "date": "2025-06-10T18:10:32",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/fef16c8d897231de.webp",
+    "thumb": "images/collection/thumb/fef16c8d897231de.webp",
+    "date": "2025-06-10T18:10:42",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/d17bbec63c5cafa1.webp",
+    "thumb": "images/collection/thumb/d17bbec63c5cafa1.webp",
+    "date": "2025-06-10T22:00:06",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/e1d24192637bf5f6.webp",
+    "thumb": "images/collection/thumb/e1d24192637bf5f6.webp",
+    "date": "2025-06-11T09:15:57",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/c8b12c6814a94b92.webp",
+    "thumb": "images/collection/thumb/c8b12c6814a94b92.webp",
+    "date": "2025-06-11T09:42:53",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/e7d9ef72aadac054.webp",
+    "thumb": "images/collection/thumb/e7d9ef72aadac054.webp",
+    "date": "2025-06-11T09:43:18",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/cd70f848152c55f8.webp",
+    "thumb": "images/collection/thumb/cd70f848152c55f8.webp",
+    "date": "2025-06-11T09:43:20",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/051dab43eb21d0d0.webp",
+    "thumb": "images/collection/thumb/051dab43eb21d0d0.webp",
+    "date": "2025-06-11T09:51:19",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/fda48544ab4a92c3.webp",
+    "thumb": "images/collection/thumb/fda48544ab4a92c3.webp",
+    "date": "2025-06-11T09:51:32",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/2216330a46b37567.webp",
+    "thumb": "images/collection/thumb/2216330a46b37567.webp",
+    "date": "2025-06-11T09:51:42",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/7e4d5ba5c3b51669.webp",
+    "thumb": "images/collection/thumb/7e4d5ba5c3b51669.webp",
+    "date": "2025-06-11T09:51:59",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/4f6bd7ad9995ea54.webp",
+    "thumb": "images/collection/thumb/4f6bd7ad9995ea54.webp",
+    "date": "2025-06-11T09:52:19",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/3e73e0431a9d75f9.webp",
+    "thumb": "images/collection/thumb/3e73e0431a9d75f9.webp",
+    "date": "2025-06-11T09:52:42",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/827555d9164ecaea.webp",
+    "thumb": "images/collection/thumb/827555d9164ecaea.webp",
+    "date": "2025-06-11T09:52:43",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/ab1158a282e58f4c.webp",
+    "thumb": "images/collection/thumb/ab1158a282e58f4c.webp",
+    "date": "2025-06-11T11:12:22",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/b6dd3381bb7f1a8c.webp",
+    "thumb": "images/collection/thumb/b6dd3381bb7f1a8c.webp",
     "date": "2025-06-11T11:12:26",
-    "dateSource": "EXIF DateTimeOriginal"
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
   },
   {
-    "path": "images/photo-001.jpg",
+    "path": "images/collection/a1af2e9c394d1449.webp",
+    "thumb": "images/collection/thumb/a1af2e9c394d1449.webp",
+    "date": "2025-06-11T11:13:34",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/4deb0e84b74115fc.webp",
+    "thumb": "images/collection/thumb/4deb0e84b74115fc.webp",
+    "date": "2025-06-11T11:13:37",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/5b464ba0ab9e0e1c.webp",
+    "thumb": "images/collection/thumb/5b464ba0ab9e0e1c.webp",
+    "date": "2025-06-11T11:31:27",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/2cfcbb371a81b54c.webp",
+    "thumb": "images/collection/thumb/2cfcbb371a81b54c.webp",
+    "date": "2025-06-11T11:32:06",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/06156425a6931c6a.webp",
+    "thumb": "images/collection/thumb/06156425a6931c6a.webp",
+    "date": "2025-06-11T11:32:11",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/926bc582bbf875ae.webp",
+    "thumb": "images/collection/thumb/926bc582bbf875ae.webp",
+    "date": "2025-06-11T11:33:13",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/5488d1ffe7b48001.webp",
+    "thumb": "images/collection/thumb/5488d1ffe7b48001.webp",
+    "date": "2025-06-11T11:33:50",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/207251125b3c8b77.webp",
+    "thumb": "images/collection/thumb/207251125b3c8b77.webp",
+    "date": "2025-06-11T11:34:21",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/f20691bd3f99befa.webp",
+    "thumb": "images/collection/thumb/f20691bd3f99befa.webp",
+    "date": "2025-06-11T11:35:12",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/0b603ea9ed7f40e9.webp",
+    "thumb": "images/collection/thumb/0b603ea9ed7f40e9.webp",
+    "date": "2025-06-11T11:35:25",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/cb538c560f458650.webp",
+    "thumb": "images/collection/thumb/cb538c560f458650.webp",
+    "date": "2025-06-11T11:35:28",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/7484cb60aa5cddaa.webp",
+    "thumb": "images/collection/thumb/7484cb60aa5cddaa.webp",
+    "date": "2025-06-11T11:35:59",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/8d6e2f72c8f49d9e.webp",
+    "thumb": "images/collection/thumb/8d6e2f72c8f49d9e.webp",
+    "date": "2025-06-11T11:36:00",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/9c53607303518f2d.webp",
+    "thumb": "images/collection/thumb/9c53607303518f2d.webp",
+    "date": "2025-06-11T11:36:08",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/6a514c3028a00307.webp",
+    "thumb": "images/collection/thumb/6a514c3028a00307.webp",
+    "date": "2025-06-11T11:36:20",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/b2e386e7d0aadb88.webp",
+    "thumb": "images/collection/thumb/b2e386e7d0aadb88.webp",
+    "date": "2025-06-11T11:36:45",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/c8d31fc3bcc5f261.webp",
+    "thumb": "images/collection/thumb/c8d31fc3bcc5f261.webp",
+    "date": "2025-06-11T11:37:07",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/f22de66370cc936f.webp",
+    "thumb": "images/collection/thumb/f22de66370cc936f.webp",
+    "date": "2025-06-11T11:37:35",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/1c7f709412c0f2f2.webp",
+    "thumb": "images/collection/thumb/1c7f709412c0f2f2.webp",
+    "date": "2025-06-11T11:37:37",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/ff489f762e742657.webp",
+    "thumb": "images/collection/thumb/ff489f762e742657.webp",
+    "date": "2025-06-11T11:38:53",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/54c000367c5d46c8.webp",
+    "thumb": "images/collection/thumb/54c000367c5d46c8.webp",
+    "date": "2025-06-11T11:39:02",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/9b3297e169739ddb.webp",
+    "thumb": "images/collection/thumb/9b3297e169739ddb.webp",
+    "date": "2025-06-11T11:39:04",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/12208da5b3396840.webp",
+    "thumb": "images/collection/thumb/12208da5b3396840.webp",
+    "date": "2025-06-11T11:39:09",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/efc39b0b640a780c.webp",
+    "thumb": "images/collection/thumb/efc39b0b640a780c.webp",
+    "date": "2025-06-11T11:40:24",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/47431b15c6b35705.webp",
+    "thumb": "images/collection/thumb/47431b15c6b35705.webp",
+    "date": "2025-06-11T11:40:56",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/6c4dfd4fb4f11d15.webp",
+    "thumb": "images/collection/thumb/6c4dfd4fb4f11d15.webp",
+    "date": "2025-06-11T11:41:00",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/5f279e7d2eb4fc47.webp",
+    "thumb": "images/collection/thumb/5f279e7d2eb4fc47.webp",
+    "date": "2025-06-11T11:41:07",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/9f2729013c48b624.webp",
+    "thumb": "images/collection/thumb/9f2729013c48b624.webp",
+    "date": "2025-06-11T11:41:09",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/ef2bc4a092e73d31.webp",
+    "thumb": "images/collection/thumb/ef2bc4a092e73d31.webp",
+    "date": "2025-06-11T11:41:16",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/be84a945b474bfeb.webp",
+    "thumb": "images/collection/thumb/be84a945b474bfeb.webp",
     "date": "2025-06-11T11:42:02",
-    "dateSource": "EXIF DateTimeOriginal"
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ภาพจากคลังเดิม"
   },
   {
-    "path": "images/photo-020.jpg",
+    "path": "images/collection/22a8e13714be2dfa.webp",
+    "thumb": "images/collection/thumb/22a8e13714be2dfa.webp",
+    "date": "2025-06-11T11:42:16",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/643c3f55a5a70f0a.webp",
+    "thumb": "images/collection/thumb/643c3f55a5a70f0a.webp",
+    "date": "2025-10-30T18:06:13",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/89098a791bfcab0d.webp",
+    "thumb": "images/collection/thumb/89098a791bfcab0d.webp",
+    "date": "2025-10-30T18:06:18",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/b5a1072da66ed97e.webp",
+    "thumb": "images/collection/thumb/b5a1072da66ed97e.webp",
+    "date": "2025-10-30T18:06:58",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/fe70949d388a2023.webp",
+    "thumb": "images/collection/thumb/fe70949d388a2023.webp",
+    "date": "2025-10-30T18:07:00",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/305791b4bc56cb94.webp",
+    "thumb": "images/collection/thumb/305791b4bc56cb94.webp",
+    "date": "2025-10-30T18:07:30",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "เที่ยว"
+  },
+  {
+    "path": "images/collection/52830695ca146602.webp",
+    "thumb": "images/collection/thumb/52830695ca146602.webp",
+    "date": "2025-12-21T20:19:14",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "งานดอกไม้งามเชียงราย2025"
+  },
+  {
+    "path": "images/collection/ba2a4a8aea9b1c41.webp",
+    "thumb": "images/collection/thumb/ba2a4a8aea9b1c41.webp",
+    "date": "2025-12-21T20:19:19",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "งานดอกไม้งามเชียงราย2025"
+  },
+  {
+    "path": "images/collection/aa89988429df59ce.webp",
+    "thumb": "images/collection/thumb/aa89988429df59ce.webp",
+    "date": "2025-12-21T20:21:07",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "งานดอกไม้งามเชียงราย2025"
+  },
+  {
+    "path": "images/collection/b2a9f636159be0a2.webp",
+    "thumb": "images/collection/thumb/b2a9f636159be0a2.webp",
+    "date": "2025-12-21T20:21:57",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "งานดอกไม้งามเชียงราย2025"
+  },
+  {
+    "path": "images/collection/6f825aa67b09ea85.webp",
+    "thumb": "images/collection/thumb/6f825aa67b09ea85.webp",
+    "date": "2025-12-21T20:27:55",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "งานดอกไม้งามเชียงราย2025"
+  },
+  {
+    "path": "images/collection/fa3bdc4d4349ded9.webp",
+    "thumb": "images/collection/thumb/fa3bdc4d4349ded9.webp",
+    "date": "2025-12-21T20:28:00",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "งานดอกไม้งามเชียงราย2025"
+  },
+  {
+    "path": "images/collection/92ba4aa15301f88c.webp",
+    "thumb": "images/collection/thumb/92ba4aa15301f88c.webp",
+    "date": "2025-12-21T20:31:34",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "งานดอกไม้งามเชียงราย2025"
+  },
+  {
+    "path": "images/collection/7dc97f514326c160.webp",
+    "thumb": "images/collection/thumb/7dc97f514326c160.webp",
+    "date": "2025-12-21T20:31:42",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "งานดอกไม้งามเชียงราย2025"
+  },
+  {
+    "path": "images/collection/d1a59e241d11b10e.webp",
+    "thumb": "images/collection/thumb/d1a59e241d11b10e.webp",
     "date": "2025-12-21T20:39:19",
-    "dateSource": "EXIF DateTimeOriginal"
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "งานดอกไม้งามเชียงราย2025"
   },
   {
-    "path": "images/photo-021.jpg",
+    "path": "images/collection/29bc8d24a7085e7a.webp",
+    "thumb": "images/collection/thumb/29bc8d24a7085e7a.webp",
+    "date": "2025-12-21T20:41:37",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "งานดอกไม้งามเชียงราย2025"
+  },
+  {
+    "path": "images/collection/767e4f5100539fd3.webp",
+    "thumb": "images/collection/thumb/767e4f5100539fd3.webp",
+    "date": "2025-12-21T20:43:43",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "งานดอกไม้งามเชียงราย2025"
+  },
+  {
+    "path": "images/collection/5956bfc53e8c4dbd.webp",
+    "thumb": "images/collection/thumb/5956bfc53e8c4dbd.webp",
+    "date": "2025-12-21T20:45:16",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "งานดอกไม้งามเชียงราย2025"
+  },
+  {
+    "path": "images/collection/98c3316505846222.webp",
+    "thumb": "images/collection/thumb/98c3316505846222.webp",
+    "date": "2025-12-21T20:45:42",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "งานดอกไม้งามเชียงราย2025"
+  },
+  {
+    "path": "images/collection/4c28091773b6fccc.webp",
+    "thumb": "images/collection/thumb/4c28091773b6fccc.webp",
+    "date": "2025-12-21T20:47:06",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "งานดอกไม้งามเชียงราย2025"
+  },
+  {
+    "path": "images/collection/5a21a79823238c88.webp",
+    "thumb": "images/collection/thumb/5a21a79823238c88.webp",
+    "date": "2025-12-21T20:47:06",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "งานดอกไม้งามเชียงราย2025"
+  },
+  {
+    "path": "images/collection/22b670654f945332.webp",
+    "thumb": "images/collection/thumb/22b670654f945332.webp",
+    "date": "2025-12-21T20:47:07",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "งานดอกไม้งามเชียงราย2025"
+  },
+  {
+    "path": "images/collection/c6e7004c2d198809.webp",
+    "thumb": "images/collection/thumb/c6e7004c2d198809.webp",
     "date": "2025-12-21T20:47:55",
-    "dateSource": "EXIF DateTimeOriginal"
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "งานดอกไม้งามเชียงราย2025"
   },
   {
-    "path": "images/photo-022.jpg",
+    "path": "images/collection/0f4e58223e22cd15.webp",
+    "thumb": "images/collection/thumb/0f4e58223e22cd15.webp",
+    "date": "2025-12-21T20:50:18",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "งานดอกไม้งามเชียงราย2025"
+  },
+  {
+    "path": "images/collection/1a311988115036d3.webp",
+    "thumb": "images/collection/thumb/1a311988115036d3.webp",
+    "date": "2025-12-21T20:50:38",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "งานดอกไม้งามเชียงราย2025"
+  },
+  {
+    "path": "images/collection/5b2ac56625dcc978.webp",
+    "thumb": "images/collection/thumb/5b2ac56625dcc978.webp",
+    "date": "2025-12-21T20:50:44",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "งานดอกไม้งามเชียงราย2025"
+  },
+  {
+    "path": "images/collection/518a02bdd32facd5.webp",
+    "thumb": "images/collection/thumb/518a02bdd32facd5.webp",
     "date": "2025-12-21T20:55:01",
-    "dateSource": "EXIF DateTimeOriginal"
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "งานดอกไม้งามเชียงราย2025"
   },
   {
-    "path": "images/photo-023.jpg",
+    "path": "images/collection/36a2bc2e26d39328.webp",
+    "thumb": "images/collection/thumb/36a2bc2e26d39328.webp",
+    "date": "2025-12-21T20:58:01",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "งานดอกไม้งามเชียงราย2025"
+  },
+  {
+    "path": "images/collection/d00e50b8930bc596.webp",
+    "thumb": "images/collection/thumb/d00e50b8930bc596.webp",
+    "date": "2025-12-21T20:58:37",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "งานดอกไม้งามเชียงราย2025"
+  },
+  {
+    "path": "images/collection/f15d30d313d18c74.webp",
+    "thumb": "images/collection/thumb/f15d30d313d18c74.webp",
+    "date": "2025-12-21T20:58:40",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "งานดอกไม้งามเชียงราย2025"
+  },
+  {
+    "path": "images/collection/63231f27922587e3.webp",
+    "thumb": "images/collection/thumb/63231f27922587e3.webp",
+    "date": "2025-12-21T20:58:42",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "งานดอกไม้งามเชียงราย2025"
+  },
+  {
+    "path": "images/collection/99a5318242ac6f6e.webp",
+    "thumb": "images/collection/thumb/99a5318242ac6f6e.webp",
+    "date": "2025-12-21T20:59:33",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "งานดอกไม้งามเชียงราย2025"
+  },
+  {
+    "path": "images/collection/790ec1f2a2e1a5d9.webp",
+    "thumb": "images/collection/thumb/790ec1f2a2e1a5d9.webp",
+    "date": "2025-12-21T20:59:39",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "งานดอกไม้งามเชียงราย2025"
+  },
+  {
+    "path": "images/collection/67a7d83124fc0817.webp",
+    "thumb": "images/collection/thumb/67a7d83124fc0817.webp",
+    "date": "2025-12-21T21:00:08",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "งานดอกไม้งามเชียงราย2025"
+  },
+  {
+    "path": "images/collection/f47393baafa1afc6.webp",
+    "thumb": "images/collection/thumb/f47393baafa1afc6.webp",
+    "date": "2025-12-21T21:00:33",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "งานดอกไม้งามเชียงราย2025"
+  },
+  {
+    "path": "images/collection/4266cee83dd4ab30.webp",
+    "thumb": "images/collection/thumb/4266cee83dd4ab30.webp",
+    "date": "2025-12-21T21:03:45",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "งานดอกไม้งามเชียงราย2025"
+  },
+  {
+    "path": "images/collection/d2cf5991e5f66126.webp",
+    "thumb": "images/collection/thumb/d2cf5991e5f66126.webp",
+    "date": "2025-12-21T21:03:59",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "งานดอกไม้งามเชียงราย2025"
+  },
+  {
+    "path": "images/collection/8c3c3e2ae6d25eb8.webp",
+    "thumb": "images/collection/thumb/8c3c3e2ae6d25eb8.webp",
+    "date": "2025-12-21T21:04:21",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "งานดอกไม้งามเชียงราย2025"
+  },
+  {
+    "path": "images/collection/a82f351863e85968.webp",
+    "thumb": "images/collection/thumb/a82f351863e85968.webp",
+    "date": "2025-12-21T21:17:08",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "งานดอกไม้งามเชียงราย2025"
+  },
+  {
+    "path": "images/collection/9efc862882ec6832.webp",
+    "thumb": "images/collection/thumb/9efc862882ec6832.webp",
+    "date": "2025-12-21T21:17:12",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "งานดอกไม้งามเชียงราย2025"
+  },
+  {
+    "path": "images/collection/af792cd153c7c2e0.webp",
+    "thumb": "images/collection/thumb/af792cd153c7c2e0.webp",
+    "date": "2025-12-21T21:17:15",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "งานดอกไม้งามเชียงราย2025"
+  },
+  {
+    "path": "images/collection/8e4ece6375c9a99e.webp",
+    "thumb": "images/collection/thumb/8e4ece6375c9a99e.webp",
+    "date": "2025-12-21T21:18:55",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "งานดอกไม้งามเชียงราย2025"
+  },
+  {
+    "path": "images/collection/5bc0655cbf89a876.webp",
+    "thumb": "images/collection/thumb/5bc0655cbf89a876.webp",
+    "date": "2025-12-21T21:18:58",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "งานดอกไม้งามเชียงราย2025"
+  },
+  {
+    "path": "images/collection/606a7a87ecf09f8e.webp",
+    "thumb": "images/collection/thumb/606a7a87ecf09f8e.webp",
+    "date": "2025-12-21T21:19:11",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "งานดอกไม้งามเชียงราย2025"
+  },
+  {
+    "path": "images/collection/ac47e11cd99df86c.webp",
+    "thumb": "images/collection/thumb/ac47e11cd99df86c.webp",
+    "date": "2025-12-21T21:19:46",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "งานดอกไม้งามเชียงราย2025"
+  },
+  {
+    "path": "images/collection/f7ad6adb3c93cf5b.webp",
+    "thumb": "images/collection/thumb/f7ad6adb3c93cf5b.webp",
+    "date": "2025-12-21T21:19:56",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "งานดอกไม้งามเชียงราย2025"
+  },
+  {
+    "path": "images/collection/445f1e25bd39127f.webp",
+    "thumb": "images/collection/thumb/445f1e25bd39127f.webp",
+    "date": "2025-12-21T21:20:16",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "งานดอกไม้งามเชียงราย2025"
+  },
+  {
+    "path": "images/collection/82b79dde1d2ea650.webp",
+    "thumb": "images/collection/thumb/82b79dde1d2ea650.webp",
+    "date": "2025-12-21T21:20:57",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "งานดอกไม้งามเชียงราย2025"
+  },
+  {
+    "path": "images/collection/dbf5680a95db44c0.webp",
+    "thumb": "images/collection/thumb/dbf5680a95db44c0.webp",
+    "date": "2025-12-21T21:21:32",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "งานดอกไม้งามเชียงราย2025"
+  },
+  {
+    "path": "images/collection/655353e0b1b998b0.webp",
+    "thumb": "images/collection/thumb/655353e0b1b998b0.webp",
+    "date": "2025-12-21T21:21:38",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "งานดอกไม้งามเชียงราย2025"
+  },
+  {
+    "path": "images/collection/850f79e081c5fae8.webp",
+    "thumb": "images/collection/thumb/850f79e081c5fae8.webp",
+    "date": "2025-12-21T21:21:43",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "งานดอกไม้งามเชียงราย2025"
+  },
+  {
+    "path": "images/collection/2d13d6152b61f4e0.webp",
+    "thumb": "images/collection/thumb/2d13d6152b61f4e0.webp",
+    "date": "2025-12-21T21:24:58",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "งานดอกไม้งามเชียงราย2025"
+  },
+  {
+    "path": "images/collection/0b76c596049cc178.webp",
+    "thumb": "images/collection/thumb/0b76c596049cc178.webp",
+    "date": "2025-12-21T21:24:59",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "งานดอกไม้งามเชียงราย2025"
+  },
+  {
+    "path": "images/collection/f201751127f7505c.webp",
+    "thumb": "images/collection/thumb/f201751127f7505c.webp",
+    "date": "2025-12-21T21:25:22",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "งานดอกไม้งามเชียงราย2025"
+  },
+  {
+    "path": "images/collection/0a7ebf54b38ee068.webp",
+    "thumb": "images/collection/thumb/0a7ebf54b38ee068.webp",
     "date": "2025-12-21T21:26:41",
-    "dateSource": "EXIF DateTimeOriginal"
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "งานดอกไม้งามเชียงราย2025"
   },
   {
-    "path": "images/photo-024.jpg",
+    "path": "images/collection/24f334ece82c3a26.webp",
+    "thumb": "images/collection/thumb/24f334ece82c3a26.webp",
+    "date": "2025-12-21T21:26:57",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "งานดอกไม้งามเชียงราย2025"
+  },
+  {
+    "path": "images/collection/15664897125f8d30.webp",
+    "thumb": "images/collection/thumb/15664897125f8d30.webp",
     "date": "2025-12-21T21:26:59",
-    "dateSource": "EXIF DateTimeOriginal"
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "งานดอกไม้งามเชียงราย2025"
   },
   {
-    "path": "images/photo-003.jpg",
+    "path": "images/collection/610ef29b4f5721da.webp",
+    "thumb": "images/collection/thumb/610ef29b4f5721da.webp",
+    "date": "2025-12-21T21:28:27",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "งานดอกไม้งามเชียงราย2025"
+  },
+  {
+    "path": "images/collection/1c41068547fea7e3.webp",
+    "thumb": "images/collection/thumb/1c41068547fea7e3.webp",
+    "date": "2025-12-21T21:28:29",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "งานดอกไม้งามเชียงราย2025"
+  },
+  {
+    "path": "images/collection/ad473ba7dda85e64.webp",
+    "thumb": "images/collection/thumb/ad473ba7dda85e64.webp",
+    "date": "2025-12-21T21:28:39",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "งานดอกไม้งามเชียงราย2025"
+  },
+  {
+    "path": "images/collection/6f8a8a0e03fc95d8.webp",
+    "thumb": "images/collection/thumb/6f8a8a0e03fc95d8.webp",
+    "date": "2025-12-21T21:28:41",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "งานดอกไม้งามเชียงราย2025"
+  },
+  {
+    "path": "images/collection/e82b5b767cb6a3c3.webp",
+    "thumb": "images/collection/thumb/e82b5b767cb6a3c3.webp",
     "date": "2025-12-21T21:28:50",
-    "dateSource": "EXIF DateTimeOriginal"
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ภาพจากคลังเดิม"
   },
   {
-    "path": "images/photo-002.jpg",
+    "path": "images/collection/a74422e4d23f5df2.webp",
+    "thumb": "images/collection/thumb/a74422e4d23f5df2.webp",
+    "date": "2025-12-21T21:28:57",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "งานดอกไม้งามเชียงราย2025"
+  },
+  {
+    "path": "images/collection/b081a4f1df306018.webp",
+    "thumb": "images/collection/thumb/b081a4f1df306018.webp",
+    "date": "2025-12-21T21:29:18",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "งานดอกไม้งามเชียงราย2025"
+  },
+  {
+    "path": "images/collection/c42fda82f28d3c6c.webp",
+    "thumb": "images/collection/thumb/c42fda82f28d3c6c.webp",
     "date": "2025-12-21T21:29:20",
-    "dateSource": "EXIF DateTimeOriginal"
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ภาพจากคลังเดิม"
   },
   {
-    "path": "images/photo-004.jpg",
+    "path": "images/collection/9ff324ad42b94f67.webp",
+    "thumb": "images/collection/thumb/9ff324ad42b94f67.webp",
+    "date": "2026-01-01T11:40:08",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ปีใหม่"
+  },
+  {
+    "path": "images/collection/a579a952aae199f7.webp",
+    "thumb": "images/collection/thumb/a579a952aae199f7.webp",
+    "date": "2026-01-01T11:40:09",
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ปีใหม่"
+  },
+  {
+    "path": "images/collection/f8d24352ad85ed92.webp",
+    "thumb": "images/collection/thumb/f8d24352ad85ed92.webp",
     "date": "2026-08-31T10:32:58",
-    "dateSource": "EXIF DateTimeOriginal"
+    "dateSource": "EXIF DateTimeOriginal",
+    "album": "ภาพจากคลังเดิม"
   },
   {
-    "path": "images/photo-009.jpg",
+    "path": "images/collection/27462774ba2dce29.webp",
+    "thumb": "images/collection/thumb/27462774ba2dce29.webp",
     "date": null,
-    "dateSource": null
+    "dateSource": "",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/434b8bd4fcded1c8.webp",
+    "thumb": "images/collection/thumb/434b8bd4fcded1c8.webp",
+    "date": null,
+    "dateSource": "",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/518f6d8723ef3f92.webp",
+    "thumb": "images/collection/thumb/518f6d8723ef3f92.webp",
+    "date": null,
+    "dateSource": "",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/5b829391b5bcdb2e.webp",
+    "thumb": "images/collection/thumb/5b829391b5bcdb2e.webp",
+    "date": null,
+    "dateSource": "",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/c2c0e38db2d911ed.webp",
+    "thumb": "images/collection/thumb/c2c0e38db2d911ed.webp",
+    "date": null,
+    "dateSource": "",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/d9d1fc7a6245c1c4.webp",
+    "thumb": "images/collection/thumb/d9d1fc7a6245c1c4.webp",
+    "date": null,
+    "dateSource": "",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/e9b19dff44a0b39b.webp",
+    "thumb": "images/collection/thumb/e9b19dff44a0b39b.webp",
+    "date": null,
+    "dateSource": "",
+    "album": "ทะเล"
+  },
+  {
+    "path": "images/collection/eef694d460a3dea6.webp",
+    "thumb": "images/collection/thumb/eef694d460a3dea6.webp",
+    "date": null,
+    "dateSource": "",
+    "album": "ทะเล"
   }
 ]

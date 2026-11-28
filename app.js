@@ -1,15 +1,27 @@
 'use strict';
 
+const PAGE_SIZE = 28;
 const grid = document.querySelector('#gallery-grid');
 const status = document.querySelector('#status');
+const archiveHeading = document.querySelector('#archive-heading');
+const albumFilter = document.querySelector('#album-filter');
+const pageSelect = document.querySelector('#page-select');
+const pagePrevious = document.querySelector('#page-previous');
+const pageNext = document.querySelector('#page-next');
 const lightbox = document.querySelector('#lightbox');
 const lightboxImage = document.querySelector('#lightbox-image');
+const lightboxCaption = document.querySelector('#lightbox-caption');
 const closeButton = document.querySelector('#close-lightbox');
 const previous = document.querySelector('#previous');
 const next = document.querySelector('#next');
+const dates = new Intl.DateTimeFormat('th-TH', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
+const numbers = new Intl.NumberFormat('th-TH');
 let photos = [];
+let albums = [];
+let filtered = [];
+let page = 0;
+let pageCount = 0;
 let current = 0;
-let lastTrigger = null;
 
 function safeImagePath(path) {
   if (typeof path !== 'string' || !path.trim()) return false;
@@ -25,49 +37,109 @@ function dateValue(value) {
   return Number.isFinite(parsed) ? parsed : null;
 }
 function dateLabel(photo) {
-  if (photo.timestamp === null) return 'ไม่ทราบวันที่';
-  return new Intl.DateTimeFormat('th-TH', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }).format(new Date(photo.timestamp));
+  return photo.timestamp === null ? 'ไม่ทราบวันที่' : dates.format(photo.timestamp);
 }
 function sourceLabel(photo) {
-  if (!photo.dateSource) return '';
-  return photo.dateSource.startsWith('source filename') ? 'วันที่อ้างอิงจากชื่อไฟล์' : 'วันที่จากข้อมูลภาพ (EXIF)';
+  if (/filename/i.test(photo.dateSource)) return 'วันที่อ้างอิงจากชื่อไฟล์';
+  if (/exif/i.test(photo.dateSource)) return 'วันที่จากข้อมูลภาพ (EXIF)';
+  return '';
 }
-function render() {
-  grid.replaceChildren();
-  document.querySelector('#photo-count').textContent = `${photos.length} ความทรงจำ`;
-  photos.forEach((photo, index) => {
+function renderPage() {
+  const start = page * PAGE_SIZE;
+  const end = Math.min(start + PAGE_SIZE, filtered.length);
+  document.querySelector('#photo-range').textContent = filtered.length
+    ? `ภาพ ${numbers.format(start + 1)}–${numbers.format(end)} จาก ${numbers.format(filtered.length)} ภาพ`
+    : 'ไม่มีภาพในอัลบั้มนี้';
+  document.querySelector('#page-number').textContent = `หน้า ${page + 1} / ${pageCount}`;
+  pageSelect.value = String(page);
+  pagePrevious.disabled = page === 0;
+  pageNext.disabled = page + 1 >= pageCount;
+
+  const cards = document.createDocumentFragment();
+  filtered.slice(start, end).forEach((photo, offset) => {
+    const index = start + offset;
+    const dateText = dateLabel(photo);
     const button = document.createElement('button');
     button.type = 'button';
     button.className = 'photo-card';
-    button.setAttribute('aria-label', `ดูภาพความทรงจำที่ ${index + 1}, ${dateLabel(photo)}`);
+    button.setAttribute('aria-label', `ดูภาพที่ ${index + 1}, ${dateText}${photo.album ? `, ${photo.album}` : ''}`);
     const image = document.createElement('img');
-    image.src = photo.path;
     image.alt = '';
     image.loading = 'lazy';
     image.decoding = 'async';
-    image.addEventListener('error', () => { image.alt = 'ไม่สามารถโหลดภาพได้'; }, { once: true });
+    image.addEventListener('error', () => {
+      image.hidden = true;
+      placeholder.hidden = false;
+    }, { once: true });
+    const placeholder = document.createElement('span');
+    placeholder.className = 'photo-placeholder';
+    placeholder.hidden = true;
+    placeholder.textContent = 'แสดงตัวอย่างไม่ได้';
+    image.src = photo.thumb;
     const number = document.createElement('span');
+    number.className = 'photo-index';
     number.textContent = `MOMENT ${String(index + 1).padStart(2, '0')}`;
     const date = document.createElement('strong');
-    date.textContent = dateLabel(photo);
-    button.append(image, number, date);
-    button.addEventListener('click', () => { current = index; lastTrigger = button; showImage(); lightbox.showModal(); closeButton.focus(); });
-    grid.append(button);
+    date.textContent = dateText;
+    button.append(image, placeholder, number, date);
+    if (photo.album) {
+      const album = document.createElement('span');
+      album.className = 'photo-album';
+      album.textContent = photo.album;
+      button.append(album);
+    }
+    button.addEventListener('click', () => {
+      current = index;
+      showImage();
+      lightbox.showModal();
+      closeButton.focus();
+    });
+    cards.append(button);
+  });
+  grid.replaceChildren(cards);
+}
+function filterAlbum() {
+  filtered = albumFilter.value === '' ? photos : photos.filter(photo => photo.album === albums[Number(albumFilter.value)]);
+  page = 0;
+  pageCount = Math.ceil(filtered.length / PAGE_SIZE);
+  pageSelect.replaceChildren(...Array.from({ length: pageCount }, (_, index) => new Option(String(index + 1), String(index))));
+  document.querySelector('#page-field').hidden = pageCount <= 1;
+  document.querySelector('#archive-pagination').hidden = pageCount <= 1;
+  renderPage();
+}
+function changePage(target) {
+  if (target === page || target < 0 || target >= pageCount) return;
+  page = target;
+  renderPage();
+}
+albumFilter.addEventListener('change', filterAlbum);
+pageSelect.addEventListener('change', () => changePage(Number(pageSelect.value)));
+for (const [button, step] of [[pagePrevious, -1], [pageNext, 1]]) {
+  button.addEventListener('click', () => {
+    changePage(page + step);
+    archiveHeading.focus({ preventScroll: true });
+    archiveHeading.scrollIntoView({ block: 'start' });
   });
 }
+
 function showImage() {
-  const photo = photos[current];
-  const label = `ความทรงจำที่ ${current + 1} — ${dateLabel(photo)}`;
-  lightboxImage.src = photo.path;
+  const photo = filtered[current];
+  const label = `ภาพที่ ${current + 1} จาก ${filtered.length} — ${dateLabel(photo)}`;
   lightboxImage.alt = label;
+  lightboxImage.src = photo.path;
   document.querySelector('#lightbox-title').textContent = label;
-  document.querySelector('#lightbox-caption').textContent = sourceLabel(photo);
+  lightboxCaption.textContent = [photo.album, sourceLabel(photo)].filter(Boolean).join(' · ');
+  const focused = document.activeElement;
   previous.disabled = current === 0;
-  next.disabled = current === photos.length - 1;
+  next.disabled = current === filtered.length - 1;
+  if (focused === previous && previous.disabled) next.focus();
+  if (focused === next && next.disabled) previous.focus();
 }
 function move(step) {
-  const target = Math.max(0, Math.min(photos.length - 1, current + step));
-  if (target !== current) { current = target; showImage(); }
+  const target = current + step;
+  if (target < 0 || target >= filtered.length) return;
+  current = target;
+  showImage();
 }
 previous.addEventListener('click', () => move(-1));
 next.addEventListener('click', () => move(1));
@@ -75,9 +147,10 @@ closeButton.addEventListener('click', () => lightbox.close());
 lightbox.addEventListener('click', event => { if (event.target === lightbox) lightbox.close(); });
 lightbox.addEventListener('close', () => {
   lightboxImage.removeAttribute('src');
-  if (lastTrigger && lastTrigger.isConnected) lastTrigger.focus();
+  changePage(Math.floor(current / PAGE_SIZE));
+  grid.children[current % PAGE_SIZE]?.focus();
 });
-lightboxImage.addEventListener('error', () => { document.querySelector('#lightbox-caption').textContent = 'ไม่สามารถเปิดภาพนี้ได้ในขณะนี้'; });
+lightboxImage.addEventListener('error', () => { lightboxCaption.textContent = 'ไม่สามารถเปิดภาพนี้ได้ในขณะนี้'; });
 lightbox.addEventListener('keydown', event => {
   if (event.altKey || event.ctrlKey || event.metaKey) return;
   if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
@@ -85,6 +158,7 @@ lightbox.addEventListener('keydown', event => {
     move(event.key === 'ArrowLeft' ? -1 : 1);
   }
 });
+
 const galleryTab = document.querySelector('#gallery-tab');
 const gameTab = document.querySelector('#game-tab');
 const gallerySection = document.querySelector('#gallery-section');
@@ -118,7 +192,7 @@ async function loadGallery() {
   try {
     let entries;
     try {
-      const response = await fetch('photo-metadata.json');
+      const response = await fetch('photo-metadata.json?v=archive-2');
       if (!response.ok) throw new Error('Metadata unavailable');
       entries = await response.json();
       if (!Array.isArray(entries)) throw new Error('Invalid metadata');
@@ -127,39 +201,32 @@ async function loadGallery() {
       if (!response.ok) throw new Error('Manifest unavailable');
       const paths = await response.json();
       if (!Array.isArray(paths)) throw new Error('Invalid manifest');
-      entries = paths.map(path => ({ path, date: null, dateSource: '' }));
+      entries = paths.map(path => ({ path }));
     }
-    photos = entries.filter(item => item && safeImagePath(item.path)).map((item, index) => ({
-      path: item.path, timestamp: dateValue(item.date),
-      dateSource: typeof item.dateSource === 'string' ? item.dateSource : '', index
-    })).sort((a, b) => (a.timestamp === null ? Infinity : a.timestamp) - (b.timestamp === null ? Infinity : b.timestamp) || a.index - b.index);
-    if (photos.length) {
-      const strips = document.createElement('div');
-      strips.className = 'backdrop-strips';
-      for (let column = 0; column < 6; column++) {
-        const strip = document.createElement('div');
-        strip.className = 'backdrop-strip';
-        for (let copy = 0; copy < 2; copy++) {
-          const group = document.createElement('div');
-          group.className = 'backdrop-group';
-          for (let index = 0; index < 6; index++) {
-            const image = document.createElement('img');
-            image.src = photos[(column * 6 + index) % photos.length].path;
-            image.alt = '';
-            image.decoding = 'async';
-            group.append(image);
-          }
-          strip.append(group);
-        }
-        strips.append(strip);
-      }
-      document.querySelector('#backdrop').replaceChildren(strips);
+    photos = entries.filter(item => item && safeImagePath(item.path)).map(item => ({
+      path: item.path,
+      thumb: safeImagePath(item.thumb) ? item.thumb : item.path,
+      timestamp: dateValue(item.date),
+      dateSource: typeof item.dateSource === 'string' ? item.dateSource : '',
+      album: (typeof item.album === 'string' && item.album.trim()) || null
+    })).sort((a, b) => (a.timestamp ?? Infinity) - (b.timestamp ?? Infinity) || 0);
+    document.querySelector('#photo-count').textContent = `${numbers.format(photos.length)} ความทรงจำ`;
+    if (!photos.length) {
+      status.textContent = 'ยังไม่มีภาพในอัลบั้ม แล้วกลับมาเก็บความทรงจำด้วยกันนะ';
+      return;
     }
-    status.textContent = photos.length ? '' : 'ยังไม่มีภาพในอัลบั้ม แล้วกลับมาเก็บความทรงจำด้วยกันนะ';
-    render();
+    albums = [...new Set(photos.map(photo => photo.album).filter(Boolean))].sort(new Intl.Collator('th').compare);
+    if (albums.length) {
+      if (photos.some(photo => photo.album === null)) albums.push(null);
+      albums.forEach((album, index) => albumFilter.add(new Option(album ?? 'ไม่ระบุอัลบั้ม', String(index))));
+      document.querySelector('#album-field').hidden = false;
+    }
+    document.querySelector('#archive-toolbar').hidden = false;
+    status.textContent = '';
+    filterAlbum();
   } catch {
-    status.textContent = 'ยังเปิดอัลบั้มไม่ได้ กรุณาตรวจสอบไฟล์ข้อมูลภาพและเปิดเว็บไซต์ผ่าน local server';
-    render();
+    document.querySelector('#photo-count').textContent = 'เปิดอัลบั้มไม่ได้';
+    status.textContent = 'ยังเปิดอัลบั้มไม่ได้ ลองรีเฟรชหน้าอีกครั้งนะ';
   }
 }
 loadGallery();

@@ -1,25 +1,32 @@
 import * as THREE from 'three';
-import { buildWorld } from './world.js?v=4';
+import { buildWorld } from './world.js?v=5';
 import { createMovingWater } from './moving-water.js?v=4';
 import { createWatering } from './watering.js?v=1';
 import { createAtmosphere } from './atmosphere.js?v=2';
 import { createTrail, stops } from './trail.js?v=3';
 
 const stage = document.querySelector('#stage');
-const renderer = new THREE.WebGLRenderer({ canvas: stage, antialias: !matchMedia('(pointer: coarse)').matches });
+const touchDevice = matchMedia('(pointer: coarse)').matches;
+const renderer = new THREE.WebGLRenderer({ canvas: stage, antialias: !touchDevice });
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(59, 1, .05, 110);
 scene.add(camera);
-renderer.setPixelRatio(Math.min(devicePixelRatio, matchMedia('(pointer: coarse)').matches ? 1.35 : 1.6));
+const maxResolution = Math.min(devicePixelRatio, touchDevice ? 1.2 : 1.5);
+const minResolution = Math.min(maxResolution, touchDevice ? .82 : .9);
+let resolution = maxResolution;
+renderer.setPixelRatio(resolution);
 
-const photos = await fetch('photo-metadata.json').then(response => {
+const photos = await fetch('photo-metadata.json?v=archive-2').then(response => {
   if (!response.ok) throw new Error('Photo list unavailable');
   return response.json();
 });
 if (!Array.isArray(photos) || !photos.length) throw new Error('Photo list empty');
 photos.sort((a, b) => (a.date || '\uffff').localeCompare(b.date || '\uffff'));
-
-const { photoTargets, plots, setGrowth } = buildWorld(scene, photos);
+photos.forEach((photo, index) => { photo.index = index; });
+const pageSize = 25;
+const pageCount = Math.ceil(photos.length / pageSize);
+let photoPage = 0;
+const { photoTargets, plots, setGrowth, setPhotos, update: updateWorld } = buildWorld(scene, photos.slice(0, pageSize));
 const watering = createWatering(scene, camera);
 const storageKey = 'pinkpaul-little-garden-v1';
 let growth = Array(plots.length).fill(0);
@@ -57,6 +64,10 @@ const chapterButton = document.querySelector('#chapters');
 const chapterView = document.querySelector('#chapter-view');
 const chapterList = document.querySelector('#chapter-list');
 const chapterLabel = document.querySelector('#chapter-label');
+const collectionButton = document.querySelector('#collection');
+const collectionView = document.querySelector('#collection-view');
+const collectionSelect = document.querySelector('#collection-set');
+const collectionLabel = document.querySelector('#collection-label');
 const stickerButton = document.querySelector('#stickers');
 const stickerView = document.querySelector('#sticker-view');
 const stickerMotion = document.querySelector('#sticker-motion');
@@ -92,6 +103,7 @@ const target = new THREE.Vector3();
 const movement = new THREE.Vector2();
 const keyboard = new Set();
 const walking = new Map();
+const directions = new Set();
 const defaultHint = 'เปิดสมุดบันทึกสวนเพื่อเลือกจุดแวะชม';
 const wateringHint = 'ถือบัวแล้ว · แตะที่แปลง หรือเล็งแล้วกดรดน้ำ';
 let yaw = 0;
@@ -169,7 +181,9 @@ function explored() {
   hasExplored = true;
   intro.hidden = true;
 }
+let needsFrame = true;
 function resize() {
+  needsFrame = true;
   const { clientWidth, clientHeight } = stage;
   if (!clientWidth || !clientHeight) return;
   camera.aspect = clientWidth / clientHeight;
@@ -282,7 +296,7 @@ chapters.forEach((chapter, index) => {
   const preview = document.createElement('img');
   preview.alt = '';
   preview.loading = 'lazy';
-  preview.src = photos[Math.min(chapter.photo, photos.length - 1)].path;
+  preview.decoding = 'async';
   const number = document.createElement('span');
   number.className = 'chapter-number';
   number.textContent = `${String(index + 1).padStart(2, '0')} · ${chapter.english}`;
@@ -305,10 +319,47 @@ chapters.forEach((chapter, index) => {
 chapterButton.addEventListener('click', () => {
   keyboard.clear();
   walking.clear();
+  chapterSpots.forEach((card, i) => {
+    const start = photoPage * pageSize;
+    const photo = photos[Math.min(start + chapters[i].photo, photos.length - 1)];
+    card.querySelector('img').src = photo.thumb || photo.path;
+  });
   chapterView.showModal();
 });
 chapterView.addEventListener('click', event => { if (event.target === chapterView) chapterView.close(); });
 chapterView.addEventListener('close', () => chapterButton.focus());
+
+function syncCollection() {
+  collectionLabel.textContent = `ชุดภาพ ${photoPage + 1} / ${pageCount}`;
+  collectionSelect.value = String(photoPage);
+}
+for (let page = 0; page < pageCount; page++) {
+  const start = page * pageSize + 1;
+  const end = Math.min(start + pageSize - 1, photos.length);
+  collectionSelect.add(new Option(`ชุด ${page + 1} · ภาพ ${start}–${end}`, String(page)));
+}
+document.querySelector('#collection-summary').textContent = `ทั้งหมด ${photos.length} รูป · เปลี่ยนทีละชุดเพื่อไม่ให้โหลดรูปทั้งหมดพร้อมกัน`;
+collectionButton.addEventListener('click', () => {
+  keyboard.clear();
+  walking.clear();
+  syncCollection();
+  collectionView.showModal();
+});
+document.querySelector('#collection-form').addEventListener('submit', event => {
+  event.preventDefault();
+  const page = Number(collectionSelect.value);
+  if (!Number.isInteger(page) || page < 0 || page >= pageCount) return;
+  if (photoPage !== page) {
+    photoPage = page;
+    activePhoto = page * pageSize;
+    setPhotos(photos.slice(activePhoto, activePhoto + pageSize));
+    syncCollection();
+    announce(`กำลังจัดแสดงภาพชุด ${page + 1} / ${pageCount}`);
+  }
+  collectionView.close();
+});
+collectionView.addEventListener('click', event => { if (event.target === collectionView) collectionView.close(); });
+collectionView.addEventListener('close', () => collectionButton.focus());
 
 function syncStickers() {
   const play = stickerView.open && animateStickers;
@@ -397,7 +448,7 @@ function controlKey(event) {
 }
 window.addEventListener('keydown', event => {
   const key = controlKey(event);
-  if (event.altKey || event.ctrlKey || event.metaKey || event.isComposing || trailView.open || chapterView.open || stickerView.open) return;
+  if (event.altKey || event.ctrlKey || event.metaKey || event.isComposing || trailView.open || chapterView.open || stickerView.open || collectionView.open) return;
   if (dialog.open) {
     if (key === 'arrowleft' && activePhoto > 0) showPhoto(activePhoto - 1);
     if (key === 'arrowright' && activePhoto < photos.length - 1) showPhoto(activePhoto + 1);
@@ -446,27 +497,48 @@ function translate(amount) {
 resetPosition();
 updateGarden();
 updateTrail();
+syncCollection();
 showNight();
 resize();
 window.addEventListener('resize', resize);
 let previousTime = 0;
+let sampleCount = 0;
+let sampleTime = 0;
 renderer.setAnimationLoop(time => {
-  const delta = Math.min((time - previousTime) / 1000, .05);
+  const frameMs = previousTime ? time - previousTime : 0;
   previousTime = time;
-  const modalOpen = dialog.open || trailView.open || chapterView.open || stickerView.open;
-  if (!modalOpen) {
-    const directions = new Set(walking.values());
-    for (const key of keyboard) directions.add(keys.get(key));
-    movement.set(Number(directions.has('right')) - Number(directions.has('left')), Number(directions.has('forward')) - Number(directions.has('back')));
-    translate(delta * 4.1);
+  const modalOpen = dialog.open || trailView.open || chapterView.open || stickerView.open || collectionView.open;
+  if (modalOpen || document.hidden) {
+    if (needsFrame && !document.hidden) renderer.render(scene, camera);
+    needsFrame = false;
+    sampleCount = sampleTime = 0;
+    return;
   }
+  if (frameMs > 0 && frameMs < 120 && resolution > minResolution) {
+    sampleTime += frameMs;
+    if (++sampleCount === 70) {
+      if (sampleTime / sampleCount > 26) {
+        resolution = Math.max(minResolution, resolution - .12);
+        renderer.setPixelRatio(resolution);
+      }
+      sampleCount = sampleTime = 0;
+    }
+  }
+  const delta = Math.min(frameMs / 1000, .05);
+  directions.clear();
+  for (const direction of walking.values()) directions.add(direction);
+  for (const key of keyboard) directions.add(keys.get(key));
+  movement.set(Number(directions.has('right')) - Number(directions.has('left')), Number(directions.has('forward')) - Number(directions.has('back')));
+  translate(delta * 4.1);
+  updateWorld(camera.position);
   watering.update(delta);
   atmosphere.update(delta);
   movingWater.update(delta);
   trail.update(delta, yaw);
-  const hideNearby = modalOpen || !trail.nearby(camera.position);
+  const hideNearby = !trail.nearby(camera.position);
   if (nearbyButton.hidden !== hideNearby) nearbyButton.hidden = hideNearby;
   renderer.render(scene, camera);
+  needsFrame = false;
 });
 homeButton.disabled = false;
 albumButton.disabled = false;
@@ -474,5 +546,6 @@ nightButton.disabled = false;
 trailButton.disabled = false;
 chapterButton.disabled = false;
 stickerButton.disabled = false;
+collectionButton.disabled = false;
 document.querySelector('#loading').hidden = true;
 document.querySelector('#controls').hidden = false;
