@@ -41,7 +41,23 @@ const counter = document.querySelector('#bloom-count');
 const waterButton = document.querySelector('#water');
 const pourButton = document.querySelector('#pour');
 const homeButton = document.querySelector('#home');
-const albumButton = document.querySelector('#album');
+const qualityButton = document.querySelector('#quality');
+const qualityView = document.querySelector('#quality-view');
+const qualitySelect = document.querySelector('#quality-mode');
+const qualityKey = 'pinkpaul-3d-quality-v1';
+const qualityModes = {
+  auto: ['อัตโนมัติ', 'ลดความละเอียดเมื่อเครื่องทำงานหนัก และเพิ่มกลับเมื่อเฟรมลื่นต่อเนื่อง'],
+  smooth: ['ลื่น', 'ใช้ความละเอียดต่ำคงที่ เพื่อลดภาระเครื่อง'],
+  sharp: ['คมชัด', 'ใช้ความละเอียดสูงสุดที่สวนตั้งไว้ ภาพชัดขึ้นแต่อาจใช้พลังงานมากขึ้น'],
+};
+let qualityMode = 'auto';
+let sampleCount = 0;
+let sampleTime = 0;
+let fastWindows = 0;
+try {
+  const savedMode = localStorage.getItem(qualityKey);
+  if (Object.hasOwn(qualityModes, savedMode)) qualityMode = savedMode;
+} catch { /* Use the default mode without storage. */ }
 const dialog = document.querySelector('#photo-view');
 const closePhoto = document.querySelector('#close-photo');
 const photoElement = document.querySelector('#photo');
@@ -242,6 +258,9 @@ function toggleWater() {
   announce(held ? wateringHint : defaultHint);
 }
 function showPhoto(index) {
+  const start = photoPage * pageSize;
+  const end = Math.min(start + pageSize, photos.length) - 1;
+  if (index < start || index > end) return;
   activePhoto = index;
   const photo = photos[index];
   const stamp = photo.date ? Date.parse(`${photo.date.slice(0, 10)}T00:00:00Z`) : NaN;
@@ -249,10 +268,13 @@ function showPhoto(index) {
   photoNumber.textContent = `MOMENT ${String(index + 1).padStart(2, '0')} / ${photos.length}`;
   photoElement.alt = `ภาพความทรงจำ ${index + 1}`;
   photoElement.src = photo.path;
-  previousPhoto.disabled = index === 0;
-  nextPhoto.disabled = index === photos.length - 1;
+  const focused = document.activeElement;
+  previousPhoto.disabled = index === start;
+  nextPhoto.disabled = index === end;
+  if (focused === previousPhoto && previousPhoto.disabled) (nextPhoto.disabled ? closePhoto : nextPhoto).focus();
+  if (focused === nextPhoto && nextPhoto.disabled) (previousPhoto.disabled ? closePhoto : previousPhoto).focus();
 }
-function openPhoto(index, trigger = albumButton) {
+function openPhoto(index, trigger = stage) {
   keyboard.clear();
   walking.clear();
   photoTrigger = trigger;
@@ -333,17 +355,42 @@ function syncCollection() {
   collectionLabel.textContent = `ชุดภาพ ${photoPage + 1} / ${pageCount}`;
   collectionSelect.value = String(photoPage);
 }
+const pageDetails = [];
 for (let page = 0; page < pageCount; page++) {
-  const start = page * pageSize + 1;
-  const end = Math.min(start + pageSize - 1, photos.length);
-  collectionSelect.add(new Option(`ชุด ${page + 1} · ภาพ ${start}–${end}`, String(page)));
+  const start = page * pageSize;
+  const entries = photos.slice(start, start + pageSize);
+  const dates = entries.map(({ date }) => date && Date.parse(`${date.slice(0, 10)}T00:00:00Z`)).filter(Number.isFinite);
+  const first = dates.length ? photoFormat.format(dates[0]) : '';
+  const last = dates.length ? photoFormat.format(dates.at(-1)) : '';
+  const range = first ? (first === last ? first : `${first} – ${last}`) : 'ไม่ทราบวันที่';
+  const unknown = entries.length - dates.length;
+  const albums = [...new Set(entries.map(photo => photo.album).filter(Boolean))];
+  pageDetails.push({ cover: entries[0].thumb, range: range + (first && unknown ? ` · ไม่ระบุวันที่ ${unknown} รูป` : ''), albums });
+  collectionSelect.add(new Option(`ชุด ${page + 1} · ${range}`, String(page)));
 }
+const collectionCover = document.querySelector('#collection-cover');
+function previewCollection() {
+  const details = pageDetails[Number(collectionSelect.value)];
+  if (!details) return;
+  const cover = details.cover;
+  collectionCover.hidden = !cover;
+  if (cover && collectionCover.getAttribute('src') !== cover) collectionCover.src = cover;
+  else if (!cover) collectionCover.removeAttribute('src');
+  document.querySelector('#collection-dates').textContent = details.range;
+  const { albums } = details;
+  document.querySelector('#collection-albums').textContent = albums.length
+    ? albums.slice(0, 3).join(' · ') + (albums.length > 3 ? ` และอีก ${albums.length - 3} อัลบั้ม` : '')
+    : 'ไม่มีชื่ออัลบั้ม';
+}
+collectionCover.addEventListener('error', () => { collectionCover.hidden = true; });
+collectionSelect.addEventListener('change', previewCollection);
 document.querySelector('#collection-summary').textContent = `ทั้งหมด ${photos.length} รูป · เปลี่ยนทีละชุดเพื่อไม่ให้โหลดรูปทั้งหมดพร้อมกัน`;
 collectionButton.addEventListener('click', () => {
   keyboard.clear();
   walking.clear();
   syncCollection();
   collectionView.showModal();
+  previewCollection();
 });
 document.querySelector('#collection-form').addEventListener('submit', event => {
   event.preventDefault();
@@ -360,6 +407,30 @@ document.querySelector('#collection-form').addEventListener('submit', event => {
 });
 collectionView.addEventListener('click', event => { if (event.target === collectionView) collectionView.close(); });
 collectionView.addEventListener('close', () => collectionButton.focus());
+
+function applyQualityMode(mode) {
+  qualityMode = mode;
+  qualitySelect.value = mode;
+  const [label, help] = qualityModes[mode];
+  document.querySelector('#quality-label').textContent = label;
+  document.querySelector('#quality-help').textContent = help;
+  resolution = mode === 'smooth' ? minResolution : maxResolution;
+  renderer.setPixelRatio(resolution);
+  needsFrame = true;
+  sampleCount = sampleTime = fastWindows = 0;
+}
+qualityButton.addEventListener('click', () => {
+  releaseControls();
+  qualityView.showModal();
+});
+qualitySelect.addEventListener('change', () => {
+  if (!Object.hasOwn(qualityModes, qualitySelect.value)) return;
+  applyQualityMode(qualitySelect.value);
+  try { localStorage.setItem(qualityKey, qualityMode); }
+  catch { /* The selection still applies to the current session. */ }
+});
+qualityView.addEventListener('close', () => qualityButton.focus());
+qualityView.addEventListener('click', event => { if (event.target === qualityView) qualityView.close(); });
 
 function syncStickers() {
   const play = stickerView.open && animateStickers;
@@ -397,7 +468,6 @@ stickerMotion.addEventListener('click', () => { animateStickers = !animateSticke
 reducedMotion.addEventListener('change', () => { animateStickers = !reducedMotion.matches; syncStickers(); });
 
 homeButton.addEventListener('click', resetPosition);
-albumButton.addEventListener('click', () => openPhoto(activePhoto));
 waterButton.addEventListener('click', toggleWater);
 pourButton.addEventListener('click', () => waterPlot(pick(plots)));
 closePhoto.addEventListener('click', () => dialog.close());
@@ -448,10 +518,12 @@ function controlKey(event) {
 }
 window.addEventListener('keydown', event => {
   const key = controlKey(event);
-  if (event.altKey || event.ctrlKey || event.metaKey || event.isComposing || trailView.open || chapterView.open || stickerView.open || collectionView.open) return;
+  if (event.altKey || event.ctrlKey || event.metaKey || event.isComposing || trailView.open || chapterView.open || stickerView.open || collectionView.open || qualityView.open) return;
   if (dialog.open) {
-    if (key === 'arrowleft' && activePhoto > 0) showPhoto(activePhoto - 1);
-    if (key === 'arrowright' && activePhoto < photos.length - 1) showPhoto(activePhoto + 1);
+    if (key === 'arrowleft' || key === 'arrowright') {
+      event.preventDefault();
+      showPhoto(activePhoto + (key === 'arrowleft' ? -1 : 1));
+    }
     return;
   }
   if (keys.has(key)) {
@@ -498,28 +570,33 @@ resetPosition();
 updateGarden();
 updateTrail();
 syncCollection();
+applyQualityMode(qualityMode);
 showNight();
 resize();
 window.addEventListener('resize', resize);
 let previousTime = 0;
-let sampleCount = 0;
-let sampleTime = 0;
 renderer.setAnimationLoop(time => {
   const frameMs = previousTime ? time - previousTime : 0;
   previousTime = time;
-  const modalOpen = dialog.open || trailView.open || chapterView.open || stickerView.open || collectionView.open;
+  const modalOpen = dialog.open || trailView.open || chapterView.open || stickerView.open || collectionView.open || qualityView.open;
   if (modalOpen || document.hidden) {
     if (needsFrame && !document.hidden) renderer.render(scene, camera);
     needsFrame = false;
-    sampleCount = sampleTime = 0;
+    previousTime = sampleCount = sampleTime = fastWindows = 0;
     return;
   }
-  if (frameMs > 0 && frameMs < 120 && resolution > minResolution) {
-    sampleTime += frameMs;
-    if (++sampleCount === 70) {
-      if (sampleTime / sampleCount > 26) {
-        resolution = Math.max(minResolution, resolution - .12);
+  if (qualityMode === 'auto' && frameMs > 0) {
+    // Count slow frames too, but cap the weight of a single long stall.
+    sampleTime += Math.min(frameMs, 250);
+    if (++sampleCount === 35) {
+      const average = sampleTime / sampleCount;
+      fastWindows = average < 19 ? fastWindows + 1 : 0;
+      const nextResolution = average > 27 ? Math.max(minResolution, resolution - .12)
+        : fastWindows >= 4 ? Math.min(maxResolution, resolution + .12) : resolution;
+      if (nextResolution !== resolution) {
+        resolution = nextResolution;
         renderer.setPixelRatio(resolution);
+        fastWindows = 0;
       }
       sampleCount = sampleTime = 0;
     }
@@ -541,7 +618,7 @@ renderer.setAnimationLoop(time => {
   needsFrame = false;
 });
 homeButton.disabled = false;
-albumButton.disabled = false;
+qualityButton.disabled = false;
 nightButton.disabled = false;
 trailButton.disabled = false;
 chapterButton.disabled = false;

@@ -95,6 +95,8 @@ nav button, nav a, .extras button, .dialog-top button, .dialog-actions button {
 nav button, nav a, .extras button { pointer-events: auto; }
 nav { color: var(--paper); }
 nav button:hover:not(:disabled), nav a:hover { background: var(--plum-hover); }
+nav #archive-entry { background: var(--paper-light); color: var(--ink); border-color: var(--rule); }
+nav #archive-entry:hover { background: #f4d8c3; }
 #chapters { background: var(--paper); color: var(--ink); border-color: #e2c6a5; }
 #chapters:hover:not(:disabled) { background: #f4d8c3; }
 nav svg, .extras svg { width: 17px; height: 17px; }
@@ -281,8 +283,13 @@ dialog::backdrop { background: #231422b3; }
 .garden-quick-actions small, .garden-quick-actions strong { display: block; }
 .garden-quick-actions small { color: var(--muted); font-size: 9px; }
 .garden-quick-actions strong { font: 700 19px/1.05 var(--display); }
-#collection-label { font: 700 13px/1.2 var(--thai-display); }
-#collection-view { width: min(30rem, 94vw); }
+#collection-label, #quality-label { font: 700 13px/1.2 var(--thai-display); }
+#collection-view, #quality-view { width: min(30rem, 94vw); }
+.collection-preview { display: flex; align-items: center; gap: 10px; min-height: 66px; padding: 6px; background: var(--paper-light); border: 1px solid var(--rule); }
+.collection-preview img { width: 84px; height: 64px; object-fit: cover; }
+.collection-preview p, #quality-help { color: var(--muted); font-size: 12px; margin: 3px 0 0; }
+.quality-settings { display: grid; gap: 6px; margin-top: 10px; font-size: 13px; }
+#quality-mode { width: 100%; min-height: 44px; padding: 5px 9px; color: var(--ink); background: var(--paper-light); border: 1px solid var(--rule); font: inherit; }
 #collection-summary, .archive-link { color: var(--muted); font-size: 13px; }
 .archive-link a { color: var(--rose); }
 #collection-form { display: grid; gap: 6px; font-size: 13px; }
