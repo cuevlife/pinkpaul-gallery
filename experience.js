@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { buildWorld } from './world.js?v=3';
+import { buildWorld } from './world.js?v=3.1';
 import { createWatering } from './watering.js?v=1';
 import { createAtmosphere } from './atmosphere.js?v=2';
 import { createTrail, stops } from './trail.js?v=3';

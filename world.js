@@ -372,9 +372,16 @@ export function buildWorld(scene, photos) {
     [0, -6.29, 2.43, -15.72, 0.88, 0xe2b4cf], [1, 6.38, 2.02, -15.38, 0.98, 0xadd7c9],
     [2, -6.35, 1.34, -14.62, 0.63, 0xf3c8a8], [3, 6.11, 2.78, -23.22, 0.68, 0xe0b6db],
     [4, -6.13, 1.7, -22.81, 0.69, 0xecc6a2],
+    [5, -2.54, 3.59, -20.8, 0.66, 0xe6b5d5], [6, 2.54, 3.59, -20.8, 0.66, 0xb9d9cc],
   ]) {
-    instance(box, cinemaInk, x, 0.1, z, radius * 1.59, 0.2, 0.61);
-    instance(box, cinemaInk, x, y * 0.43, z, 0.12, y * 0.86, 0.21);
+    if (Math.abs(x) > 5.4) {
+      instance(box, cinemaInk, x, 0.1, z, radius * 1.59, 0.2, 0.61);
+      instance(box, cinemaInk, x, y * 0.43, z, 0.12, y * 0.86, 0.21);
+    } else {
+      const supportX = Math.sign(x) * 3.45;
+      beam(brass, supportX, 4.39, chapters[1].z - 0.32, supportX, 4.39, -23.97, 0.066);
+      beam(cinemaInk, supportX, 4.39, z, x, y + radius * 0.74, z, 0.07);
+    }
     instance(barrel, cinemaInk, x, y, z, radius, 0.25, radius, reelFace);
     instance(barrel, face, x, y, z + 0.15, radius * 0.95, 0.14, radius * 0.95, reelFace);
     instance(reelRim, brass, x, y, z + 0.23, radius * 0.88, radius * 0.88, 0.81);
@@ -440,7 +447,8 @@ export function buildWorld(scene, photos) {
   }
   instance(reelRim, wisteriaTrim, 0, 5.02, chapters[2].z, 0.37, 0.37, 0.58);
   instance(pebble, colors.cream, 0, 5.02, chapters[2].z + 0.04, 0.23, 0.23, 0.051, 0, 0, Math.PI / 8, candlelight);
-  chapterSign(2, 4.07, wisteriaInk, '#eee3f6');
+  for (const x of [-1.35, 1.35]) beam(wisteriaInk, x, 4.58, chapters[2].z, x, 4.17, chapters[2].z, 0.069);
+  chapterSign(2, 3.85, wisteriaInk, '#eee3f6');
 
   const pendingTextures = [];
   const photoTargets = photos.map((photo, index) => {
