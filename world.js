@@ -7,6 +7,21 @@ const colors = {
   peach: 0xffbd9d, butter: 0xffd481, lilac: 0xc5b1dd,
 };
 
+const chapters = [
+  { name: 'The Rose Conservatory', story: 'I  /  EVERY MEMORY BEGINS AS A SEED', z: -3.9,
+    paving: [0xf1bdba, 0xf5cec3, 0xf9dbcb, 0xedb3b5, 0xf5c7bd], edge: 0xffefd6, hedge: [0x65995c, 0x87ae68, 0x527c57] },
+  { name: 'The Keepsake Cinema', story: 'II  /  LITTLE MOMENTS ON THE BIG SCREEN', z: -16.8,
+    paving: [0xe3bac7, 0xf1cdb7, 0xd0aabd, 0xf6d8ba, 0xe8c4d2], edge: 0xe8b983, hedge: [0x657c71, 0x796e87, 0x5e8b81] },
+  { name: 'The Wisteria Hour', story: 'III  /  STAY UNTIL THE LANTERNS GLOW', z: -36,
+    paving: [0xb69ec5, 0xccb4d3, 0xac9ec2, 0xe2c8dd, 0xc1b1d1], edge: 0xe7cded, hedge: [0x627481, 0x718597, 0x575e80] },
+  { name: 'The Lotus Gala', story: 'IV  /  KEEP THIS LIGHT WITH YOU', z: -58.7,
+    paving: [0x95bfb9, 0xb8d5c8, 0x91b4b6, 0xd1e0cf, 0xb7d2bd], edge: 0xf8ddac, hedge: [0x51897c, 0x689b8b, 0x426f69] },
+];
+
+function chapterAt(z) {
+  return chapters[z >= -10 ? 0 : z >= -28 ? 1 : z >= -50 ? 2 : 3];
+}
+
 export function buildWorld(scene, photos) {
   const world = new THREE.Group();
   world.name = 'Pinkpaul · Memory Lane';
@@ -70,6 +85,10 @@ export function buildWorld(scene, photos) {
   const shapeBatches = new Map();
   const dummy = new THREE.Object3D();
   const tint = new THREE.Color();
+  const axis = new THREE.Vector3(0, 1, 0);
+  const direction = new THREE.Vector3();
+  const orientation = new THREE.Quaternion();
+  const angles = new THREE.Euler();
   let randomSeed = 8128;
 
   function random() {
@@ -88,6 +107,14 @@ export function buildWorld(scene, photos) {
     dummy.scale.set(sx, sy, sz);
     dummy.updateMatrix();
     entries.push([dummy.matrix.clone(), color]);
+  }
+
+  function beam(color, x1, y1, z1, x2, y2, z2, thickness, depth = thickness) {
+    direction.set(x2 - x1, y2 - y1, z2 - z1);
+    const length = direction.length();
+    angles.setFromQuaternion(orientation.setFromUnitVectors(axis, direction.multiplyScalar(1 / length)));
+    instance(box, color, (x1 + x2) / 2, (y1 + y2) / 2, (z1 + z2) / 2,
+      thickness, length, depth, angles.x, angles.y, angles.z);
   }
 
   function shape(parent, geometry, color, x, y, z, sx, sy, sz, unlit = false) {
@@ -149,11 +176,11 @@ export function buildWorld(scene, photos) {
     }
   }
 
-  const pavers = [0xf1bdba, 0xf5cec3, 0xf9dbcb, 0xedb3b5, 0xf5c7bd];
   for (let row = 0; row < 104; row++) {
     const z = 7 - row * 0.744;
+    const { paving: pavers, edge } = chapterAt(z);
     for (const side of [-1, 1]) {
-      instance(box, colors.cream, side * 1.29, 0.024, z, 0.1, 0.04, 0.68);
+      instance(box, edge, side * 1.29, 0.024, z, 0.1, 0.04, 0.68);
       if (row % 3 === 0) instance(pebble, pavers[2], side * (1.44 + random() * 0.17), 0.018,
         z - random() * 0.36, 0.052, 0.027, 0.085, 0, random() * 3);
     }
@@ -168,17 +195,21 @@ export function buildWorld(scene, photos) {
   for (const side of [-1, 1]) {
     for (let i = 0; i < 48; i++) {
       const z = 5.35 - i * 1.53;
-      const x = side * (6.05 + random() * 0.39);
-      instance(box, colors.cream, side * 6.1, 0.43, z, 0.1, 0.86, 0.11);
-      instance(pebble, colors.blush, side * 6.1, 0.88, z, 0.105, 0.09, 0.105);
-      for (const y of [0.29, 0.57]) instance(box, 0xe1b19e, side * 6.10, y, z - 0.765, 0.07, 0.075, 1.54);
+      const { edge, hedge } = chapterAt(z);
+      const x = side * (6.7 + random() * 0.62);
+      if (z > -10 || (z < -46 && z > -50)) {
+        instance(box, edge, side * 6.1, 0.38, z, 0.1, 0.76, 0.11);
+        instance(pebble, colors.blush, side * 6.1, 0.79, z, 0.105, 0.09, 0.105);
+        for (const y of [0.27, 0.52]) instance(box, edge, side * 6.1, y, z - 0.765, 0.07, 0.064, 1.54);
+      }
       for (let j = 0; j < 2; j++) {
-        instance(foliage, greens[(i + j) % greens.length], x, 0.38 + random() * 0.24, z - j * 0.79,
+        instance(foliage, hedge[(i + j) % hedge.length], x, 0.38 + random() * 0.24, z - j * 0.79,
           0.62 + random() * 0.21, 0.47 + random() * 0.31, 0.76, 0, random() * 6);
       }
-      if (i % 2 === 0) {
+      if (i % 2 === 0 && z > -54) {
         for (let j = 0; j < 3; j++) flower(side * (4.94 + random() * 0.54), z - random() * 1.63,
-          0.18 + random() * 0.34, blossoms[(i + j) % blossoms.length], 0.7 + random() * 0.6);
+          0.18 + random() * 0.34, z < -28 ? [colors.lilac, 0x8885c7, 0xd2a8d5][j] : blossoms[(i + j) % blossoms.length],
+          0.7 + random() * 0.6);
       }
     }
     for (let i = 0; i < 12; i++) {
@@ -253,37 +284,163 @@ export function buildWorld(scene, photos) {
     return new THREE.TubeGeometry(new THREE.CatmullRomCurve3(points), 40, thickness, 6, false);
   }
 
-  const curvedBand = archCurve(4.08, 1.49, 2.65, 0.15);
-  const curvedTrim = archCurve(4.08, 1.49, 2.65, 0.043);
-  for (const [index, z] of [-4.43, -23.65, -43].entries()) {
-    instance(curvedBand, index === 0 ? colors.rose : colors.blush, 0, 0, z, 1, 1, 1);
-    instance(curvedTrim, colors.cream, 0, 0, z + 0.14, 1, 1, 1);
-    const archWords = ['Pinkpaul', 'Little Moments', 'Always Together'];
-    const subtext = ['M E M O R Y   L A N E', 'P H O T O   G A R D E N', 'W I T H   L O V E'];
-    instance(box, colors.rose, 0, 3.57, z + 0.01, 2.34, 0.77, 0.16);
-    plaque(world, entryPlots + 6 + index, archWords[index], subtext[index], 0, 3.57, z + 0.097, 2.23, 0.7);
-    instance(heart, colors.rose, 0, 4.35, z + 0.035, 0.24, 0.24, 0.24);
+  function chapterSign(index, y, trim, face) {
+    const { name, story, z } = chapters[index];
+    instance(box, trim, 0, y, z + 0.12, 3.32, 0.95, 0.14);
+    plaque(world, entryPlots + 6 + index, name, story, 0, y, z + 0.199, 3.2, 0.85, face);
+  }
+
+  // I. A roof of open ironwork, with trellises outside the playable aisle.
+  const roseIron = 0x3e6955;
+  const roseTrim = 0xf2dba8;
+  const roseColors = [0xc94f78, 0xf18ca6, 0xfad2be, 0xea7494];
+  function climbingRose(x, y, z, size, color) {
+    instance(foliage, 0x47794e, x, y, z - 0.07, size * 1.7, size * 1.25, size * 0.9);
+    for (let p = 0; p < 5; p++) {
+      const a = p * Math.PI * 2 / 5;
+      instance(pebble, color, x + Math.sin(a) * size * 0.64, y + Math.cos(a) * size * 0.64, z,
+        size * 0.66, size * 0.58, size * 0.44, 0, 0, -a);
+    }
+    instance(pebble, colors.butter, x, y, z + size * 0.26, size * 0.42, size * 0.33, size * 0.33);
+  }
+  for (const z of [0.6, chapters[0].z, -8.4]) {
+    instance(heart, colors.rose, 0, 5.34, z + 0.06, 0.33, 0.33, 0.26);
     for (const side of [-1, 1]) {
-      const x = side * 4.08;
-      shadow(x, z, 0.52, 0.48);
-      instance(box, colors.cream, x, 1.36, z, 0.25, 2.68, 0.28);
-      for (const [y, size] of [[0.12, 0.48], [0.32, 0.34], [2.62, 0.36]]) {
-        instance(box, y < 0.2 ? colors.rose : colors.blush, x, y, z, size, 0.14, size);
-      }
-      for (let n = 0; n < 11; n++) {
-        const a = n * 0.55;
-        const y = n * 0.245 + 0.35;
-        const bend = Math.max(0, y - 2.5) * 0.7;
-        const dx = Math.sin(a) * 0.24 - side * bend;
-        const dz = 0.16 + Math.cos(a) * 0.18;
-        instance(foliage, greens[n % greens.length], x + dx, y, z + dz, 0.19, 0.26, 0.15, 0, a, side * 0.46);
-        if (n % 3 !== 0) instance(foliage, blossoms[n % blossoms.length], x + dx, y + 0.08, z + dz + 0.105,
-          0.13, 0.12, 0.09, 0, -a);
-      }
-      for (let n = 0; n < 3; n++) instance(heart, n % 2 ? colors.rose : colors.blush,
-        side * (1.41 + n * 0.17), 3.67 + (n % 2) * 0.17, z + 0.16, 0.13, 0.13, 0.12, 0, 0, side * (0.18 + n * 0.2));
+      const x = side * 5.77;
+      instance(box, roseIron, x, 1.73, z, 0.19, 3.46, 0.23);
+      for (const y of [0.13, 0.4, 3.39]) instance(box, roseTrim, x, y, z, 0.34, 0.13, 0.34);
+      beam(roseIron, x, 3.4, z, 0, 5.11, z, 0.18, 0.2);
+      beam(roseTrim, x, 3.58, z + 0.13, 0, 5.27, z + 0.13, 0.075);
+      beam(roseIron, side * 3.6, 3.34, z, side * 2.7, 4.31, z, 0.072);
+      beam(roseIron, x, 3.34, z, side * 3.6, 3.34, z, 0.09);
+      for (let n = 0; n < 5; n++) climbingRose(x - side * (n * 0.48), 3.38 + n * 0.14, z + 0.13,
+        0.13 + random() * 0.08, roseColors[(n + (side > 0 ? 1 : 0)) % roseColors.length]);
     }
   }
+  for (const side of [-1, 1]) {
+    for (const [x, y] of [[0, 5.14], [2.9, 4.27], [5.77, 3.42]]) {
+      if (x === 0 && side === 1) continue;
+      instance(box, roseIron, side * x, y, -3.9, 0.1, 0.11, 9.15);
+    }
+    for (const z of [-1.65, -6.15]) {
+      const x = side * 5.78;
+      instance(box, 0xb17c72, x, 0.19, z, 0.64, 0.38, 3.94);
+      instance(box, colors.cream, x, 0.37, z, 0.69, 0.095, 4.05);
+      instance(box, roseIron, x, 1.97, z, 0.09, 0.1, 4);
+      for (const d of [-1.9, -0.96, 0, 0.96, 1.9]) {
+        beam(roseIron, x, 0.42, z + d, x, 1.97, z + d, 0.064);
+        if (d < 1.9) {
+          beam(roseTrim, x, 0.6, z + d, x, 1.94, z + d + 0.94, 0.038);
+          beam(roseTrim, x, 1.94, z + d, x, 0.6, z + d + 0.94, 0.038);
+        }
+        climbingRose(x - side * (0.08 + random() * 0.09), 0.82 + random() * 0.9, z + d,
+          0.16 + random() * 0.08, roseColors[Math.floor(random() * roseColors.length)]);
+      }
+    }
+  }
+  beam(roseIron, 0, 4.96, chapters[0].z, 0, 3.52, chapters[0].z, 0.09);
+  chapterSign(0, 3.56, roseIron, '#fff0d6');
+
+  // II. Recessed, stepped theatre portals and outsize pastel film reels.
+  const reelRim = new THREE.TorusGeometry(1, 0.07, 6, 24);
+  const reelFace = Math.PI / 2;
+  const brass = 0xe8b278;
+  const cinemaInk = 0x5a486b;
+  for (const [i, z] of [chapters[1].z, -23.65].entries()) {
+    for (const side of [-1, 1]) {
+      for (let step = 0; step < 3; step++) {
+        const x = side * (5.87 + step * 0.19);
+        const y = 3.02 + step * 0.15;
+        const cap = 4.05 + step * 0.18;
+        const depth = z - step * 0.16;
+        const color = [cinemaInk, brass, 0x976880][step];
+        const width = [0.26, 0.085, 0.14][step];
+        beam(color, x, 0.07, depth, x, y, depth, width, 0.34);
+        beam(color, x, y, depth, x * 0.69, cap, depth, width, 0.34);
+        beam(color, x * 0.69, cap, depth, 0, cap, depth, width, 0.34);
+      }
+      instance(box, cinemaInk, side * 5.99, 0.15, z, 0.78, 0.3, 0.73);
+      for (let n = 0; n < 7; n++) {
+        instance(pebble, n % 2 ? 0xffe7ba : 0xffcdde, side * (1.8 + n * 0.31), 4.05, z + 0.19,
+          0.041, 0.041, 0.04, 0, 0, 0, candlelight);
+      }
+      instance(pebble, i ? 0xbad8d5 : 0xffb9d4, side * 4.04, 4.19, z + 0.03, 0.28, 0.39, 0.24, 0, 0, side * 0.2);
+    }
+    instance(pebble, brass, 0, 4.61, z - 0.24, 0.29, 0.42, 0.21);
+  }
+  for (const [i, x, y, z, radius, face] of [
+    [0, -6.29, 2.43, -15.72, 0.88, 0xe2b4cf], [1, 6.38, 2.02, -15.38, 0.98, 0xadd7c9],
+    [2, -6.35, 1.34, -14.62, 0.63, 0xf3c8a8], [3, 6.11, 2.78, -23.22, 0.68, 0xe0b6db],
+    [4, -6.13, 1.7, -22.81, 0.69, 0xecc6a2],
+  ]) {
+    instance(box, cinemaInk, x, 0.1, z, radius * 1.59, 0.2, 0.61);
+    instance(box, cinemaInk, x, y * 0.43, z, 0.12, y * 0.86, 0.21);
+    instance(barrel, cinemaInk, x, y, z, radius, 0.25, radius, reelFace);
+    instance(barrel, face, x, y, z + 0.15, radius * 0.95, 0.14, radius * 0.95, reelFace);
+    instance(reelRim, brass, x, y, z + 0.23, radius * 0.88, radius * 0.88, 0.81);
+    instance(barrel, brass, x, y, z + 0.24, radius * 0.14, 0.08, radius * 0.14, reelFace);
+    for (let n = 0; n < 5; n++) {
+      const a = i * 0.45 + n * Math.PI * 2 / 5;
+      instance(barrel, cinemaInk, x + Math.sin(a) * radius * 0.5, y + Math.cos(a) * radius * 0.5, z + 0.232,
+        radius * 0.21, 0.05, radius * 0.21, reelFace);
+    }
+  }
+  for (const side of [-1, 1]) {
+    for (let n = 0; n < 17; n++) {
+      const z = -12.8 - n * 0.78;
+      instance(box, cinemaInk, side * 1.48, 0.018, z, 0.18, 0.039, 0.73);
+      instance(box, brass, side * 1.48, 0.041, z, 0.085, 0.009, 0.27);
+    }
+  }
+  chapterSign(1, 3.76, brass, '#f7e5ea');
+
+  // III. A lavender arbor, with draped flowers and low-poly lanterns above head height.
+  const wisteriaInk = 0x564c76;
+  const wisteriaTrim = 0xc2afd1;
+  const wisteriaColors = [0xb594d7, 0x9e87c8, 0xd5b1df, 0x796eb3, 0xe6c9e7];
+  const arbor = archCurve(5.76, 1.61, 3.04, 0.14);
+  const arborTrim = archCurve(5.76, 1.61, 3.04, 0.039);
+  for (const [i, z] of [chapters[2].z, -39.6, -43.2, -46.8].entries()) {
+    instance(arbor, wisteriaInk, 0, 0, z, 1, 1, 1);
+    instance(arborTrim, wisteriaTrim, 0, 0, z + 0.14, 1, 1, 1);
+    for (const side of [-1, 1]) {
+      const x = side * 5.76;
+      instance(box, wisteriaInk, x, 1.52, z, 0.26, 3.04, 0.27);
+      for (const y of [0.14, 0.41, 2.87]) instance(box, wisteriaTrim, x, y, z, 0.4, 0.15, 0.39);
+      for (const y of [0.78, 1.28, 1.78, 2.28]) instance(box, wisteriaTrim, x, y, z + 0.16, 0.12, 0.12, 0.035, 0, 0, Math.PI / 4);
+      for (let n = 0; n < 11; n++) {
+        const a = 0.12 + n * 0.103;
+        const flowerX = side * 5.76 * Math.cos(a);
+        const flowerY = 3.04 + 1.61 * Math.sin(a);
+        const d = z + 0.14 + (random() - 0.5) * 0.64;
+        instance(foliage, n % 2 ? 0x647a83 : 0x686889, flowerX, flowerY, d, 0.35, 0.18, 0.37, 0, 0, side * 0.27);
+        if (n < 2) continue;
+        for (let p = 0; p < 4; p++) {
+          const r = 0.17 - p * 0.032;
+          instance(pebble, wisteriaColors[(p + n + i) % wisteriaColors.length],
+            flowerX + Math.sin(p * 2) * 0.075, flowerY - 0.11 - p * 0.16, d + 0.14,
+            r, 0.13, r, 0.1, p * 2, side * 0.24);
+        }
+      }
+    }
+  }
+  for (const x of [-5.76, -4.64, -2.8, 0, 2.8, 4.64, 5.76]) {
+    const y = 3.04 + 1.61 * Math.sqrt(1 - (x / 5.76) ** 2);
+    instance(box, wisteriaInk, x, y, -41.4, 0.088, 0.095, 11.09);
+  }
+  for (const z of [-37.8, -41.4, -45]) {
+    for (const x of [-2.8, 2.8]) {
+      const y = 3.8;
+      instance(barrel, wisteriaInk, x, 4.12, z, 0.022, 0.49, 0.022);
+      instance(box, wisteriaInk, x, y + 0.12, z, 0.34, 0.084, 0.34);
+      instance(box, wisteriaInk, x, y - 0.19, z, 0.31, 0.075, 0.31);
+      instance(box, 0xffdfa8, x, y - 0.03, z, 0.26, 0.27, 0.26, 0, 0, 0, candlelight);
+      instance(panel, 0xffffff, x, y - 0.03, z + 0.2, 0.82, 0.82, 1, 0, 0, 0, halo);
+    }
+  }
+  instance(reelRim, wisteriaTrim, 0, 5.02, chapters[2].z, 0.37, 0.37, 0.58);
+  instance(pebble, colors.cream, 0, 5.02, chapters[2].z + 0.04, 0.23, 0.23, 0.051, 0, 0, Math.PI / 8, candlelight);
+  chapterSign(2, 4.07, wisteriaInk, '#eee3f6');
 
   const pendingTextures = [];
   const photoTargets = photos.map((photo, index) => {
@@ -402,63 +559,82 @@ export function buildWorld(scene, photos) {
     world.updateMatrixWorld(true);
   }
 
-  // Cherry blossom banks frame the entrance and the next two arches from outside the aisle.
+  // Set the blossom banks back so the trunks do not close the outer photo aisle.
   const cherry = [0xf3a4bf, 0xffc7d4, 0xffdce3, 0xe78daf, 0xf5b4ce, 0xffe0dc];
   for (const side of [-1, 1]) {
-    for (const [x, z, scale] of [[6.08, -2.9, 1.78], [7.45, -8.2, 1.62], [6.15, -22.5, 1.51], [6.25, -42.5, 1.55]]) {
-      tree(side * x, z, scale, cherry);
-      for (let n = 0; n < 8; n++) {
-        const a = n * 2.4;
-        const crownX = side * (x - 0.94 + Math.cos(a) * 0.88);
-        const crownY = scale * (2.53 + Math.sin(a) * 0.32);
-        instance(foliage, cherry[n % cherry.length], crownX, crownY, z + Math.cos(n) * 0.94,
-          0.91 * scale, 0.54 * scale, 0.61 * scale, 0.1, a, side * 0.38);
-      }
-    }
-    for (let i = 0; i < 36; i++) {
-      const x = side * (3.04 + random() * 2.35);
-      const z = 2.16 - random() * 10.1;
-      const y = i % 3 === 0 ? 0.025 : 1.2 + random() * 3.38;
-      instance(pebble, cherry[i % cherry.length], x, y, z, 0.065, 0.021, 0.043, random() * 2.5, random() * 6, random() * 2.5);
-    }
-    for (let i = 0; i < 20; i++) {
-      const x = side * (3.18 + random() * 1.51);
-      const z = -3.85 + (random() - 0.5) * 2.65;
-      flower(x, z, 0.19 + random() * 0.3, cherry[i % cherry.length], 0.65 + random() * 0.83);
+    tree(side * 7.45, -2.9, 1.7, cherry);
+    tree(side * 7.8, -8.2, 1.45, cherry);
+    tree(side * 7.94, -41.4, 1.36, [0xada5c8, 0xa39cc0, 0xcfaed6, 0x838aaf]);
+    for (let i = 0; i < 16; i++) {
+      const x = side * (3.47 + random() * 1.52);
+      const z = 1.7 - random() * 10.1;
+      instance(pebble, cherry[i % cherry.length], x, 0.021, z, 0.067, 0.021, 0.044, 0, random() * 6);
+      if (i % 2 === 0) flower(x, z, 0.24 + random() * 0.35, cherry[i % cherry.length], 0.9 + random() * 0.54);
     }
   }
 
-  const cableLength = 5.14;
-  const cablePoints = Array.from({ length: 21 }, (_, index) => {
-    const x = cableLength * (index / 10 - 1);
-    return new THREE.Vector3(x, 3.85 + 0.85 * (x / cableLength) ** 2, 0);
-  });
-  const cable = new THREE.TubeGeometry(new THREE.CatmullRomCurve3(cablePoints), 28, 0.018, 5, false);
-  for (const [index, z] of [-1.92, -10.6, -17.6, -28.8, -36, -48.8, -56.2, -64.1].entries()) {
-    const lift = index === 0 ? 0.56 : 0;
-    instance(cable, 0x97625d, 0, lift, z, 1, 1, 1);
-    for (const side of [-1, 1]) {
-      instance(tapered, colors.rose, side * cableLength, 2.32 + lift / 2, z, 0.081, 4.68 + lift, 0.081);
-      instance(barrel, colors.cream, side * cableLength, 0.12, z, 0.185, 0.24, 0.185);
-      instance(pebble, colors.butter, side * cableLength, 4.74 + lift, z, 0.12, 0.14, 0.12);
+  // IV. A causeway between reflecting pools, with illuminated lotus crowns.
+  const galaInk = 0x387b79;
+  const galaGold = 0xf3c88e;
+  const galaArch = archCurve(5.94, 1.05, 3.06, 0.13);
+  const galaTrim = archCurve(5.94, 1.05, 3.06, 0.043);
+  const galaZ = chapters[3].z;
+  const water = new THREE.MeshLambertMaterial({ color: 0xffffff, flatShading: true, emissive: 0x173637, emissiveIntensity: 0.36 });
+  const ripple = new THREE.TorusGeometry(1, 0.017, 5, 32).rotateX(Math.PI / 2);
+  instance(galaArch, galaInk, 0, 0, galaZ, 1, 1, 1);
+  instance(galaTrim, galaGold, 0, 0, galaZ + 0.13, 1, 1, 1);
+  chapterSign(3, 3.69, galaInk, '#e4f1dc');
+  function lotus(x, y, z, radius, color) {
+    for (let n = 0; n < 8; n++) {
+      const a = n * Math.PI / 4;
+      instance(pebble, n % 2 ? color : 0xf3b4b5, x + Math.sin(a) * radius * 0.65, y, z + Math.cos(a) * radius * 0.65,
+        radius * 0.33, radius * 0.25, radius * 0.62, 0.55, a);
     }
-    for (let number = 0; number < 17; number++) {
-      const x = (number / 8 - 1) * 4.76;
-      const y = 3.85 + lift + 0.85 * (x / cableLength) ** 2;
-      instance(barrel, colors.rose, x, y - 0.062, z, 0.035, 0.12, 0.035);
-      instance(pebble, number % 3 === 0 ? 0xffe5bc : 0xfff6d5, x, y - 0.128, z, 0.079, 0.098, 0.075,
-        0, 0, 0, candlelight);
-      instance(panel, 0xffffff, x, y - 0.13, z + 0.08, 0.51, 0.51, 1, 0, 0, 0, halo);
+    instance(pebble, 0xffdfa0, x, y + radius * 0.18, z, radius * 0.31, radius * 0.29, radius * 0.31, 0, 0, 0, candlelight);
+  }
+  for (const side of [-1, 1]) {
+    const x = side * 5.94;
+    instance(box, galaInk, x, 1.54, galaZ, 0.25, 3.08, 0.31);
+    for (const y of [0.19, 0.52, 2.97]) instance(box, galaGold, x, y, galaZ, 0.41, 0.14, 0.39);
+    lotus(x, 3.22, galaZ, 0.47, 0xffdcc3);
+    for (const z of [-58.1, -64.1, -70.1]) {
+      const pondX = side * 5.72;
+      instance(box, 0x76988a, pondX, 0.023, z, 4.31, 0.057, 5.99);
+      instance(box, 0x5ea8b0, pondX, 0.042, z, 4.13, 0.043, 5.85, 0, 0, 0, water);
+      instance(box, galaGold, side * 3.59, 0.071, z, 0.11, 0.093, 5.93);
+      for (let n = 0; n < 4; n++) {
+        const padX = side * (4.16 + random() * 2.9);
+        const padZ = z + 2.84 - (n + random()) * 1.28;
+        const r = 0.19 + random() * 0.25;
+        instance(barrel, n % 2 ? 0x7eaf82 : 0x4d8b72, padX, 0.084, padZ, r, 0.023, r * 0.84);
+        instance(ripple, 0xa8d8cc, padX, 0.078, padZ, r * 1.42, 0.35, r * 1.2, 0, 0, 0, water);
+        if (n % 2 === 0) lotus(padX, 0.14, padZ, r * 0.65, 0xffdac7);
+      }
+      for (let n = 0; n < 6; n++) {
+        const reedX = side * (7.13 + random() * 0.53);
+        const reedZ = z + (random() - 0.5) * 5.7;
+        const height = 0.68 + random() * 0.58;
+        const drift = (random() - 0.5) * 0.3;
+        beam(0x587f69, reedX, 0.07, reedZ, reedX + drift, height, reedZ, 0.038);
+        instance(pebble, 0xbd946e, reedX + drift, height, reedZ, 0.055, 0.13, 0.057);
+        instance(pebble, 0x72a28b, reedX, height * 0.46, reedZ + 0.1, 0.041, height * 0.44, 0.056, 0.45);
+      }
+    }
+    for (const [z, y] of [[-55.2, 1.16], [-62.1, 1.74], [-67, 2.22], [-72.8, 2.84]]) {
+      const lampX = side * 6.13;
+      instance(tapered, galaInk, lampX, y * 0.48, z, 0.17, y * 0.96, 0.17);
+      instance(barrel, galaGold, lampX, 0.23, z, 0.29, 0.11, 0.29);
+      instance(barrel, galaGold, lampX, y - 0.13, z, 0.39, 0.11, 0.39);
+      lotus(lampX, y, z, 0.53, 0xffddc4);
+      instance(panel, 0xffffff, lampX, y + 0.06, z + 0.3, 1.06, 1.06, 1, 0, 0, 0, halo);
     }
   }
 
   // The fountain sits beyond the walkable boundary; the pavilion crowns the view behind it.
   const fountainZ = -68.07;
-  const water = new THREE.MeshLambertMaterial({ color: 0xffffff, flatShading: true, emissive: 0x173637, emissiveIntensity: 0.36 });
-  const ripple = new THREE.TorusGeometry(1, 0.017, 5, 32).rotateX(Math.PI / 2);
   shadow(0, fountainZ, 2.95, 2.83);
-  instance(barrel, colors.rose, 0, 0.125, fountainZ, 2.76, 0.25, 2.76);
-  instance(barrel, colors.blush, 0, 0.36, fountainZ, 2.56, 0.33, 2.56);
+  instance(barrel, galaInk, 0, 0.125, fountainZ, 2.76, 0.25, 2.76);
+  instance(barrel, 0x86aca0, 0, 0.36, fountainZ, 2.56, 0.33, 2.56);
   instance(barrel, colors.cream, 0, 0.549, fountainZ, 2.64, 0.13, 2.64);
   instance(barrel, 0x98d5d4, 0, 0.62, fountainZ, 2.37, 0.043, 2.37, 0, 0, 0, water);
   for (const [r, shade] of [[2.04, 0xdbf7ef], [1.47, 0xbee8e6], [1.19, 0xeefaf0]]) {
@@ -496,23 +672,31 @@ export function buildWorld(scene, photos) {
   }
 
   const pavilionZ = -75.25;
-  instance(barrel, colors.rose, 0, 0.085, pavilionZ, 2.48, 0.17, 2.48);
-  instance(barrel, colors.cream, 0, 0.19, pavilionZ, 2.29, 0.12, 2.29);
-  for (let i = 0; i < 6; i++) {
-    const angle = (i + 0.5) * Math.PI / 3;
-    const x = Math.sin(angle) * 2;
-    const z = pavilionZ + Math.cos(angle) * 2;
-    instance(barrel, colors.blush, x, 1.64, z, 0.105, 2.9, 0.105);
-    for (const y of [0.34, 2.96]) instance(barrel, colors.rose, x, y, z, 0.157, 0.16, 0.157);
+  instance(barrel, galaInk, 0, 0.085, pavilionZ, 3.71, 0.17, 3.71);
+  instance(barrel, 0xb4cab2, 0, 0.19, pavilionZ, 3.46, 0.15, 3.46);
+  instance(barrel, galaGold, 0, 0.29, pavilionZ, 3.28, 0.07, 3.28);
+  for (let i = 0; i < 8; i++) {
+    const a = (i + 0.5) * Math.PI / 4;
+    const x = Math.sin(a) * 2.84;
+    const z = pavilionZ + Math.cos(a) * 2.84;
+    instance(barrel, galaInk, x, 2.07, z, 0.16, 3.51, 0.16);
+    for (const y of [0.48, 0.71, 3.62]) instance(barrel, galaGold, x, y, z, 0.23, 0.13, 0.23);
+    beam(galaInk, x, 3.39, z, x * 0.78, 3.82, pavilionZ + (z - pavilionZ) * 0.78, 0.12);
+    const eaveX = Math.sin(a) * 3.82;
+    const eaveZ = pavilionZ + Math.cos(a) * 3.82;
+    beam(galaGold, x * 0.53, 4.81, pavilionZ + (z - pavilionZ) * 0.53, eaveX, 3.86, eaveZ, 0.085);
+    beam(galaGold, eaveX, 3.86, eaveZ, eaveX * 1.08, 4.19, pavilionZ + (eaveZ - pavilionZ) * 1.08, 0.082);
+    instance(pebble, 0xffdfa6, eaveX, 3.67, eaveZ, 0.12, 0.15, 0.12, 0, 0, 0, candlelight);
   }
-  instance(barrel, colors.cream, 0, 3.14, pavilionZ, 2.56, 0.16, 2.56);
-  instance(cone, colors.rose, 0, 3.77, pavilionZ, 2.52, 1.17, 2.52);
-  instance(tapered, colors.blush, 0, 4.29, pavilionZ, 0.45, 0.33, 0.45);
-  instance(heart, colors.rose, 0, 4.68, pavilionZ, 0.43, 0.43, 0.43);
-  instance(box, colors.rose, 0, 2.53, pavilionZ + 1.78, 1.87, 0.63, 0.12);
-  plaque(world, entryPlots + 9, 'With Love', 'A L W A Y S', 0, 2.53, pavilionZ + 1.849, 1.77, 0.55);
+  instance(barrel, galaGold, 0, 3.85, pavilionZ, 3.88, 0.14, 3.88);
+  instance(cone, galaInk, 0, 4.52, pavilionZ, 3.76, 1.25, 3.76);
+  instance(barrel, galaGold, 0, 4.79, pavilionZ, 1.75, 0.11, 1.75);
+  instance(cone, 0x528e87, 0, 5.27, pavilionZ, 1.68, 0.89, 1.68);
+  instance(tapered, galaGold, 0, 5.69, pavilionZ, 0.28, 0.37, 0.28);
+  lotus(0, 5.88, pavilionZ, 0.55, 0xffe3c6);
+  instance(heart, colors.rose, 0, 6.33, pavilionZ, 0.34, 0.34, 0.34);
   for (const side of [-1, 1]) {
-    for (let i = 0; i < 12; i++) flower(side * (2.8 + random() * 1.5), -64.9 - random() * 3.2,
+    for (let i = 0; i < 9; i++) flower(side * (2.8 + random() * 0.62), -64.9 - random() * 3.2,
       0.27 + random() * 0.39, blossoms[i % blossoms.length], 0.85 + random() * 0.52);
   }
 
